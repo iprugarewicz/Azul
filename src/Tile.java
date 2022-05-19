@@ -4,16 +4,18 @@ public class Tile {
     private final String color;
     private final int x;
     private final int y;
-    private final String[] colors = {"yellow", "blue", "green", "pink", "purple","1st player tile"};
-    public Tile(int color,int x, int y){
+    private final String[] colors = {"yellow", "blue", "green", "pink", "purple", "1st player tile"};
 
-        this.color= colors[color];
-        this.x=x;
-        this.y=y;
+    public Tile(int color, int x, int y) {
+
+        this.color = colors[color];
+        this.x = x;
+        this.y = y;
     }
-    public int getColorNumber(){
-        for(int i=0;i<5;i++) {
-            if (this.color.equals(colors[i])){
+
+    public int getColorNumber() {
+        for (int i = 0; i < 5; i++) {
+            if (this.color.equals(colors[i])) {
                 return i;
             }
         }
@@ -22,7 +24,7 @@ public class Tile {
 
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.color;
     }
 
