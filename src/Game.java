@@ -92,21 +92,11 @@ public class Game {
                     for (int i = 0; i < centerOfWorkshop.size(); i++) {
                         if (this.centerOfWorkshop.get(i).getColor().equals(c)) {
                             switch (c) {
-                                case "yellow":
-                                    p.getRoundsTiles().add(new Tile(0, 0, 0));
-                                    break;
-                                case "blue":
-                                    p.getRoundsTiles().add(new Tile(1, 0, 0));
-                                    break;
-                                case "green":
-                                    p.getRoundsTiles().add(new Tile(2, 0, 0));
-                                    break;
-                                case "pink":
-                                    p.getRoundsTiles().add(new Tile(3, 0, 0));
-                                    break;
-                                case "purple":
-                                    p.getRoundsTiles().add(new Tile(4, 0, 0));
-                                    break;
+                                case "yellow" -> p.getRoundsTiles().add(new Tile(0, 0, 0));
+                                case "blue" -> p.getRoundsTiles().add(new Tile(1, 0, 0));
+                                case "green" -> p.getRoundsTiles().add(new Tile(2, 0, 0));
+                                case "pink" -> p.getRoundsTiles().add(new Tile(3, 0, 0));
+                                case "purple" -> p.getRoundsTiles().add(new Tile(4, 0, 0));
                             }
                             indexesToRemove.add(i);
                         }
@@ -118,21 +108,11 @@ public class Game {
                     for (int i = 0; i < 4; i++) {
                         if (workshops[ws - 1][i].getColor().equals(c)) {
                             switch (c) {
-                                case "yellow":
-                                    p.getRoundsTiles().add(new Tile(0, 0, 0));
-                                    break;
-                                case "blue":
-                                    p.getRoundsTiles().add(new Tile(1, 0, 0));
-                                    break;
-                                case "green":
-                                    p.getRoundsTiles().add(new Tile(2, 0, 0));
-                                    break;
-                                case "pink":
-                                    p.getRoundsTiles().add(new Tile(3, 0, 0));
-                                    break;
-                                case "purple":
-                                    p.getRoundsTiles().add(new Tile(4, 0, 0));
-                                    break;
+                                case "yellow" -> p.getRoundsTiles().add(new Tile(0, 0, 0));
+                                case "blue" -> p.getRoundsTiles().add(new Tile(1, 0, 0));
+                                case "green" -> p.getRoundsTiles().add(new Tile(2, 0, 0));
+                                case "pink" -> p.getRoundsTiles().add(new Tile(3, 0, 0));
+                                case "purple" -> p.getRoundsTiles().add(new Tile(4, 0, 0));
                             }
 
                         } else {
