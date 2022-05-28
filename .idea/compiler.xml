@@ -6,12 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="GUI" />
+        <module name="apro2_22l_pro_pt_azulpro" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="demo" target="17" />
-      <module name="GUI" target="17" />
+      <module name="apro2_22l_pro_pt_azulpro" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
