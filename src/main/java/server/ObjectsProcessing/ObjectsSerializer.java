@@ -1,6 +1,7 @@
 package server.ObjectsProcessing;
 
 import server.Logic.GameStatus;
+import server.Logic.NetworkGameStatus;
 import server.Logic.PatternLine;
 import client.logic.Player;
 import server.Logic.Tile;
@@ -42,6 +43,15 @@ public class ObjectsSerializer implements Serializable {
         fos.close();
         oos.close();
     }
+
+    public static void serializeNetworkGameStatus(NetworkGameStatus gs, String fileName) throws IOException {
+        FileOutputStream fos = new FileOutputStream(fileName);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(gs);
+        fos.close();
+        oos.close();
+    }
+
 
     public static GameStatus deserializeGameStatus(String fileName) throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(fileName);
