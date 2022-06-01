@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/client/views/SettingsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/client/views/settings-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/HelloApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/client/views/game-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/views/game-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client/views/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/views/main-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client/views/test.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +123,7 @@
       <workItem from="1653941400663" duration="155000" />
       <workItem from="1654012826078" duration="35000" />
       <workItem from="1654021220432" duration="7865000" />
-      <workItem from="1654096968942" duration="15762000" />
+      <workItem from="1654096968942" duration="17147000" />
     </task>
     <task id="LOCAL-00001" summary="GUI in progress">
       <created>1654101651997</created>
@@ -161,7 +153,21 @@
       <option name="project" value="LOCAL" />
       <updated>1654117010816</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="GUI ma potencjał">
+      <created>1654119816942</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1654119816942</updated>
+    </task>
+    <task id="LOCAL-00006" summary="dodałem obsługe jakiś 2 błędów w kodzie bo coś sie nie kompilowało">
+      <created>1654119911512</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1654119911512</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,7 +177,9 @@
     <MESSAGE value="GUI is being made" />
     <MESSAGE value="GUI ciag dalszy drag and drop bedzie" />
     <MESSAGE value="GUI in progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI in progress" />
+    <MESSAGE value="GUI ma potencjał" />
+    <MESSAGE value="dodałem obsługe jakiś 2 błędów w kodzie bo coś sie nie kompilowało" />
+    <option name="LAST_COMMIT_MESSAGE" value="dodałem obsługe jakiś 2 błędów w kodzie bo coś sie nie kompilowało" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

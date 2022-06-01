@@ -79,7 +79,7 @@
                <children>
                   <Rectangle fx:id="pLine44" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="4" />
                   <Rectangle fx:id="pLine00" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onMouseClicked="#testClick" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="4" />
-                  <Rectangle fx:id="pLine11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Rectangle fx:id="pLine11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onMouseDragReleased="#testClick" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                   <Rectangle fx:id="pLine10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onMouseDragReleased="#testClick" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                   <Rectangle fx:id="pLine22" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                   <Rectangle fx:id="pLine21" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
@@ -195,12 +195,12 @@
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Rectangle fx:id="blueTileCounter" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onMouseClicked="#testClick" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-                  <Rectangle fx:id="greenTileCounter" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onMouseClicked="#testClick" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="1" />
-                  <Rectangle fx:id="pinkTileCount" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onMouseClicked="#testClick" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="2" />
-                  <Rectangle fx:id="purpleTileCount" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onMouseClicked="#testClick" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="3" />
-                  <Rectangle fx:id="yellowTileCounter" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onMouseClicked="#testClick" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="4" />
-                  <Rectangle fx:id="firstPlayerTile" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onMouseClicked="#testClick" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="5" />
+                  <Rectangle fx:id="blueTileCounter" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onDragDone="#dragIn" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+                  <Rectangle fx:id="greenTileCounter" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="1" />
+                  <Rectangle fx:id="pinkTileCount" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="2" />
+                  <Rectangle fx:id="purpleTileCount" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="3" />
+                  <Rectangle fx:id="yellowTileCounter" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="4" />
+                  <Rectangle fx:id="firstPlayerTile" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="5" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Count" GridPane.columnIndex="1" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Count" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Count" GridPane.columnIndex="1" GridPane.rowIndex="2" />

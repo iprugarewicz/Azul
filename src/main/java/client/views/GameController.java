@@ -396,7 +396,7 @@ public class GameController implements Initializable {
             int i = 0;
             for (Rectangle counter : counters) {
                 counter.setFill(new ImagePattern(images[i]));
-                draggableMaker.makeDraggable(counter);
+              //  draggableMaker.makeDraggable(counter);
                 i++;
             }
              i = 0;
@@ -414,6 +414,7 @@ public class GameController implements Initializable {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+
 
     }
     public class DraggableMaker {
