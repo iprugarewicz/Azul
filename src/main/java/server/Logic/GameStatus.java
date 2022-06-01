@@ -1,5 +1,6 @@
-package server;
+package server.Logic;
 
+import client.logic.NetworkPlayer;
 import client.logic.Player;
 import server.Configuration.Config;
 
@@ -7,25 +8,27 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class GameStatus implements Serializable {
-    private final ArrayList<Player> playersList;
+    private final ArrayList<NetworkPlayer> playersList;
     private final Workshop[] workshops;
     private final CenterOfWorkshop centerOfWorkshop;
     private final int[] tilesAmounts; //yellow blue green pink purple
     private final int round;
     private final boolean is1stplayerstileatthecenter;
+    private final int whoseTurnIsIt;
 
 
-    public GameStatus(ArrayList<Player> playersList, Workshop[] workshops, CenterOfWorkshop centerOfWorkshop, int[] tilesAmounts, int round, boolean is1stplayerstileatthecenter) {
+    public GameStatus(ArrayList<NetworkPlayer> playersList, Workshop[] workshops, CenterOfWorkshop centerOfWorkshop, int[] tilesAmounts, int round, boolean is1stplayerstileatthecenter,int whoseTurnIsIt) {
         this.playersList = playersList;
         this.workshops = workshops;
         this.centerOfWorkshop = centerOfWorkshop;
         this.tilesAmounts = tilesAmounts;
         this.round = round;
         this.is1stplayerstileatthecenter = is1stplayerstileatthecenter;
+        this.whoseTurnIsIt = whoseTurnIsIt;
     }
 
 
-    public ArrayList<Player> getPlayersList() {
+    public ArrayList<NetworkPlayer> getPlayersList() {
         return playersList;
     }
 

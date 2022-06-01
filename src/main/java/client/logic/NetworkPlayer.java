@@ -1,6 +1,6 @@
 package client.logic;
 
-
+import client.network.Klient;
 import server.Logic.*;
 
 import java.io.Serializable;
@@ -8,17 +8,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Player implements Serializable {
+public class NetworkPlayer implements Serializable {
     private int progress = 0;
     private final int id;
     private ArrayList<Tile> roundsTiles = new ArrayList<>();
     private PlayersBoard playersBoard = new PlayersBoard();
     private Floor floor = new Floor();
     private String chosenColor;
+    private Klient klient;
 
-    public Player(int id) {
+    public NetworkPlayer(int id, Klient klient) {
         this.id = id;
+        this.klient = klient;
     }
+    public void playGame(){}
 
     public ArrayList<Tile> getRoundsTiles() {
         return roundsTiles;

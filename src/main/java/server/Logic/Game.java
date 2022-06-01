@@ -1,4 +1,4 @@
-package server;
+package server.Logic;
 
 import client.logic.Player;
 import server.ObjectsProcessing.ObjectsSerializer;
@@ -18,10 +18,11 @@ public class Game {
     private int round=1;
     private boolean is1stplayerstileatthecenter=false;
     private boolean wasGameStatesReadFromaFile=false;
+    private GameStatus gameStatus;
     public Game(int players) {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
-                board[i][j] = new Tile((j + 5 - i) % 5, i, j);
+                board[i][j] = new Tile((j + 5 - i) % 5);
             }
         }
 
@@ -37,7 +38,6 @@ public class Game {
         for(int i=0;i<Config.getWorkshopsAmount(playersList.size());i++){
             this.workshops[i]=new Workshop();
         }
-
     }
 
     private void generateWorkshops() {
@@ -46,7 +46,7 @@ public class Game {
             for (int j = 0; j < 4; j++) {
                 int ran = Math.abs(r.nextInt()) % 5;
                 if (this.tilesAmounts[ran] != 0) {
-                    workshops[i].getTiles()[j] = new Tile(ran, 0, 0);
+                    workshops[i].getTiles()[j] = new Tile(ran);
                     tilesAmounts[ran]--;
                 } else {
                     j--;
@@ -58,6 +58,8 @@ public class Game {
     public static Tile[][] getBoard() {
         return board;
     }
+
+
 
     public void setWasGameStatesReadFromaFile(boolean wasGameStatesReadFromaFile) {
         this.wasGameStatesReadFromaFile = wasGameStatesReadFromaFile;
@@ -110,19 +112,19 @@ public class Game {
                             if (this.centerOfWorkshop.getCenterOfWorkshop().get(i).getColor().equals(c)) {
                                 switch (c) {
                                     case "yellow":
-                                        p.getRoundsTiles().add(new Tile(0, 0, 0));
+                                        p.getRoundsTiles().add(new Tile(0));
                                         break;
                                     case "blue":
-                                        p.getRoundsTiles().add(new Tile(1, 0, 0));
+                                        p.getRoundsTiles().add(new Tile(1));
                                         break;
                                     case "green":
-                                        p.getRoundsTiles().add(new Tile(2, 0, 0));
+                                        p.getRoundsTiles().add(new Tile(2));
                                         break;
                                     case "pink":
-                                        p.getRoundsTiles().add(new Tile(3, 0, 0));
+                                        p.getRoundsTiles().add(new Tile(3));
                                         break;
                                     case "purple":
-                                        p.getRoundsTiles().add(new Tile(4, 0, 0));
+                                        p.getRoundsTiles().add(new Tile(4));
                                         break;
                                 }
                                 indexesToRemove.add(i);
@@ -136,24 +138,24 @@ public class Game {
                             if (workshops[ws - 1].getTiles()[i].getColor().equals(c)) {
                                 switch (c) {
                                     case "yellow":
-                                        p.getRoundsTiles().add(new Tile(0, 0, 0));
+                                        p.getRoundsTiles().add(new Tile(0));
                                         break;
                                     case "blue":
-                                        p.getRoundsTiles().add(new Tile(1, 0, 0));
+                                        p.getRoundsTiles().add(new Tile(1));
                                         break;
                                     case "green":
-                                        p.getRoundsTiles().add(new Tile(2, 0, 0));
+                                        p.getRoundsTiles().add(new Tile(2));
                                         break;
                                     case "pink":
-                                        p.getRoundsTiles().add(new Tile(3, 0, 0));
+                                        p.getRoundsTiles().add(new Tile(3));
                                         break;
                                     case "purple":
-                                        p.getRoundsTiles().add(new Tile(4, 0, 0));
+                                        p.getRoundsTiles().add(new Tile(4));
                                         break;
                                 }
 
                             } else {
-                                this.centerOfWorkshop.getCenterOfWorkshop().add(new Tile(workshops[ws - 1].getTiles()[i].getColorNumber(), 0, 0));
+                                this.centerOfWorkshop.getCenterOfWorkshop().add(new Tile(workshops[ws - 1].getTiles()[i].getColorNumber()));
                             }
                             workshops[ws - 1].getTiles()[i] = null;
                         }
@@ -188,7 +190,7 @@ public class Game {
                         this.generateWorkshops();
                     }
                     if(round==1){
-                        centerOfWorkshop.getCenterOfWorkshop().add(new Tile(5,0,0));
+                        centerOfWorkshop.getCenterOfWorkshop().add(new Tile(5));
                         this.is1stplayerstileatthecenter=true;
                     }
                     round++;
