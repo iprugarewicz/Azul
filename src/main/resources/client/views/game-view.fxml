@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.views.GameView">
+   <children>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="950.0">
+         <children>
+            <GridPane fx:id="wallBoard" alignment="CENTER" layoutX="516.0" layoutY="282.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="420.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="84.0" prefWidth="84.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="84.0" prefWidth="84.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="84.0" prefWidth="84.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="84.0" prefWidth="84.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="99.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="84.0" minHeight="84.0" prefHeight="84.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="84.0" minHeight="84.0" prefHeight="84.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="84.0" minHeight="84.0" prefHeight="84.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="84.0" minHeight="84.0" prefHeight="84.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="84.0" minHeight="84.0" prefHeight="84.0" vgrow="SOMETIMES" />
+                <RowConstraints />
+              </rowConstraints>
+               <children>
+                  <Rectangle fx:id="wall03" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="3" />
+                  <Rectangle fx:id="wall10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="1" />
+                  <Rectangle fx:id="wall02" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="2" />
+                  <Rectangle fx:id="wall04" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="4" />
+                  <Rectangle fx:id="wall40" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="4" />
+                  <Rectangle fx:id="wall20" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="2" />
+                  <Rectangle fx:id="wall00" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+                  <Rectangle fx:id="wall01" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="1" />
+                  <Rectangle fx:id="wall11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Rectangle fx:id="wall21" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Rectangle fx:id="wall31" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Rectangle fx:id="wall41" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                  <Rectangle fx:id="wall12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Rectangle fx:id="wall22" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Rectangle fx:id="wall32" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Rectangle fx:id="wall42" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                  <Rectangle fx:id="wall13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Rectangle fx:id="wall23" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Rectangle fx:id="wall33" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Rectangle fx:id="wall43" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                  <Rectangle fx:id="wall14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Rectangle fx:id="wall24" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Rectangle fx:id="wall34" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <Rectangle fx:id="wall44" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                  <Rectangle fx:id="wall30" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="3" />
+               </children>
+            </GridPane>
+            <GridPane fx:id="patternLines" layoutX="37.0" layoutY="282.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="420.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="84.0" prefWidth="84.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="84.0" prefWidth="84.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="84.0" prefWidth="84.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="84.0" prefWidth="84.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="99.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="84.0" minHeight="84.0" prefHeight="84.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="84.0" minHeight="84.0" prefHeight="84.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="84.0" minHeight="84.0" prefHeight="84.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="84.0" minHeight="84.0" prefHeight="84.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="84.0" minHeight="84.0" prefHeight="84.0" vgrow="SOMETIMES" />
+                  <RowConstraints />
+               </rowConstraints>
+               <children>
+                  <Rectangle fx:id="pLine44" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="4" />
+                  <Rectangle fx:id="pLine00" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onDragEntered="#testClick" onMouseClicked="#testClick" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="4" />
+                  <Rectangle fx:id="pLine11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Rectangle fx:id="pLine10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                  <Rectangle fx:id="pLine22" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Rectangle fx:id="pLine21" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Rectangle fx:id="pLine20" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                  <Rectangle fx:id="pLine33" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Rectangle fx:id="pLine32" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Rectangle fx:id="pLine31" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Rectangle fx:id="pLine30" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                  <Rectangle fx:id="pLine43" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Rectangle fx:id="pLine42" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Rectangle fx:id="pLine41" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <Rectangle fx:id="pLine40" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+               </children>
+            </GridPane>
+            <GridPane layoutX="37.0" layoutY="721.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="588.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Rectangle fx:id="floor0" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+                  <Rectangle fx:id="floor2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="2" />
+                  <Rectangle fx:id="floor1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="1" />
+                  <Rectangle fx:id="floor3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="3" />
+                  <Rectangle fx:id="floor4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="4" />
+                  <Rectangle fx:id="floor5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="5" />
+                  <Rectangle fx:id="floor6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="6" />
+               </children>
+            </GridPane>
+            <Circle fx:id="workshop1" fill="DODGERBLUE" layoutX="457.0" layoutY="77.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="workshop4" fill="DODGERBLUE" layoutX="529.0" layoutY="202.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="workshop3" fill="DODGERBLUE" layoutX="385.0" layoutY="202.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="workshop2" fill="DODGERBLUE" layoutX="601.0" layoutY="77.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="workshop6" fill="DODGERBLUE" layoutX="673.0" layoutY="202.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="workshop8" fill="DODGERBLUE" layoutX="745.0" layoutY="77.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="workshop5" fill="DODGERBLUE" layoutX="241.0" layoutY="202.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="workshop0" fill="DODGERBLUE" layoutX="313.0" layoutY="77.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="workshop7" fill="DODGERBLUE" layoutX="169.0" layoutY="77.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
+            <Rectangle fx:id="w7Tile0" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="134.0" layoutY="14.0" rotate="51.3" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w7Tile2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="106.0" layoutY="54.0" rotate="-55.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w7Tile3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="149.0" layoutY="93.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w7Tile1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="182.0" layoutY="43.0" rotate="13.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w0Tile1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="276.0" layoutY="34.0" rotate="48.8" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w0Tile0" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="322.0" layoutY="7.0" rotate="-14.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w0Tile3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="256.0" layoutY="85.0" rotate="-45.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w0Tile2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="322.0" layoutY="79.0" rotate="24.4" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w1Tile1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" layoutY="54.0" rotate="-71.6" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w1Tile3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="446.0" layoutY="93.0" rotate="7.6" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w1Tile0" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="428.0" layoutY="23.0" rotate="-29.7" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w1Tile2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="478.0" layoutY="46.0" rotate="32.5" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w2Tile3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="605.0" layoutY="69.0" rotate="-125.5" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w2Tile1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="590.0" layoutY="14.0" rotate="-153.4" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w2Tile2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="563.0" layoutY="93.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w2Tile0" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="538.0" layoutY="40.0" rotate="32.7" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w8Tile2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="765.0" layoutY="67.0" rotate="-26.6" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w8Tile0" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="696.0" layoutY="42.0" rotate="-149.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w8Tile1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="745.0" layoutY="23.0" onDragEntered="#dragIn" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w8Tile3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="709.0" layoutY="93.0" rotate="-15.3" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w5Tile0" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="182.0" layoutY="162.0" rotate="116.6" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w5Tile1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" layoutY="150.0" rotate="68.2" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w5Tile3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="248.0" layoutY="202.0" rotate="-137.7" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w5Tile2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="206.0" layoutY="219.0" rotate="-35.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w3Tile0" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="342.0" layoutY="142.0" rotate="-63.4" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w3Tile1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="401.0" layoutY="176.0" rotate="61.4" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w3Tile3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" layoutY="222.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w3Tile2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="348.0" layoutY="191.0" rotate="105.9" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w4Tile0" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="478.0" layoutY="149.0" rotate="-74.7" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w4Tile1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="532.0" layoutY="162.0" rotate="-158.2" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w4Tile2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="478.0" layoutY="202.0" rotate="54.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w4Tile3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="538.0" layoutY="216.0" rotate="103.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w6Tile0" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="653.0" layoutY="135.0" rotate="-141.3" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w6Tile2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="684.0" layoutY="174.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w6Tile1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="617.0" layoutY="219.0" rotate="-118.6" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w6Tile3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="669.0" layoutY="216.0" rotate="24.4" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
