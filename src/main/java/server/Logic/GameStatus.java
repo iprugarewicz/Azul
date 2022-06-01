@@ -28,6 +28,7 @@ public class GameStatus implements Serializable {
     }
 
 
+
     public ArrayList<Player> getPlayersList() {
         return playersList;
     }

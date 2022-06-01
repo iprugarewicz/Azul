@@ -360,17 +360,28 @@ public class GameView implements Initializable {
         w7 = new Rectangle[]{w7Tile0, w7Tile1, w7Tile2, w7Tile3};
         w8 = new Rectangle[]{w8Tile0, w8Tile1, w8Tile2, w8Tile3};
         workshops = new Rectangle[][]{w0, w1, w2, w3, w4, w5, w6, w7, w8};
+        try {
+            Image[] images ={new Image(new FileInputStream("src/main/resources/images/blue.png")),
+                    new Image(new FileInputStream("src/main/resources/images/green.png")),
+                    new Image(new FileInputStream("src/main/resources/images/pink.png")),
+                    new Image(new FileInputStream("src/main/resources/images/purple.png")),
+                    new Image(new FileInputStream("src/main/resources/images/yellow.png"))
+            };
 
+            int i = 0;
+            DraggableMaker draggableMaker = new DraggableMaker();
+            for (Rectangle[] w:
+            workshops){
+                for (Rectangle Tile :
+                        w) {
+                    Tile.setFill(new ImagePattern(images[i%5]));
+                    draggableMaker.makeDraggable(Tile);
+                    i++;
+                }
 
-
-        DraggableMaker draggableMaker = new DraggableMaker();
-        for (Rectangle[] w:
-        workshops){
-            for (Rectangle Tile :
-                    w) {
-                draggableMaker.makeDraggable(Tile);
             }
-
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
 
     }
