@@ -3,12 +3,9 @@ package client.views;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseDragEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class MainView {
+public class MainController {
 
     @FXML
     private Button playButton;

@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.views.MainView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.views.MainController">
    <children>
       <Text layoutX="108.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tutaj bedzie obrazek z nazwą" />
       <Text layoutX="661.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tutaj bedzie obrazek jakis inny" wrappingWidth="202.763671875" />

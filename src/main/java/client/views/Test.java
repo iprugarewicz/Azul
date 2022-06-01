@@ -1,22 +1,22 @@
 package client.views;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Test {
+public class Test extends Application {
 
-    @FXML
-    private TextField textTitle;
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("game-view.fxml"));
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
 
-    @FXML
-    void btnOKClicked(ActionEvent event) {
-        Stage mainWindow = (Stage) textTitle.getScene().getWindow();
-        String title = textTitle.getText();
-        mainWindow.setTitle(title);
+        primaryStage.show();
 
     }
-
 
 }

@@ -17,7 +17,7 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GameView implements Initializable {
+public class GameController implements Initializable {
 
     @FXML
     private Rectangle floor0;
@@ -329,7 +329,30 @@ public class GameView implements Initializable {
     private Circle workshop9;
 
     @FXML
+    private Rectangle yellowTileCounter;
+
+    @FXML
+    private Rectangle greenTileCounter;
+
+    @FXML
+    private Rectangle pinkTileCount;
+
+    @FXML
+    private Rectangle purpleTileCount;
+
+    @FXML
+    private Rectangle blueTileCounter;
+
+    @FXML
+    private Rectangle firstPlayerTile;
+
+    private  Rectangle[] counters;
+
+
+
+    @FXML
     void dragIn(DragEvent event) {
+        System.out.println("ez");
 
     }
 
@@ -343,13 +366,9 @@ public class GameView implements Initializable {
     }
 
 
-    public Rectangle[] getW1() {
-        return w1;
-    }
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         w0 = new Rectangle[]{w0Tile0, w0Tile1, w0Tile2, w0Tile3};
         w1 = new Rectangle[]{w1Tile0, w1Tile1, w1Tile2, w1Tile3};
         w2 = new Rectangle[]{w2Tile0, w2Tile1, w2Tile2, w2Tile3};
@@ -360,16 +379,28 @@ public class GameView implements Initializable {
         w7 = new Rectangle[]{w7Tile0, w7Tile1, w7Tile2, w7Tile3};
         w8 = new Rectangle[]{w8Tile0, w8Tile1, w8Tile2, w8Tile3};
         workshops = new Rectangle[][]{w0, w1, w2, w3, w4, w5, w6, w7, w8};
+
+        counters = new Rectangle[]{blueTileCounter, greenTileCounter, pinkTileCount, purpleTileCount, yellowTileCounter};
+
+
         try {
+            firstPlayerTile.setFill(new ImagePattern(new Image(new FileInputStream("src/main/resources/images/1stplayertile.png"))));
+
             Image[] images ={new Image(new FileInputStream("src/main/resources/images/blue.png")),
                     new Image(new FileInputStream("src/main/resources/images/green.png")),
                     new Image(new FileInputStream("src/main/resources/images/pink.png")),
                     new Image(new FileInputStream("src/main/resources/images/purple.png")),
                     new Image(new FileInputStream("src/main/resources/images/yellow.png"))
             };
-
-            int i = 0;
             DraggableMaker draggableMaker = new DraggableMaker();
+            int i = 0;
+            for (Rectangle counter : counters) {
+                counter.setFill(new ImagePattern(images[i]));
+                draggableMaker.makeDraggable(counter);
+                i++;
+            }
+             i = 0;
+
             for (Rectangle[] w:
             workshops){
                 for (Rectangle Tile :

@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="GUI in progress">
+    <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/client/views/SettingsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/client/views/settings-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/GameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/GameStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/GameStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/HelloApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/client/views/game-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/views/game-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/client/views/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/views/main-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/client/views/test.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +35,6 @@
     <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/client/views/HelloApplication.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/resources/client/views/hello-view.fxml" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -77,14 +83,14 @@
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-18" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="server.Main" />
+      <option name="MAIN_CLASS_NAME" value="server.Logic.Main" />
       <module name="apro2_22l_pro_pt_azulpro" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="Test" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="client.views.Main" />
+      <option name="MAIN_CLASS_NAME" value="client.views.Test" />
       <module name="apro2_22l_pro_pt_azulpro" />
       <extension name="coverage">
         <pattern>
@@ -125,7 +131,7 @@
       <workItem from="1653941400663" duration="155000" />
       <workItem from="1654012826078" duration="35000" />
       <workItem from="1654021220432" duration="7865000" />
-      <workItem from="1654096968942" duration="13424000" />
+      <workItem from="1654096968942" duration="15762000" />
     </task>
     <task id="LOCAL-00001" summary="GUI in progress">
       <created>1654101651997</created>
@@ -148,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654114485762</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="GUI in progress">
+      <created>1654117010816</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1654117010816</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
