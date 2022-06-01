@@ -70,7 +70,13 @@ public class Menu {
                     NetworkPlayer np1 = new NetworkPlayer(1,k);
                     networkGame.getPlayersList().add(np1);
                     new Thread(()->{
-                        networkGame.letsplay();
+                        try {
+                            networkGame.letsplay();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        } catch (ClassNotFoundException e) {
+                            throw new RuntimeException(e);
+                        }
                     }).start();
                     np1.playGame();
                 }

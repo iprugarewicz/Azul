@@ -14,7 +14,7 @@ public class Klient{
         socket = new Socket("localhost",12300);
     }
 
-    public void initialize(){
+    public void initialize() throws IOException {
         int id = recieveID();
         player = new NetworkPlayer(id,this);
         OutputStream os = this.socket.getOutputStream();
