@@ -15,4 +15,6 @@ public class ReadGameStatusFromFile {
         game.setWasGameStatesReadFromaFile(true);
         return game;
     }
+
+
 }

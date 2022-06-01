@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 public class NetworkGame {
 
@@ -22,9 +21,10 @@ public class NetworkGame {
         private int round=1;
         private boolean is1stplayerstileatthecenter=false;
         private boolean wasGameStatesReadFromaFile=false;
-        private Serwer serwer;
+        private final Serwer serwer;
 
         public NetworkGame(int players,Serwer s) {
+            this.serwer = s;
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 5; j++) {
                     board[i][j] = new Tile((j + 5 - i) % 5);
@@ -35,7 +35,7 @@ public class NetworkGame {
                 throw new IllegalArgumentException("Not allowed number of players, try 2-4 instead.");
             }
 
-            for (Player p : s.getPlayersDatabase()) {
+            for (NetworkPlayer p : s.getPlayersDatabase()) {
                 playersList.add(p);
             }
 
@@ -43,7 +43,7 @@ public class NetworkGame {
             for(int i=0;i<Config.getWorkshopsAmount(playersList.size());i++){
                 this.workshops[i]=new Workshop();
             }
-            this.serwer = s;
+
 
         }
 
@@ -69,8 +69,8 @@ public class NetworkGame {
         public void setWasGameStatesReadFromaFile(boolean wasGameStatesReadFromaFile) {
             this.wasGameStatesReadFromaFile = wasGameStatesReadFromaFile;
         }
-         public GameStatus generateGameStatus(int id){
-             return  new GameStatus(playersList,workshops,centerOfWorkshop,tilesAmounts,round,is1stplayerstileatthecenter,id);
+         public NetworkGameStatus generateGameStatus(int id){
+             return  new NetworkGameStatus(playersList,workshops,centerOfWorkshop,tilesAmounts,round,is1stplayerstileatthecenter,id);
         }
 
         public void letsplay() throws IOException, ClassNotFoundException {
@@ -79,7 +79,7 @@ public class NetworkGame {
             }
             boolean hasSomeBodyFinished = false;
             while (!hasSomeBodyFinished) {
-                for (Player p : this.playersList) {
+                for (NetworkPlayer p : this.playersList) {
                     boolean areWorkshopsEmpty=false;
                     serwer.sendToAll(generateGameStatus(p.getId()));
                     ObjectInputStream oos= new ObjectInputStream(serwer.getSocketDatabase().get(p.getId()).getInputStream());
@@ -182,9 +182,9 @@ public class NetworkGame {
                         this.is1stplayerstileatthecenter=true;
                     }
                     round++;
-                    this.saveGameStatusToFile("autosave", p.getId());
+                    this.saveNetworkGameStatusToFile("autosave", p.getId());
                 }
-                for(Player p : playersList){
+                for(NetworkPlayer p : playersList){
                     for(int i=0;i<5;i++){
                         for(int j=0;j<5;j++) {
                             if (!p.getMatchedTiles()[i][j]) {
@@ -200,15 +200,15 @@ public class NetworkGame {
             }
             endGame();
         }
-        public void saveGameStatusToFile(String fileName,int id) throws IOException {
-            ObjectsSerializer.serializeGameStatus(new GameStatus(this.playersList,this.workshops,this.centerOfWorkshop,this.tilesAmounts,this.round,this.is1stplayerstileatthecenter,id),fileName);
+        public void saveNetworkGameStatusToFile(String fileName, int id) throws IOException {
+            ObjectsSerializer.serializeNetworkGameStatus(new NetworkGameStatus(this.playersList,this.workshops,this.centerOfWorkshop,this.tilesAmounts,this.round,this.is1stplayerstileatthecenter,id),fileName);
         }
         public void endGame(){
             for(int i=0;i<playersList.size();i++){
                 int biggest=playersList.get(i).getProgress();
                 for(int j=i+1;j<playersList.size();j++){
                     if(playersList.get(j).getProgress()>biggest){
-                        Player temp=playersList.get(j);
+                        NetworkPlayer temp=playersList.get(j);
                         playersList.set(j,playersList.get(i));
                         playersList.set(i,temp);
                         biggest=playersList.get(i).getProgress();
@@ -222,7 +222,7 @@ public class NetworkGame {
             }
         }
 
-        public void setPlayersList(ArrayList<Player> playersList) {
+        public void setPlayersList(ArrayList<NetworkPlayer> playersList) {
             this.playersList = playersList;
         }
 
@@ -245,7 +245,7 @@ public class NetworkGame {
         public void setIs1stplayerstileatthecenter(boolean is1stplayerstileatthecenter) {
             this.is1stplayerstileatthecenter = is1stplayerstileatthecenter;
         }
-        private static boolean isMoveCorrect(Move m,Player p){
+        private static boolean isMoveCorrect(Move m,NetworkPlayer p){
             for (int i: p.possibleActions()){
                 if(i==m.getMove()){return true;}
             }
