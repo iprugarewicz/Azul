@@ -1,6 +1,9 @@
 package server.Logic;
 
 
+import client.logic.NetworkPlayer;
+import client.network.Klient;
+import server.Network.Serwer;
 import server.ObjectsProcessing.ObjectsSerializer;
 import server.ObjectsProcessing.ReadGameStatusFromFile;
 
@@ -53,7 +56,24 @@ public class Menu {
                 System.out.println("2. Dołączenie do rozgrywki");
                 System.out.println("0. Powrót do Menu");
                 int b = sc.nextInt();
-                if(b==1){}
+                if(b==1){
+                    Serwer serwer= new Serwer();
+                    new Thread(()->{
+                        try {
+                            serwer.runServer();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }).start();
+                    NetworkGame networkGame = new NetworkGame(2,serwer);
+                    Klient k = new Klient();
+                    NetworkPlayer np1 = new NetworkPlayer(1,k);
+                    networkGame.getPlayersList().add(np1);
+                    new Thread(()->{
+                        networkGame.letsplay();
+                    }).start();
+                    np1.playGame();
+                }
                 else if (b==2){}
                 else if(b==0){}
                 else System.out.println("Niepoprawna wartość");

@@ -1,5 +1,6 @@
 package server.Network;
 
+import client.logic.NetworkPlayer;
 import client.logic.Player;
 
 import java.io.*;
@@ -13,7 +14,7 @@ public class Serwer{
     private ServerSocket ss;
     private final int port = 12300;
     private ArrayList<Socket> socketDatabase;
-    private ArrayList<Player> playersDatabase;
+    private ArrayList<NetworkPlayer> playersDatabase;
     private int numberOfClients;
 
 
@@ -22,7 +23,7 @@ public class Serwer{
         socketDatabase = new ArrayList<Socket>();
         numberOfClients = 0;
     }
-    public ArrayList<Player> getPlayersDatabase() {
+    public ArrayList<NetworkPlayer> getPlayersDatabase() {
         return playersDatabase;
     }
     public ArrayList<Socket> getSocketDatabase() {
@@ -59,7 +60,7 @@ public class Serwer{
                     ObjectInputStream ois = new ObjectInputStream(is);
                     PrintWriter pw = new PrintWriter(os,true);
                     pw.println(id);
-                    Player p = (Player) ois.readObject();
+                    NetworkPlayer p = (NetworkPlayer) ois.readObject();
                     playersDatabase.add(p);
                 } catch (IOException e) {
                     e.printStackTrace();
