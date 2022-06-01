@@ -2,8 +2,9 @@ package client.logic;
 
 import client.network.Klient;
 import server.Logic.*;
+import server.Network.Move;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -21,7 +22,37 @@ public class NetworkPlayer implements Serializable {
         this.id = id;
         this.klient = klient;
     }
-    public void playGame(){}
+    public void playGame() throws IOException, ClassNotFoundException {
+        OutputStream os = klient.getSocket().getOutputStream();
+        InputStream is = klient.getSocket().getInputStream();
+        ObjectInputStream ois = new ObjectInputStream(is);
+        ObjectOutputStream oos = new ObjectOutputStream(os);
+        boolean on = true;
+
+        while(on) {
+            NetworkGameStatus gS = (NetworkGameStatus) ois.readObject();
+            if(gS.isGameFinished()){break;}
+            //tu trzeba przypisac dane do tego networkplayera
+
+            //tu gui wyswietla stan gry
+
+            if(gS.getWhoseTurnIsIt() == this.id){
+                Scanner scanner = new Scanner(System.in);
+                int a = scanner.nextInt(); // workshop
+                String b = scanner.nextLine(); // color
+                int c = scanner.nextInt(); // move
+                Move mv = new Move(a, c ,b);
+                oos.writeObject(mv);
+            }
+            ArrayList<NetworkPlayer> playerArrayList = (ArrayList<NetworkPlayer>) ois.readObject();
+            for (NetworkPlayer p : playerArrayList) {
+                System.out.println("Gracz: " + p.getId() + " zdobył" + p.getProgress() + " pnuktów.");
+
+            }
+        }
+
+
+    }
 
     public ArrayList<Tile> getRoundsTiles() {
         return roundsTiles;
@@ -183,5 +214,21 @@ public class NetworkPlayer implements Serializable {
 
     public PatternLine getPatternLine() {
         return playersBoard.getPatternLineObject();
+    }
+
+    public PlayersBoard getPlayersBoard() {
+        return playersBoard;
+    }
+
+    public Floor getFloor() {
+        return floor;
+    }
+
+    public String getChosenColor() {
+        return chosenColor;
+    }
+
+    public Klient getKlient() {
+        return klient;
     }
 }

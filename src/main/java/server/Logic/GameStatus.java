@@ -16,7 +16,6 @@ public class GameStatus implements Serializable {
     private final boolean is1stplayerstileatthecenter;
 
 
-
     public GameStatus(ArrayList<Player> playersList, Workshop[] workshops, CenterOfWorkshop centerOfWorkshop, int[] tilesAmounts, int round, boolean is1stplayerstileatthecenter) {
         this.playersList = playersList;
         this.workshops = workshops;
@@ -24,7 +23,6 @@ public class GameStatus implements Serializable {
         this.tilesAmounts = tilesAmounts;
         this.round = round;
         this.is1stplayerstileatthecenter = is1stplayerstileatthecenter;
-
     }
 
 
@@ -40,6 +38,7 @@ public class GameStatus implements Serializable {
     public CenterOfWorkshop getCenterOfWorkshop() {
         return centerOfWorkshop;
     }
+
 
     public int[] getTilesAmounts() {
         return tilesAmounts;
