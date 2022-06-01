@@ -32,6 +32,7 @@ public class Klient{
         return 0;
     }
 
+
     public Player getPlayer() {
         return player;
     }

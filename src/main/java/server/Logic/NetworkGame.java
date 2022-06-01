@@ -1,5 +1,6 @@
 package server.Logic;
 
+import client.logic.NetworkPlayer;
 import client.logic.Player;
 import server.Network.Move;
 import server.Network.Serwer;
@@ -14,7 +15,7 @@ import java.util.Scanner;
 public class NetworkGame {
 
         private static final Tile[][] board = new Tile[5][5];
-        private ArrayList<Player> playersList = new ArrayList<>();
+        private ArrayList<NetworkPlayer> playersList = new ArrayList<>();
         private Workshop[] workshops;
         private CenterOfWorkshop centerOfWorkshop = new CenterOfWorkshop();
         private int[] tilesAmounts = {20, 20, 20, 20, 20}; //yellow blue green pink purple
@@ -68,8 +69,8 @@ public class NetworkGame {
         public void setWasGameStatesReadFromaFile(boolean wasGameStatesReadFromaFile) {
             this.wasGameStatesReadFromaFile = wasGameStatesReadFromaFile;
         }
-         public GameStatus generateGameStatus(){
-             return  new GameStatus(playersList,workshops,centerOfWorkshop,tilesAmounts,round,is1stplayerstileatthecenter);
+         public GameStatus generateGameStatus(int id){
+             return  new GameStatus(playersList,workshops,centerOfWorkshop,tilesAmounts,round,is1stplayerstileatthecenter,id);
         }
 
         public void letsplay() throws IOException, ClassNotFoundException {
@@ -80,10 +81,10 @@ public class NetworkGame {
             while (!hasSomeBodyFinished) {
                 for (Player p : this.playersList) {
                     boolean areWorkshopsEmpty=false;
-                    serwer.sendToAll(generateGameStatus());
-
+                    serwer.sendToAll(generateGameStatus(p.getId()));
                     ObjectInputStream oos= new ObjectInputStream(serwer.getSocketDatabase().get(p.getId()).getInputStream());
                     Move mv = (Move) oos.readObject();
+                    while(!isMoveCorrect(mv,p)){mv = (Move) oos.readObject();}
                     int ws = mv.getWorkshop();
                     String c = mv.getColor();
                     if (ws == workshops.length+1) {
@@ -151,7 +152,7 @@ public class NetworkGame {
 
                     }
                     System.out.println(p.getRoundsTiles());
-                    p.putTilesToPatternLine(p.chooseAction());
+                    p.putTilesToPatternLine(mv.getMove());
                     p.moveTiles();
                     p.calculateRoundPoints();
                     for(int i=0;i<workshops.length;i++){
@@ -172,8 +173,6 @@ public class NetworkGame {
                             areWorkshopsEmpty = true;
                             break;
                         }
-
-
                     }
                     if(areWorkshopsEmpty) {
                         this.generateWorkshops();
@@ -183,16 +182,7 @@ public class NetworkGame {
                         this.is1stplayerstileatthecenter=true;
                     }
                     round++;
-                }
-                System.out.println("czy chcesz zapisac stan gry oraz zakonczyc rozgrywke? yes/no");
-                Scanner sccc=new Scanner(System.in);
-                String ans= sccc.nextLine();
-                if(ans.equals("yes")){
-                    System.out.println("Podaj nazwe pliku: ");
-                    Scanner sccc2=new Scanner(System.in);
-                    String ans2= sccc2.nextLine();
-                    this.saveGameStatusToFile(ans2);
-                    return;
+                    this.saveGameStatusToFile("autosave", p.getId());
                 }
                 for(Player p : playersList){
                     for(int i=0;i<5;i++){
@@ -210,8 +200,8 @@ public class NetworkGame {
             }
             endGame();
         }
-        public void saveGameStatusToFile(String fileName) throws IOException {
-            ObjectsSerializer.serializeGameStatus(new GameStatus(this.playersList,this.workshops,this.centerOfWorkshop,this.tilesAmounts,this.round,this.is1stplayerstileatthecenter),fileName);
+        public void saveGameStatusToFile(String fileName,int id) throws IOException {
+            ObjectsSerializer.serializeGameStatus(new GameStatus(this.playersList,this.workshops,this.centerOfWorkshop,this.tilesAmounts,this.round,this.is1stplayerstileatthecenter,id),fileName);
         }
         public void endGame(){
             for(int i=0;i<playersList.size();i++){
@@ -254,6 +244,12 @@ public class NetworkGame {
 
         public void setIs1stplayerstileatthecenter(boolean is1stplayerstileatthecenter) {
             this.is1stplayerstileatthecenter = is1stplayerstileatthecenter;
+        }
+        private static boolean isMoveCorrect(Move m,Player p){
+            for (int i: p.possibleActions()){
+                if(i==m.getMove()){return true;}
+            }
+            return false;
         }
     }
 
