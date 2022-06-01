@@ -1,4 +1,4 @@
-package server;
+package server.Network;
 
 public class Move {
     private int workshop;
@@ -8,5 +8,17 @@ public class Move {
         this.workshop=workshop;
         this.move=move;
         this.color=color;
+    }
+
+    public int getWorkshop() {
+        return workshop;
+    }
+
+    public int getMove() {
+        return move;
+    }
+
+    public String getColor() {
+        return color;
     }
 }

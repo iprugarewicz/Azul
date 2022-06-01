@@ -1,7 +1,7 @@
 package client.logic;
 
 
-import server.*;
+import server.Logic.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;

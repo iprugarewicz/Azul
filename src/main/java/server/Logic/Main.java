@@ -1,7 +1,4 @@
-package server;
-
-import server.ObjectsProcessing.ObjectsSerializer;
-import server.ObjectsProcessing.ReadGameStatusFromFile;
+package server.Logic;
 
 import java.io.IOException;
 

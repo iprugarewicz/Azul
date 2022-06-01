@@ -1,9 +1,9 @@
 package server.ObjectsProcessing;
 
-import server.GameStatus;
-import server.PatternLine;
+import server.Logic.GameStatus;
+import server.Logic.PatternLine;
 import client.logic.Player;
-import server.Tile;
+import server.Logic.Tile;
 
 import java.io.*;
 import java.util.ArrayList;

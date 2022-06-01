@@ -1,4 +1,4 @@
-package server;
+package server.Logic;
 
 import client.logic.Player;
 import server.Configuration.Config;
