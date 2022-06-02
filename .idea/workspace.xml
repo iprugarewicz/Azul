@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="added comment">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+    <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client/views/game-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/views/game-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +22,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -161,7 +158,7 @@
       <workItem from="1653729846745" duration="5785000" />
       <workItem from="1654158460053" duration="7199000" />
       <workItem from="1654169323399" duration="2201000" />
-      <workItem from="1654212529878" duration="625000" />
+      <workItem from="1654212529878" duration="1502000" />
     </task>
     <task id="LOCAL-00001" summary="Drag and Drop prawie dziala ale trzeba podlaczyc">
       <created>1654165248525</created>
@@ -191,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654193622162</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="GUI masno fest">
+      <created>1654213429150</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1654213429150</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,7 +216,8 @@
     <MESSAGE value="Drag and Drop prawie dziala ale trzeba podlaczyc" />
     <MESSAGE value="GUI xD" />
     <MESSAGE value="added comment" />
-    <option name="LAST_COMMIT_MESSAGE" value="added comment" />
+    <MESSAGE value="GUI masno fest" />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI masno fest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

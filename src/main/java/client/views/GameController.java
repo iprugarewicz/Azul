@@ -458,6 +458,7 @@ public class GameController implements Initializable {
         countersTiles = new Rectangle[]{blueTileCounter, greenTileCounter, pinkTileCount, purpleTileCount, yellowTileCounter};
         playerCount = playerList.size();
         counterTexts = new Text[]{textCounter0,textCounter1,textCounter2,textCounter3,textCounter4};
+        floor = new Rectangle[]{floor0,floor1,floor2,floor3,floor4,floor5,floor6};
 
     }
 
@@ -519,7 +520,7 @@ public class GameController implements Initializable {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        paintWall();
+
         updateGraphics();
 
     }
@@ -557,13 +558,7 @@ public class GameController implements Initializable {
 
 
     }
-    void paintWall(){
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                wall[i][j].setFill(images[(j + 5 - i) % 5]);
-            }
-        }
-    }
+
 
         /*
         Działanie jest proste, są dwa rodzaje elementów source i target,
@@ -729,7 +724,6 @@ public class GameController implements Initializable {
                 j++;
             }
             i++;
-
         }
         i = 0;
         //center of workshops update
@@ -740,7 +734,33 @@ public class GameController implements Initializable {
             counter.setText(String.valueOf(counters[i]));
             i++;
         }
+        //wall update - zrobic zaleznosc od playera
+        i=0;
+        for (Rectangle[] rect : wall) {
+            j = 0;
+            for (Rectangle tile : rect) {
+                wall[i][j].setFill(images[(j+ 5 - i) % 5 + 7]);
+                j++;
+            }
+            i++;
+        }
 
+        //patternLine - zrobic zaleznsosc od playera
+        i=0;
+        for (Rectangle[] rect : patternLines) {
+            j = 0;
+            for (Rectangle tile : rect) {
+                tile.setFill(images[6]);
+                j++;
+            }
+            i++;
+        }
+
+        //floor - zrobic zaleznsosc od playera
+        for (Rectangle rect : floor) {
+            rect.setFill(images[6]);
+
+        }
 
     }
 
