@@ -78,7 +78,7 @@
                </rowConstraints>
                <children>
                   <Rectangle fx:id="pLine44" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="4" />
-                  <Rectangle fx:id="pLine00" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onMouseClicked="#testClick" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="4" />
+                  <Rectangle fx:id="pLine00" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="4" />
                   <Rectangle fx:id="pLine11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onMouseDragReleased="#testClick" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                   <Rectangle fx:id="pLine10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onMouseDragReleased="#testClick" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                   <Rectangle fx:id="pLine22" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onMouseReleased="#testClick" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
@@ -117,15 +117,15 @@
                   <Rectangle fx:id="floor6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="6" />
                </children>
             </GridPane>
-            <Circle fx:id="workshop1" fill="DODGERBLUE" layoutX="581.0" layoutY="82.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="workshop4" fill="DODGERBLUE" layoutX="653.0" layoutY="207.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="workshop3" fill="DODGERBLUE" layoutX="509.0" layoutY="207.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="workshop2" fill="DODGERBLUE" layoutX="725.0" layoutY="82.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="workshop6" fill="DODGERBLUE" layoutX="797.0" layoutY="207.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="workshop8" fill="DODGERBLUE" layoutX="869.0" layoutY="82.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="workshop5" fill="DODGERBLUE" layoutX="365.0" layoutY="207.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="workshop0" fill="DODGERBLUE" layoutX="437.0" layoutY="82.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="workshop7" fill="DODGERBLUE" layoutX="293.0" layoutY="82.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="workshopPlate1" fill="DODGERBLUE" layoutX="581.0" layoutY="82.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="workshopPlate4" fill="DODGERBLUE" layoutX="653.0" layoutY="207.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="workshopPlate3" fill="DODGERBLUE" layoutX="509.0" layoutY="207.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="workshopPlate2" fill="DODGERBLUE" layoutX="725.0" layoutY="82.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="workshopPlate6" fill="DODGERBLUE" layoutX="797.0" layoutY="207.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="workshopPlate8" fill="DODGERBLUE" layoutX="869.0" layoutY="82.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="workshopPlate5" fill="DODGERBLUE" layoutX="365.0" layoutY="207.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="workshopPlate0" fill="DODGERBLUE" layoutX="437.0" layoutY="82.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="workshopPlate7" fill="DODGERBLUE" layoutX="293.0" layoutY="82.0" radius="63.0" stroke="BLACK" strokeType="INSIDE" />
             <Rectangle fx:id="w7Tile0" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="258.0" layoutY="19.0" rotate="51.3" stroke="BLACK" strokeType="INSIDE" width="40.0" />
             <Rectangle fx:id="w7Tile2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="230.0" layoutY="59.0" rotate="-55.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
             <Rectangle fx:id="w7Tile3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" layoutY="98.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />

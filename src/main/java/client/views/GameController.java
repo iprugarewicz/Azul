@@ -18,6 +18,7 @@ import javafx.scene.shape.Rectangle;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
@@ -283,35 +284,46 @@ public class GameController implements Initializable {
     private GridPane wallBoard;
 
     @FXML
-    private Circle workshop0;
+    private Circle workshopPlate0;
 
     @FXML
-    private Circle workshop1;
+    private Circle workshopPlate1;
 
     @FXML
-    private Circle workshop2;
+    private Circle workshopPlate2;
 
     @FXML
-    private Circle workshop3;
+    private Circle workshopPlate3;
 
     @FXML
-    private Circle workshop4;
+    private Circle workshopPlate4;
 
     @FXML
-    private Circle workshop5;
+    private Circle workshopPlate5;
 
     @FXML
-    private Circle workshop6;
+    private Circle workshopPlate6;
 
     @FXML
-    private Circle workshop7;
+    private Circle workshopPlate7;
 
     @FXML
-    private Circle workshop8;
+    private Circle workshopPlate8;
 
 
 
-    private Circle[] workshops;
+    private Circle[] workshopPlates;
+
+    private Node[] workshop0;
+    private Node[] workshop1;
+    private Node[] workshop2;
+    private Node[] workshop3;
+    private Node[] workshop4;
+    private Node[] workshop5;
+    private Node[] workshop6;
+    private Node[] workshop7;
+    private Node[] workshop8;
+    private Node[][] workshops;
     @FXML
     private Rectangle yellowTileCounter;
 
@@ -338,6 +350,7 @@ public class GameController implements Initializable {
 
     boolean draggableLock = false;
     private DraggableMaker draggableMaker = new DraggableMaker();
+    private int playerCount = 3;
 
 
     @FXML
@@ -366,7 +379,7 @@ public class GameController implements Initializable {
         pLine00.setFill(Color.YELLOW);
         Image img = new Image(new FileInputStream("src/main/resources/images/test.png"));
         pLine10.setFill(new ImagePattern(img));
-        workshop1.setFill(new ImagePattern(img));
+        workshopPlate1.setFill(new ImagePattern(img));
 
     }
     private void variablesInit(){
@@ -380,7 +393,17 @@ public class GameController implements Initializable {
         Rectangle[] w7 = new Rectangle[]{w7Tile0, w7Tile1, w7Tile2, w7Tile3};
         Rectangle[] w8 = new Rectangle[]{w8Tile0, w8Tile1, w8Tile2, w8Tile3};
         workshopTiles = new Rectangle[][]{w0, w1, w2, w3, w4, w5, w6, w7, w8};
-        workshops = new Circle[]{workshop0,workshop2,workshop3,workshop4,workshop5,workshop6,workshop7,workshop8};
+        workshopPlates = new Circle[]{workshopPlate0,workshopPlate2,workshopPlate3,workshopPlate4,workshopPlate5,workshopPlate6,workshopPlate7,workshopPlate8};
+        workshop0 = new Node[]{w0Tile0, w0Tile1, w0Tile2, w0Tile3,workshopPlate0};
+        workshop1 = new Node[]{w1Tile0, w1Tile1, w1Tile2, w1Tile3,workshopPlate1};
+        workshop2 = new Node[]{w2Tile0, w2Tile1, w2Tile2, w2Tile3,workshopPlate2};
+        workshop3 = new Node[]{w3Tile0, w3Tile1, w3Tile2, w3Tile3,workshopPlate3};
+        workshop4 = new Node[]{w4Tile0, w4Tile1, w4Tile2, w4Tile3,workshopPlate4};
+        workshop5 = new Node[]{w5Tile0, w5Tile1, w5Tile2, w5Tile3,workshopPlate5};
+        workshop6 = new Node[]{w6Tile0, w6Tile1, w6Tile2, w6Tile3,workshopPlate6};
+        workshop7 = new Node[]{w7Tile0, w7Tile1, w7Tile2, w7Tile3,workshopPlate7};
+        workshop8 = new Node[]{w8Tile0, w8Tile1, w8Tile2, w8Tile3,workshopPlate8};
+        workshops = new Node[][]{workshop0,workshop2,workshop3,workshop4,workshop5,workshop6,workshop7,workshop8};
         Rectangle[] pLine0 = new Rectangle[]{pLine00};
         Rectangle[] pLine1 = new Rectangle[]{pLine10, pLine11};
         Rectangle[] pLine2 = new Rectangle[]{pLine20, pLine21, pLine22};
@@ -397,7 +420,7 @@ public class GameController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         variablesInit();
-
+        setWorkshopVisbility();
 
         try {
 
@@ -445,6 +468,41 @@ public class GameController implements Initializable {
         }
 
 
+
+
+
+    }
+    void setVisbility(Node[][] nodes,boolean state){
+        for (Node[] row : nodes)
+            for (Node node :
+                    row)
+                node.setVisible(state);
+        ;
+    }
+    void setVisbility(Node[] nodes,boolean state){
+        for (Node node : nodes) node.setVisible(state);
+    }
+    void setVisbility(Node node,boolean state){
+        node.setVisible(state);
+    }
+    public void setWorkshopVisbility(){
+        if (playerCount>4){
+            System.out.println("max 4 players, changing playerCount to 4");
+            playerCount = 4;
+
+        }
+        if (playerCount == 3){
+            setVisbility(workshop8,false);
+            setVisbility(workshop7,false);
+
+        }
+        if(playerCount == 2){
+            setVisbility(workshop8,false);
+            setVisbility(workshop7,false);
+            setVisbility(workshop6,false);
+            setVisbility(workshop5,false);
+
+        }
 
 
     }
@@ -563,6 +621,7 @@ public class GameController implements Initializable {
         public void lockDragging(){
             locker = null;
         }
+
     }
 
 }
