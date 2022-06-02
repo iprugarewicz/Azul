@@ -227,7 +227,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Button layoutX="65.0" layoutY="607.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="119.0" text="HOME">
+            <Button fx:id="homeButton" layoutX="65.0" layoutY="607.0" mnemonicParsing="false" onAction="#homeBtnClick" prefHeight="44.0" prefWidth="119.0" text="HOME">
                <font>
                   <Font size="20.0" />
                </font>

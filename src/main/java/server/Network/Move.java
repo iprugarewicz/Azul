@@ -1,5 +1,7 @@
 package server.Network;
 
+
+//this class describes user's move
 public class Move {
     private int workshop;
     private int move;
