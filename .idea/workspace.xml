@@ -7,6 +7,7 @@
     <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +50,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.views.Main" />
       <module name="apro2_22l_pro_pt_azulpro" />
@@ -150,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654199716395</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="GUI in progress elo benc">
+      <created>1654204591339</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1654204591339</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,7 +169,8 @@
     <MESSAGE value="GUI xD" />
     <MESSAGE value="GUI hello_world deleted xD" />
     <MESSAGE value="GUI workshops count visbility dependent on player count" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI workshops count visbility dependent on player count" />
+    <MESSAGE value="GUI in progress elo benc" />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI in progress elo benc" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

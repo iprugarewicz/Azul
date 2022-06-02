@@ -602,7 +602,7 @@ public class GameController implements Initializable {
                     target.setFill(dragged.getFill());
                 }
                 System.out.println("target  r="+targetIndex[0]+" , c="+targetIndex[1]+"| dragged  r="+draggedIndex[0]+" , c="+draggedIndex[1]);
-
+                updateGraphics();
 
                 event.consume();
             });
@@ -685,6 +685,9 @@ public class GameController implements Initializable {
     }
 
     void choseMove(int patternLineIndex,int workshopIndex,int tileIndex){
+
+    }
+    void updateGraphics(){
 
     }
 
