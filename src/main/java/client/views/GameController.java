@@ -17,8 +17,9 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.net.URL;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
@@ -202,7 +203,6 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle w8Tile3;
 
-
     private  Rectangle[][] workshopTiles;
 
     @FXML
@@ -220,6 +220,8 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle wall04;
 
+    private Rectangle[] wall0;
+
     @FXML
     private Rectangle wall10;
 
@@ -234,6 +236,8 @@ public class GameController implements Initializable {
 
     @FXML
     private Rectangle wall14;
+
+    private Rectangle[] wall1;
 
     @FXML
     private Rectangle wall20;
@@ -250,6 +254,8 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle wall24;
 
+    private Rectangle[] wall2;
+
     @FXML
     private Rectangle wall30;
 
@@ -265,6 +271,8 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle wall34;
 
+    private Rectangle[] wall3;
+
     @FXML
     private Rectangle wall40;
 
@@ -279,6 +287,10 @@ public class GameController implements Initializable {
 
     @FXML
     private Rectangle wall44;
+
+    private Rectangle[] wall4;
+
+    private Rectangle[][] wall;
 
     @FXML
     private GridPane wallBoard;
@@ -349,8 +361,8 @@ public class GameController implements Initializable {
     private ImagePattern[] images;
 
     boolean draggableLock = false;
-    private DraggableMaker draggableMaker = new DraggableMaker();
-    private int playerCount = 3;
+    
+    private int playerCount = 2;
 
 
     @FXML
@@ -358,12 +370,12 @@ public class GameController implements Initializable {
         if(draggableLock){
 
             System.out.println("dragging locked from now");
-            draggableMaker.lockDragging();
+            lockDragging();
             draggableLock= false;
         }else{
 
             System.out.println("dragging unlocked from now");
-            draggableMaker.unlockDragging();
+            unlockDragging();
             draggableLock = true;
         }
 
@@ -404,6 +416,12 @@ public class GameController implements Initializable {
         workshop7 = new Node[]{w7Tile0, w7Tile1, w7Tile2, w7Tile3,workshopPlate7};
         workshop8 = new Node[]{w8Tile0, w8Tile1, w8Tile2, w8Tile3,workshopPlate8};
         workshops = new Node[][]{workshop0,workshop2,workshop3,workshop4,workshop5,workshop6,workshop7,workshop8};
+        wall0 = new Rectangle[]{wall00,wall01,wall02,wall03,wall04};
+        wall1 = new Rectangle[]{wall10,wall11,wall12,wall13,wall14};
+        wall2 = new Rectangle[]{wall20,wall21,wall22,wall23,wall24};
+        wall3 = new Rectangle[]{wall30,wall31,wall32,wall33,wall34};
+        wall4 = new Rectangle[]{wall40,wall41,wall42,wall43,wall44};
+        wall = new Rectangle[][]{wall0,wall1,wall2,wall3,wall4};
         Rectangle[] pLine0 = new Rectangle[]{pLine00};
         Rectangle[] pLine1 = new Rectangle[]{pLine10, pLine11};
         Rectangle[] pLine2 = new Rectangle[]{pLine20, pLine21, pLine22};
@@ -422,14 +440,15 @@ public class GameController implements Initializable {
         variablesInit();
         setWorkshopVisbility();
 
+
         try {
 
 
-             images = new ImagePattern[]{new ImagePattern(new Image(new FileInputStream("src/main/resources/images/blue.png"))),
+             images = new ImagePattern[]{new ImagePattern(new Image(new FileInputStream("src/main/resources/images/yellow.png"))),
+                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/blue.png"))),
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/green.png"))),
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/pink.png"))),
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/purple.png"))),
-                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/yellow.png"))),
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/1stplayertile.png"))),
                      new ImagePattern((new Image(new FileInputStream("src/main/resources/images/empty.png"))))
              };
@@ -438,7 +457,7 @@ public class GameController implements Initializable {
             int i = 0;
             for (Rectangle counter : counters) {
                 counter.setFill(images[i]);
-                draggableMaker.makeDragSource(counter);
+                makeDragSource(counter);
                 i++;
             }
              i = 0;
@@ -448,7 +467,7 @@ public class GameController implements Initializable {
                 for (Rectangle Tile :
                         w) {
                     Tile.setFill(images[i%5]);
-                    draggableMaker.makeDragSource(Tile);
+                    makeDragSource(Tile);
                     i++;
                 }
 
@@ -458,7 +477,7 @@ public class GameController implements Initializable {
                 for (Rectangle Tile :
                         p) {
                     Tile.setFill(images[6]);
-                    draggableMaker.makeDragTarget(Tile);
+                    makeDragTarget(Tile);
 
                 }
 
@@ -466,6 +485,7 @@ public class GameController implements Initializable {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+        paintWall();
 
 
 
@@ -506,7 +526,14 @@ public class GameController implements Initializable {
 
 
     }
-    public static class DraggableMaker {
+    void paintWall(){
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                wall[i][j].setFill(images[(j + 5 - i) % 5]);
+            }
+        }
+    }
+
         /*
         Działanie jest proste, są dwa rodzaje elementów source i target,
         metody przyjmują element i sprawiają ze staje się source i target (można oba chyba, nie testowałem)
@@ -516,7 +543,6 @@ public class GameController implements Initializable {
          */
         TransferMode locker = null;
         Rectangle dragged; // przechowuje ostatni wzięty element
-        boolean draggableLock = true;
         public void makeDragTarget(Rectangle target){
 
             //co się dzieje z targetem jak jakiś source przejeżdża nad nim
@@ -530,7 +556,7 @@ public class GameController implements Initializable {
                 if (event.getGestureSource() != target &&
                         event.getDragboard().hasString()) {
                     /* allow for both copying and moving, whatever user chooses */
-                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                    event.acceptTransferModes(TransferMode.MOVE);
                 }
 
                 event.consume();
@@ -557,17 +583,26 @@ public class GameController implements Initializable {
                 /* data dropped */
                 System.out.println("onDragDropped");
                 /* if there is a string data on drag board, read it and use it */
-                Dragboard db = event.getDragboard();
                 boolean success = false;
-                if (db.hasString()) {
-                    target.setFill(Color.YELLOW);
-                    success = true;
-                }
+
                 /* let the source know whether the string was successfully
                  * transferred and used */
 
                 event.setDropCompleted(success);
-                target.setFill(dragged.getFill());
+
+                int[] targetIndex = getIndexes(patternLines,target);
+                int[] draggedIndex = getIndexes(workshopTiles,dragged);
+                ArrayList<Integer> possibleActions = new ArrayList<>();// tutaj trzeba ściągnąć possibleMoves z gry
+                possibleActions.add(1);
+                possibleActions.add(3);
+                possibleActions.add(5);
+                if (possibleActions.contains(targetIndex[0]+1)) {
+                    choseMove(targetIndex[0],draggedIndex[0],draggedIndex[1]);
+
+                    target.setFill(dragged.getFill());
+                }
+                System.out.println("target  r="+targetIndex[0]+" , c="+targetIndex[1]+"| dragged  r="+draggedIndex[0]+" , c="+draggedIndex[1]);
+
 
                 event.consume();
             });
@@ -622,6 +657,37 @@ public class GameController implements Initializable {
             locker = null;
         }
 
+        int[] getIndexes(Node[][] array, Node node){
+            int i =0;
+            int j ;
+            for (Node[] row : array) {
+                j = 0;
+                for (Node elem : row ) {
+                    if(elem == node){
+                        return  new int[]{i,j};
+                    }
+                    j++;
+                }
+                i++;
+            }
+            throw new RuntimeException("given node not in an array");
+        }
+    int[] getIndexes(Node[] array, Node node){
+        int i =0;
+        for (Node elem : array) {
+                if(elem == node) {
+                    return new int[]{i};
+                }
+
+            i++;
+        }
+        throw new RuntimeException("given node not in an array");
     }
+
+    void choseMove(int patternLineIndex,int workshopIndex,int tileIndex){
+
+    }
+
+
 
 }
