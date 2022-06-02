@@ -39,8 +39,11 @@ public class NetworkPlayer implements Serializable {
 
             if(gS.getWhoseTurnIsIt() == this.id){
                 Scanner scanner = new Scanner(System.in);
+                System.out.println("Podaj numer warsztatu");
                 int a = Integer.parseInt(scanner.nextLine()); // workshop
+                System.out.println("Podaj kolor");
                 String b = scanner.nextLine(); // color
+                System.out.println("Podaj gdzie chcesz to wlozyc");
                 int c = Integer.parseInt(scanner.nextLine()); // move
                 Move mv = new Move(a, c ,b);
                 oos.writeObject(mv);

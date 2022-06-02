@@ -74,7 +74,18 @@ public class NetworkGame {
         this.wasGameStatesReadFromaFile = wasGameStatesReadFromaFile;
     }
     public NetworkGameStatus generateGameStatus(int id,boolean isGameFinished){
-        return  new NetworkGameStatus(playersList,workshops,centerOfWorkshop,tilesAmounts,round,is1stplayerstileatthecenter,id,isGameFinished,getBoard());
+        Workshop[] ws = new Workshop[workshops.length];
+        for(int i = 0; i < workshops.length; i++) {
+            ws[i] = new Workshop();
+            for (int j = 0;j<workshops[i].getTiles().length;j++){
+                ws[i].getTiles()[j] = workshops[i].getTiles()[j];
+            }
+        }
+        CenterOfWorkshop cow = new CenterOfWorkshop();
+        for (Tile t: centerOfWorkshop.getCenterOfWorkshop()) {
+            cow.getCenterOfWorkshop().add(t);
+        }
+        return  new NetworkGameStatus(playersList,ws,cow,tilesAmounts,round,is1stplayerstileatthecenter,id,isGameFinished,getBoard());
     }
 
     public void letsplay() throws IOException, ClassNotFoundException {

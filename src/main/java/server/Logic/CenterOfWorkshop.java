@@ -9,4 +9,11 @@ public class CenterOfWorkshop implements Serializable {
     public ArrayList<Tile> getCenterOfWorkshop() {
         return centerOfWorkshop;
     }
+
+    @Override
+    public String toString() {
+        return "CenterOfWorkshop{" +
+                "centerOfWorkshop=" + centerOfWorkshop +
+                '}';
+    }
 }
