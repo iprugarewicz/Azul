@@ -1,6 +1,7 @@
 package server.Logic;
 
 import client.logic.Player;
+import client.views.GameController;
 import server.ObjectsProcessing.ObjectsSerializer;
 import server.Configuration.Config;
 
@@ -38,6 +39,7 @@ public class Game {
         for(int i=0;i<Config.getWorkshopsAmount(playersList.size());i++){
             this.workshops[i]=new Workshop();
         }
+
     }
 
     private void generateWorkshops() {
@@ -72,6 +74,7 @@ public class Game {
         boolean hasSomeBodyFinished = false;
         while (!hasSomeBodyFinished) {
                 for (Player p : this.playersList) {
+                    GameController.playerList=this.playersList;
                     boolean areWorkshopsEmpty=false;
                     Scanner sc = new Scanner(System.in);
                     Scanner sc2 = new Scanner(System.in);
@@ -165,6 +168,7 @@ public class Game {
                     p.putTilesToPatternLine(p.chooseAction());
                     p.moveTiles();
                     p.calculateRoundPoints();
+
                     for(int i=0;i<workshops.length;i++){
                         if(centerOfWorkshop.getCenterOfWorkshop().size()!=0){
                             break;
@@ -186,13 +190,18 @@ public class Game {
 
 
                     }
+                    GameController.centerOfWorkshop=this.centerOfWorkshop;
+                    GameController.workshopsFromGame=this.workshops;
                     if(areWorkshopsEmpty) {
                         this.generateWorkshops();
                     }
+
                     if(round==1){
                         centerOfWorkshop.getCenterOfWorkshop().add(new Tile(5));
                         this.is1stplayerstileatthecenter=true;
                     }
+                    GameController.centerOfWorkshop=this.centerOfWorkshop;
+                    GameController.workshopsFromGame=this.workshops;
                     round++;
                 }
                 System.out.println("czy chcesz zapisac stan gry oraz zakonczyc rozgrywke? yes/no");

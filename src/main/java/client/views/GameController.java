@@ -1,5 +1,6 @@
 package client.views;
 
+import client.logic.Player;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -14,6 +15,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import server.Logic.CenterOfWorkshop;
+import server.Logic.Workshop;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,6 +26,10 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
+    public static Workshop[] workshopsFromGame;
+    public static CenterOfWorkshop centerOfWorkshop = new CenterOfWorkshop();
+    public static ArrayList<Player> playerList=new ArrayList<>();
+
 
     @FXML
     private Rectangle floor0;
