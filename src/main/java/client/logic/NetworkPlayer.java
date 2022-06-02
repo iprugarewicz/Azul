@@ -16,13 +16,11 @@ public class NetworkPlayer implements Serializable {
     private PlayersBoard playersBoard = new PlayersBoard();
     private Floor floor = new Floor();
     private String chosenColor;
-    private Klient klient;
 
-    public NetworkPlayer(int id, Klient klient) {
+    public NetworkPlayer(int id) {
         this.id = id;
-        this.klient = klient;
     }
-    public void playGame() throws IOException, ClassNotFoundException {
+    public void playGame(Klient klient) throws IOException, ClassNotFoundException {
         OutputStream os = klient.getSocket().getOutputStream();
         InputStream is = klient.getSocket().getInputStream();
         ObjectInputStream ois = new ObjectInputStream(is);
@@ -32,16 +30,18 @@ public class NetworkPlayer implements Serializable {
         while(on) {
             NetworkGameStatus gS = (NetworkGameStatus) ois.readObject();
             System.out.println("Odebtano Gamestatus");
+            System.out.println(gS);
             if(gS.isGameFinished()){break;}
+            System.out.println(Arrays.toString(gS.getWorkshops()));
             //tu trzeba przypisac dane do tego networkplayera
 
             //tu gui wyswietla stan gry
 
             if(gS.getWhoseTurnIsIt() == this.id){
                 Scanner scanner = new Scanner(System.in);
-                int a = scanner.nextInt(); // workshop
+                int a = Integer.parseInt(scanner.nextLine()); // workshop
                 String b = scanner.nextLine(); // color
-                int c = scanner.nextInt(); // move
+                int c = Integer.parseInt(scanner.nextLine()); // move
                 Move mv = new Move(a, c ,b);
                 oos.writeObject(mv);
             }
@@ -227,10 +227,6 @@ public class NetworkPlayer implements Serializable {
 
     public String getChosenColor() {
         return chosenColor;
-    }
-
-    public Klient getKlient() {
-        return klient;
     }
 
 }

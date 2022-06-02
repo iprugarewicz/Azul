@@ -6,7 +6,7 @@ import client.logic.Player;
 import java.io.*;
 import java.net.Socket;
 
-public class Klient{
+public class Klient {
     private Socket socket;
     private NetworkPlayer player;
 
@@ -17,7 +17,7 @@ public class Klient{
 
     public void initialize() throws IOException {
         int id = recieveID();
-        player = new NetworkPlayer(id,this);
+        player = new NetworkPlayer(id);
         OutputStream os = this.socket.getOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(os);
         oos.writeObject(this.player);
@@ -51,7 +51,7 @@ public class Klient{
         System.out.println("Nowy obiekt");
         k.initialize();
         System.out.println("Inicjalizacja");
-        k.getPlayer().playGame();
+        k.getPlayer().playGame(k);
     }
 
 

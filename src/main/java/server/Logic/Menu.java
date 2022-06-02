@@ -79,7 +79,7 @@ public class Menu {
                             throw new RuntimeException(e);
                         }
                     }).start();
-                    k.getPlayer().playGame();
+                    k.getPlayer().playGame(k);
                 }
                 else if (b==2){}
                 else if(b==0){}
