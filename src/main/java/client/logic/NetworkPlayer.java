@@ -31,6 +31,7 @@ public class NetworkPlayer implements Serializable {
 
         while(on) {
             NetworkGameStatus gS = (NetworkGameStatus) ois.readObject();
+            System.out.println("Odebtano Gamestatus");
             if(gS.isGameFinished()){break;}
             //tu trzeba przypisac dane do tego networkplayera
 
@@ -231,4 +232,5 @@ public class NetworkPlayer implements Serializable {
     public Klient getKlient() {
         return klient;
     }
+
 }

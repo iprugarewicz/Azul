@@ -58,17 +58,18 @@ public class Menu {
                 int b = sc.nextInt();
                 if(b==1){
                     Serwer serwer= new Serwer();
-                    new Thread(()->{
-                        try {
-                            serwer.runServer();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }).start();
-                    NetworkGame networkGame = new NetworkGame(2,serwer);
+                    serwer.runServer();
                     Klient k = new Klient();
-                    NetworkPlayer np1 = new NetworkPlayer(1,k);
-                    networkGame.getPlayersList().add(np1);
+                    k.initialize();
+                    boolean waitingroom = true;
+                    while(waitingroom){
+                        System.out.println("Aktualnie jest " + serwer.getPlayersList().size() + "graczy");
+                        System.out.println("Czy cheesz już zacząć?");
+                        Scanner sc1 = new Scanner(System.in);
+                        String ans = sc1.nextLine();
+                        if(ans.equals("tak")){break;}
+                    }
+                    NetworkGame networkGame = new NetworkGame(serwer.getPlayersList().size(),serwer);
                     new Thread(()->{
                         try {
                             networkGame.letsplay();
@@ -78,7 +79,7 @@ public class Menu {
                             throw new RuntimeException(e);
                         }
                     }).start();
-                    np1.playGame();
+                    k.getPlayer().playGame();
                 }
                 else if (b==2){}
                 else if(b==0){}

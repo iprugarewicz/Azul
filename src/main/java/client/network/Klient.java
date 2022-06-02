@@ -12,6 +12,7 @@ public class Klient{
 
     public Klient() throws IOException {
         socket = new Socket("localhost",12300);
+
     }
 
     public void initialize() throws IOException {
@@ -20,7 +21,6 @@ public class Klient{
         OutputStream os = this.socket.getOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(os);
         oos.writeObject(this.player);
-
     }
 
     public Socket getSocket() {
@@ -29,11 +29,11 @@ public class Klient{
 
     public int recieveID(){
         try {
-        OutputStream os = socket.getOutputStream();
-        InputStream is = socket.getInputStream();
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        String s = br.readLine();
-        System.out.println(s);
+            OutputStream os = socket.getOutputStream();
+            InputStream is = socket.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String s = br.readLine();
+            System.out.println(s);
         return Integer.parseInt(s);
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,8 +46,12 @@ public class Klient{
         return player;
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         Klient k = new Klient();
+        System.out.println("Nowy obiekt");
+        k.initialize();
+        System.out.println("Inicjalizacja");
+        k.getPlayer().playGame();
     }
 
 

@@ -9,6 +9,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Serwer{
     private ServerSocket ss;
@@ -21,6 +22,7 @@ public class Serwer{
 
     public Serwer(){
         socketDatabase = new ArrayList<Socket>();
+        playersDatabase = new ArrayList<NetworkPlayer>();
         numberOfClients = 0;
     }
     public ArrayList<NetworkPlayer> getPlayersDatabase() {
@@ -46,9 +48,9 @@ public class Serwer{
             System.out.println("localHost.getHostAddress() = " + localHost.getHostAddress());
             System.out.println("localHost.getHostName() = " + localHost.getHostName());
             System.out.println("Serwer na porcie " + port);
-            int id = 2;
+            int id = 1;
             while(true) {
-                Socket socket = new Socket();
+                Socket socket = null;
                 try {
                     socket = ss.accept();
                 } catch (IOException e) {
@@ -96,10 +98,14 @@ public class Serwer{
             }
 
     }
-
+    public ArrayList<NetworkPlayer> getPlayersList() {
+        return this.playersDatabase;
+    }
 
     public static void main(String[] args) throws IOException{
         Serwer s = new Serwer();
         s.runServer();
     }
+
+
 }
