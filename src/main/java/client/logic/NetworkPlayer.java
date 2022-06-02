@@ -45,11 +45,10 @@ public class NetworkPlayer implements Serializable {
                 Move mv = new Move(a, c ,b);
                 oos.writeObject(mv);
             }
-            ArrayList<NetworkPlayer> playerArrayList = (ArrayList<NetworkPlayer>) ois.readObject();
-            for (NetworkPlayer p : playerArrayList) {
-                System.out.println("Gracz: " + p.getId() + " zdobył" + p.getProgress() + " pnuktów.");
-
-            }
+           // ArrayList<NetworkPlayer> playerArrayList = (ArrayList<NetworkPlayer>) ois.readObject();
+           // for (NetworkPlayer p : playerArrayList) {
+           //     System.out.println("Gracz: " + p.getId() + " zdobył" + p.getProgress() + " pnuktów.");
+           // }
         }
 
 
@@ -68,13 +67,13 @@ public class NetworkPlayer implements Serializable {
     }
 
     public void calculateRoundPoints() {
-        this.progress = GameStatus.updateProgress(progress, playersBoard, floor);
+        this.progress = NetworkGameStatus.updateProgress(progress, playersBoard, floor);
         this.floor = new Floor();
     }
 
     private boolean isAlreadyPut(int row) {
         for (int i = 0; i < 5; i++) {
-            if (Game.getBoard()[row][i].getColor().equals(this.roundsTiles.get(0).getColor()) && this.playersBoard.getMatchedTiles()[row][i]) {
+            if (NetworkGame.getBoard()[row][i].getColor().equals(this.roundsTiles.get(0).getColor()) && this.playersBoard.getMatchedTiles()[row][i]) {
                 return true;
             }
         }

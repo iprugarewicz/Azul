@@ -86,9 +86,9 @@ public class NetworkGame {
             for (NetworkPlayer p : this.playersList) {
                 boolean areWorkshopsEmpty=false;
                 serwer.sendToAll(generateGameStatus(p.getId(),hasSomeBodyFinished));
-                ObjectInputStream oos= new ObjectInputStream(serwer.getSocketDatabase().get(p.getId()).getInputStream());
-                Move mv = (Move) oos.readObject();
-                while(!isMoveCorrect(mv,p)){mv = (Move) oos.readObject();}
+                Move mv = null; //= (Move) serwer.getObjectInputStreams().get(p.getId()-1).readObject();
+                while(!isMoveCorrect(mv,p)){mv = (Move) serwer.getObjectInputStreams().get(p.getId()-1).readObject();}
+                System.out.println("move");
                 int ws = mv.getWorkshop();
                 String c = mv.getColor();
                 if (ws == workshops.length+1) {
@@ -254,5 +254,6 @@ public class NetworkGame {
         }
         return false;
     }
+
 }
 
