@@ -331,6 +331,9 @@ public class GameController implements Initializable {
     private  Rectangle[] counters;
     private ImagePattern[] images;
 
+    boolean draggableLock = false;
+    private DraggableMaker draggableMaker = new DraggableMaker();
+
 
 
     @FXML
@@ -375,7 +378,7 @@ public class GameController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         variablesInit();
-        DraggableMaker draggableMaker = new DraggableMaker();
+
 
         try {
 
@@ -434,7 +437,9 @@ public class GameController implements Initializable {
         nie jest najgorzej xD
 
          */
+        TransferMode locker = null;
         Rectangle dragged; // przechowuje ostatni wzięty element
+        boolean draggableLock = true;
         public void makeDragTarget(Rectangle target){
 
             //co się dzieje z targetem jak jakiś source przejeżdża nad nim
@@ -454,7 +459,7 @@ public class GameController implements Initializable {
                 event.consume();
             });
 
-            // co się dzieje z targetem jak cos na niego wjeżdża, tylko w momencie wjechania
+            // co się dzieje z targetem, jak cos na niego wjeżdża, tylko w momencie wjechania
             target.setOnDragEntered(event -> {
 
                 /* the drag-and-drop gesture entered the target */
@@ -466,6 +471,7 @@ public class GameController implements Initializable {
                 }
 
                 event.consume();
+
             });
 
 
@@ -494,32 +500,50 @@ public class GameController implements Initializable {
         public void makeDragSource(Node source) {
             //co się dzieje jak się upuści source
             source.setOnDragDone(event -> {
+                try {
+                    if (draggableLock) {
 
+                    }
 
-                /* the drag-and-drop gesture ended */
-                System.out.println("onDragDone");
-                /* if the data was successfully moved, clear it */
-                if (event.getTransferMode() == TransferMode.MOVE) {
-                    //source.setText("");
-                    System.out.println("działa");
+                    /* the drag-and-drop gesture ended */
+                    System.out.println("onDragDone");
+                    /* if the data was successfully moved, clear it */
+                    if (event.getTransferMode() == locker) {
+                        //source.setText("");
+
+                    }
+
+                    event.consume();
+                }catch (NullPointerException e){
+                    System.out.println("dragging locked");
                 }
-
-                event.consume();
             });
 
 
             //co się dzieje jak się podniesie source
             source.setOnDragDetected((EventHandler<Event>) event -> {
                 System.out.println("onDragDetected");
-                Dragboard db = source.startDragAndDrop(TransferMode.ANY);
-                dragged = (Rectangle) source;
-                ClipboardContent content = new ClipboardContent();
-                content.putString("Hello!");
-                db.setContent(content);
-                event.consume();
+                try {
+                    Dragboard db = source.startDragAndDrop(locker);
+                    dragged = (Rectangle) source;
+                    ClipboardContent content = new ClipboardContent();
+                    content.putString("Hello!");
+                    db.setContent(content);
+                    event.consume();
+                }catch(NullPointerException e){
+                    System.out.println("dragging locked");
+                }
             });
 
 
+
+        }
+        public void lockDragging(){
+            locker = TransferMode.MOVE;
+        }
+        public void unlockDragging(){
+            locker = null;
         }
     }
+
 }
