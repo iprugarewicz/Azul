@@ -74,7 +74,7 @@ public class NetworkGame {
         this.wasGameStatesReadFromaFile = wasGameStatesReadFromaFile;
     }
     public NetworkGameStatus generateGameStatus(int id,boolean isGameFinished){
-        return  new NetworkGameStatus(playersList,workshops,centerOfWorkshop,tilesAmounts,round,is1stplayerstileatthecenter,id,isGameFinished);
+        return  new NetworkGameStatus(playersList,workshops,centerOfWorkshop,tilesAmounts,round,is1stplayerstileatthecenter,id,isGameFinished,getBoard());
     }
 
     public void letsplay() throws IOException, ClassNotFoundException {
@@ -86,9 +86,12 @@ public class NetworkGame {
             for (NetworkPlayer p : this.playersList) {
                 boolean areWorkshopsEmpty=false;
                 serwer.sendToAll(generateGameStatus(p.getId(),hasSomeBodyFinished));
-                Move mv = null; //= (Move) serwer.getObjectInputStreams().get(p.getId()-1).readObject();
+                ObjectInputStream iiii = new ObjectInputStream(serwer.getInputStreams().get(p.getId()-1));
+                //Move mv = (Move) serwer.getObjectInputStreams().get(p.getId()).readObject();
+                Move mv = (Move) iiii.readObject();
+                System.out.println(mv);
+                System.out.println(mv);
                 while(!isMoveCorrect(mv,p)){mv = (Move) serwer.getObjectInputStreams().get(p.getId()-1).readObject();}
-                System.out.println("move");
                 int ws = mv.getWorkshop();
                 String c = mv.getColor();
                 if (ws == workshops.length+1) {
@@ -249,6 +252,7 @@ public class NetworkGame {
         this.is1stplayerstileatthecenter = is1stplayerstileatthecenter;
     }
     private static boolean isMoveCorrect(Move m,NetworkPlayer p){
+        if(m==null) return false;
         for (int i: p.possibleActions()){
             if(i==m.getMove()){return true;}
         }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class NetworkGameStatus implements Serializable {
+    private static Tile[][] board = new Tile[5][5];
     private final int whoseTurnIsIt;
     private final ArrayList<NetworkPlayer> playersList;
     private final Workshop[] workshops;
@@ -17,7 +18,7 @@ public class NetworkGameStatus implements Serializable {
     private final boolean is1stplayerstileatthecenter;
     private final boolean isGameFinished;
 
-    public NetworkGameStatus(ArrayList<NetworkPlayer> playersList, Workshop[] workshops, CenterOfWorkshop centerOfWorkshop, int[] tilesAmounts, int round, boolean is1stplayerstileatthecenter,int whoseTurnIsIt,boolean isGameFinished) {
+    public NetworkGameStatus(ArrayList<NetworkPlayer> playersList, Workshop[] workshops, CenterOfWorkshop centerOfWorkshop, int[] tilesAmounts, int round, boolean is1stplayerstileatthecenter,int whoseTurnIsIt,boolean isGameFinished,Tile[][] board) {
         this.playersList = playersList;
         this.workshops = workshops;
         this.centerOfWorkshop = centerOfWorkshop;
@@ -26,6 +27,7 @@ public class NetworkGameStatus implements Serializable {
         this.is1stplayerstileatthecenter = is1stplayerstileatthecenter;
         this.whoseTurnIsIt=whoseTurnIsIt;
         this.isGameFinished = isGameFinished;
+        this.board = board;
     }
 
     public boolean isGameFinished() {
@@ -122,5 +124,9 @@ public class NetworkGameStatus implements Serializable {
         progress -= Config.getFloorPoints(x);
         progress = progress < 0 ? 0 : progress;
         return progress;
+    }
+
+    public static Tile[][] getBoard() {
+        return board;
     }
 }

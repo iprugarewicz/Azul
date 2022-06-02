@@ -1,7 +1,6 @@
 package server.Network;
 
 import client.logic.NetworkPlayer;
-import client.logic.Player;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -9,13 +8,14 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class Serwer{
     private ServerSocket ss;
     private final int port = 12300;
     private ArrayList<Socket> socketDatabase;
     private ArrayList<NetworkPlayer> playersDatabase;
+    private ArrayList<InputStream> inputStreams;
+    private ArrayList<OutputStream> outputStreams;
     private ArrayList<ObjectOutputStream> objectOutputStreams;
     private ArrayList<ObjectInputStream> objectInputStreams;
     private int numberOfClients;
@@ -25,6 +25,8 @@ public class Serwer{
     public Serwer(){
         socketDatabase = new ArrayList<Socket>();
         playersDatabase = new ArrayList<NetworkPlayer>();
+        outputStreams = new ArrayList<OutputStream>();
+        inputStreams = new ArrayList<InputStream>();
         objectOutputStreams = new ArrayList<ObjectOutputStream>();
         objectInputStreams = new ArrayList<ObjectInputStream>();
         numberOfClients = 0;
@@ -64,6 +66,8 @@ public class Serwer{
                 try {
                     OutputStream os = socket.getOutputStream();
                     InputStream is = socket.getInputStream();
+                    outputStreams.add(os);
+                    inputStreams.add(is);
                     //
                     PrintWriter pw = new PrintWriter(os,true);
                     pw.println(id);
@@ -119,6 +123,14 @@ public class Serwer{
 
     public ArrayList<ObjectInputStream> getObjectInputStreams() {
         return objectInputStreams;
+    }
+
+    public ArrayList<InputStream> getInputStreams() {
+        return inputStreams;
+    }
+
+    public ArrayList<OutputStream> getOutputStreams() {
+        return outputStreams;
     }
 
     public static void main(String[] args) throws IOException{
