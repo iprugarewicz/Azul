@@ -15,12 +15,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import server.Logic.CenterOfWorkshop;
+import server.Logic.Game;
+import server.Logic.Tile;
 import server.Logic.Workshop;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -364,12 +366,30 @@ public class GameController implements Initializable {
     @FXML
     private Button homeButton;
 
-    private  Rectangle[] counters;
+    @FXML
+    private Text textCounter0;
+
+    @FXML
+    private Text textCounter1;
+
+    @FXML
+    private Text textCounter2;
+
+    @FXML
+    private Text textCounter3;
+
+    @FXML
+    private Text textCounter4;
+
+    private Text[] counterTexts;
+
+    private  Rectangle[] countersTiles;
+    private int[] counters = {0,0,0,0,0};
     private ImagePattern[] images;
 
     boolean draggableLock = false;
     
-    private int playerCount = 2;
+    private int playerCount;
 
 
     @FXML
@@ -435,14 +455,20 @@ public class GameController implements Initializable {
         Rectangle[] pLine3 = new Rectangle[]{pLine30, pLine31, pLine32, pLine33};
         Rectangle[] pLine4 = new Rectangle[]{pLine40, pLine41, pLine42, pLine43, pLine44};
         patternLines = new Rectangle[][]{pLine0, pLine1, pLine2, pLine3, pLine4};
-        counters = new Rectangle[]{blueTileCounter, greenTileCounter, pinkTileCount, purpleTileCount, yellowTileCounter};
-
+        countersTiles = new Rectangle[]{blueTileCounter, greenTileCounter, pinkTileCount, purpleTileCount, yellowTileCounter};
+        playerCount = playerList.size();
+        counterTexts = new Text[]{textCounter0,textCounter1,textCounter2,textCounter3,textCounter4};
 
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Game game = new Game(3);
+        playerList = game.getPlayersList();
+        workshopsFromGame = game.getWorkshops();
+        centerOfWorkshop = game.getCenterOfWorkshop();
+
 
         variablesInit();
         setWorkshopVisbility();
@@ -464,7 +490,7 @@ public class GameController implements Initializable {
              };
             firstPlayerTile.setFill(images[5]);
             int i = 0;
-            for (Rectangle counter : counters) {
+            for (Rectangle counter : countersTiles) {
                 counter.setFill(images[i]);
                 makeDragSource(counter);
                 i++;
@@ -475,7 +501,6 @@ public class GameController implements Initializable {
                     workshopTiles){
                 for (Rectangle Tile :
                         w) {
-                    Tile.setFill(images[i%5]);
                     makeDragSource(Tile);
                     i++;
                 }
@@ -495,6 +520,7 @@ public class GameController implements Initializable {
             throw new RuntimeException(e);
         }
         paintWall();
+        updateGraphics();
 
     }
     void setVisbility(Node[][] nodes,boolean state){
@@ -693,6 +719,28 @@ public class GameController implements Initializable {
 
     }
     void updateGraphics(){
+        //workshops update
+        int i = 0;
+        int j ;
+        for (Workshop workshop : workshopsFromGame) {
+            j = 0;
+            for (Tile tile : workshop.getTiles()) {
+                workshopTiles[i][j].setFill(images[tile.getColorID()]);
+                j++;
+            }
+            i++;
+
+        }
+        i = 0;
+        //center of workshops update
+        for (Tile tile : centerOfWorkshop.getCenterOfWorkshop()) {
+            counters[tile.getColorID()]+=1;
+        }
+        for (Text counter : counterTexts) {
+            counter.setText(String.valueOf(counters[i]));
+            i++;
+        }
+
 
     }
 

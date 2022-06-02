@@ -39,7 +39,7 @@ public class Game {
         for(int i=0;i<Config.getWorkshopsAmount(playersList.size());i++){
             this.workshops[i]=new Workshop();
         }
-
+        generateWorkshops();
     }
 
     private void generateWorkshops() {
@@ -274,5 +274,17 @@ public class Game {
 
     public void setIs1stplayerstileatthecenter(boolean is1stplayerstileatthecenter) {
         this.is1stplayerstileatthecenter = is1stplayerstileatthecenter;
+    }
+
+    public ArrayList<Player> getPlayersList() {
+        return playersList;
+    }
+
+    public Workshop[] getWorkshops() {
+        return workshops;
+    }
+
+    public CenterOfWorkshop getCenterOfWorkshop() {
+        return centerOfWorkshop;
     }
 }

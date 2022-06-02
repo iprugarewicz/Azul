@@ -201,11 +201,11 @@
                   <Rectangle fx:id="purpleTileCount" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="3" />
                   <Rectangle fx:id="yellowTileCounter" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="4" />
                   <Rectangle fx:id="firstPlayerTile" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="5" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Count" GridPane.columnIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Count" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Count" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Count" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Count" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Text fx:id="textCounter0" strokeType="OUTSIDE" strokeWidth="0.0" text="Count" GridPane.columnIndex="1" />
+                  <Text fx:id="textCounter1" strokeType="OUTSIDE" strokeWidth="0.0" text="Count" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Text fx:id="textCounter2" strokeType="OUTSIDE" strokeWidth="0.0" text="Count" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Text fx:id="textCounter3" strokeType="OUTSIDE" strokeWidth="0.0" text="Count" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Text fx:id="textCounter4" strokeType="OUTSIDE" strokeWidth="0.0" text="Count" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
          </children>

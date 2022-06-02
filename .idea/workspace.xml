@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="added comment">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/client/views/game-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/views/game-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +38,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false"
+  }
+}]]></component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ignac\Documents\Studia_projekty\apro2_22l_pro_pt_azulpro\src\main\resources\client\views" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
@@ -148,6 +161,7 @@
       <workItem from="1653729846745" duration="5785000" />
       <workItem from="1654158460053" duration="7199000" />
       <workItem from="1654169323399" duration="2201000" />
+      <workItem from="1654212529878" duration="625000" />
     </task>
     <task id="LOCAL-00001" summary="Drag and Drop prawie dziala ale trzeba podlaczyc">
       <created>1654165248525</created>
@@ -193,7 +207,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Drag and Drop prawie dziala ale trzeba podlaczyc" />

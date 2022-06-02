@@ -6,9 +6,11 @@ import java.util.Objects;
 
 public class Tile implements Serializable {
     private final String color;
+    private final int colorID;
     private final String[] colors = {"yellow", "blue", "green", "pink", "purple","1st player tile"};
     public Tile(int color){
         this.color= colors[color];
+        this.colorID=color;
     }
     public int getColorNumber(){
         for(int i=0;i<5;i++) {
@@ -40,5 +42,9 @@ public class Tile implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(color);
+    }
+
+    public int getColorID() {
+        return colorID;
     }
 }
