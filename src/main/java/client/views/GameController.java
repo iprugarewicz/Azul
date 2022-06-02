@@ -4,7 +4,6 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.input.*;
@@ -201,7 +200,7 @@ public class GameController implements Initializable {
     private Rectangle w8Tile3;
 
 
-    private  Rectangle[][] workshops;
+    private  Rectangle[][] workshopTiles;
 
     @FXML
     private Rectangle wall00;
@@ -282,6 +281,9 @@ public class GameController implements Initializable {
     private GridPane wallBoard;
 
     @FXML
+    private Circle workshop0;
+
+    @FXML
     private Circle workshop1;
 
     @FXML
@@ -305,9 +307,9 @@ public class GameController implements Initializable {
     @FXML
     private Circle workshop8;
 
-    @FXML
-    private Circle workshop9;
 
+
+    private Circle[] workshops;
     @FXML
     private Rectangle yellowTileCounter;
 
@@ -327,6 +329,7 @@ public class GameController implements Initializable {
     private Rectangle firstPlayerTile;
 
     private  Rectangle[] counters;
+    private ImagePattern[] images;
 
 
 
@@ -354,7 +357,8 @@ public class GameController implements Initializable {
         Rectangle[] w6 = new Rectangle[]{w6Tile0, w6Tile1, w6Tile2, w6Tile3};
         Rectangle[] w7 = new Rectangle[]{w7Tile0, w7Tile1, w7Tile2, w7Tile3};
         Rectangle[] w8 = new Rectangle[]{w8Tile0, w8Tile1, w8Tile2, w8Tile3};
-        workshops = new Rectangle[][]{w0, w1, w2, w3, w4, w5, w6, w7, w8};
+        workshopTiles = new Rectangle[][]{w0, w1, w2, w3, w4, w5, w6, w7, w8};
+        workshops = new Circle[]{workshop0,workshop2,workshop3,workshop4,workshop5,workshop6,workshop7,workshop8};
         Rectangle[] pLine0 = new Rectangle[]{pLine00};
         Rectangle[] pLine1 = new Rectangle[]{pLine10, pLine11};
         Rectangle[] pLine2 = new Rectangle[]{pLine20, pLine21, pLine22};
@@ -363,8 +367,9 @@ public class GameController implements Initializable {
         patternLines = new Rectangle[][]{pLine0, pLine1, pLine2, pLine3, pLine4};
         counters = new Rectangle[]{blueTileCounter, greenTileCounter, pinkTileCount, purpleTileCount, yellowTileCounter};
 
+
     }
-    ImagePattern[] images;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -394,7 +399,7 @@ public class GameController implements Initializable {
              i = 0;
 
             for (Rectangle[] w:
-            workshops){
+                    workshopTiles){
                 for (Rectangle Tile :
                         w) {
                     Tile.setFill(images[i%5]);
@@ -421,101 +426,97 @@ public class GameController implements Initializable {
 
 
     }
-    public class DraggableMaker {
-        Rectangle dragged;
+    public static class DraggableMaker {
+        /*
+        Działanie jest proste, są dwa rodzaje elementów source i target,
+        metody przyjmują element i sprawiają ze staje się source i target (można oba chyba, nie testowałem)
+        zachowania w konkretnych sytuacjach opisane są w poszczególnych lambdach, da się ogarnąć co i jak
+        nie jest najgorzej xD
+
+         */
+        Rectangle dragged; // przechowuje ostatni wzięty element
         public void makeDragTarget(Rectangle target){
-            target.setOnDragOver(new EventHandler <DragEvent>() {
-                public void handle(DragEvent event) {
-                    /* data is dragged over the target */
-                    //System.out.println("onDragOver");
-                    try {
-                        target.getScene().setCursor(new ImageCursor(new Image(new FileInputStream("src/main/resources/images/blue.png"))));
-                    } catch (FileNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
 
-                    /* accept it only if it is  not dragged from the same node
-                     * and if it has a string data */
-                    if (event.getGestureSource() != target &&
-                            event.getDragboard().hasString()) {
-                        /* allow for both copying and moving, whatever user chooses */
-                        event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-                    }
+            //co się dzieje z targetem jak jakiś source przejeżdża nad nim
+            target.setOnDragOver(event -> {
 
-                    event.consume();
+                /* data is dragged over the target */
+                //System.out.println("onDragOver");
+
+                /* accept it only if it is  not dragged from the same node
+                 * and if it has a string data */
+                if (event.getGestureSource() != target &&
+                        event.getDragboard().hasString()) {
+                    /* allow for both copying and moving, whatever user chooses */
+                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
                 }
+
+                event.consume();
             });
 
-            target.setOnDragEntered(new EventHandler <DragEvent>() {
-                public void handle(DragEvent event) {
-                    /* the drag-and-drop gesture entered the target */
-                    System.out.println("onDragEntered");
-                    /* show to the user that it is an actual gesture target */
-                    if (event.getGestureSource() != target &&
-                            event.getDragboard().hasString()) {
-                    }
+            // co się dzieje z targetem jak cos na niego wjeżdża, tylko w momencie wjechania
+            target.setOnDragEntered(event -> {
 
-                    event.consume();
+                /* the drag-and-drop gesture entered the target */
+                System.out.println("onDragEntered");
+                /* show to the user that it is an actual gesture target */
+                if (event.getGestureSource() != target &&
+                        event.getDragboard().hasString()) {
+
                 }
+
+                event.consume();
             });
 
-            target.setOnDragExited(new EventHandler <DragEvent>() {
-                public void handle(DragEvent event) {
-                    /* mouse moved away, remove the graphical cues */
 
-                    event.consume();
+            // co się dzieje jak upuści się dowolny source na ten target
+            target.setOnDragDropped(event -> {
+                /* data dropped */
+                System.out.println("onDragDropped");
+                /* if there is a string data on drag board, read it and use it */
+                Dragboard db = event.getDragboard();
+                boolean success = false;
+                if (db.hasString()) {
+                    target.setFill(Color.YELLOW);
+                    success = true;
                 }
-            });
+                /* let the source know whether the string was successfully
+                 * transferred and used */
 
-            target.setOnDragDropped(new EventHandler <DragEvent>() {
-                public void handle(DragEvent event) {
-                    /* data dropped */
-                    System.out.println("onDragDropped");
-                    /* if there is a string data on dragboard, read it and use it */
-                    Dragboard db = event.getDragboard();
-                    boolean success = false;
-                    if (db.hasString()) {
-                        target.setFill(Color.YELLOW);
-                        success = true;
-                    }
-                    /* let the source know whether the string was successfully
-                     * transferred and used */
-                    event.setDropCompleted(success);
-                    target.setFill(dragged.getFill());
+                event.setDropCompleted(success);
+                target.setFill(dragged.getFill());
 
-                    event.consume();
-                }
+                event.consume();
             });
 
         }
 
         public void makeDragSource(Node source) {
-            source.setOnDragDone(new EventHandler <DragEvent>() {
-                public void handle(DragEvent event) {
-                    /* the drag-and-drop gesture ended */
-                    System.out.println("onDragDone");
-                    /* if the data was successfully moved, clear it */
-                    if (event.getTransferMode() == TransferMode.MOVE) {
-                        //source.setText("");
-                        System.out.println("dziala");
-                    }
+            //co się dzieje jak się upuści source
+            source.setOnDragDone(event -> {
 
-                    event.consume();
+
+                /* the drag-and-drop gesture ended */
+                System.out.println("onDragDone");
+                /* if the data was successfully moved, clear it */
+                if (event.getTransferMode() == TransferMode.MOVE) {
+                    //source.setText("");
+                    System.out.println("działa");
                 }
+
+                event.consume();
             });
 
 
-            source.setOnDragDetected(new EventHandler() {
-                @Override
-                public void handle(Event event) {
-                    Dragboard db = source.startDragAndDrop(TransferMode.ANY);
-                    dragged = (Rectangle) source;
-                    ClipboardContent content = new ClipboardContent();
-                    content.putString("Hello!");
-                    db.setContent(content);
-                    event.consume();
-                }
-
+            //co się dzieje jak się podniesie source
+            source.setOnDragDetected((EventHandler<Event>) event -> {
+                System.out.println("onDragDetected");
+                Dragboard db = source.startDragAndDrop(TransferMode.ANY);
+                dragged = (Rectangle) source;
+                ClipboardContent content = new ClipboardContent();
+                content.putString("Hello!");
+                db.setContent(content);
+                event.consume();
             });
 
 
