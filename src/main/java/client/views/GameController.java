@@ -455,7 +455,12 @@ public class GameController implements Initializable {
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/pink.png"))),
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/purple.png"))),
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/1stplayertile.png"))),
-                     new ImagePattern((new Image(new FileInputStream("src/main/resources/images/empty.png"))))
+                     new ImagePattern((new Image(new FileInputStream("src/main/resources/images/empty.png")))),
+                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_yellow.png"))),
+                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_blue.png"))),
+                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_green.png"))),
+                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_pink.png"))),
+                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_purple.png"))),
              };
             firstPlayerTile.setFill(images[5]);
             int i = 0;
