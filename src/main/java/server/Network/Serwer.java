@@ -113,6 +113,14 @@ public class Serwer{
         return this.playersDatabase;
     }
 
+    public ArrayList<ObjectOutputStream> getObjectOutputStreams() {
+        return objectOutputStreams;
+    }
+
+    public ArrayList<ObjectInputStream> getObjectInputStreams() {
+        return objectInputStreams;
+    }
+
     public static void main(String[] args) throws IOException{
         Serwer s = new Serwer();
         s.runServer();

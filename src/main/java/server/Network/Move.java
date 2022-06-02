@@ -25,4 +25,13 @@ public class Move implements Serializable {
     public String getColor() {
         return color;
     }
+
+    @Override
+    public String toString() {
+        return "Move{" +
+                "workshop=" + workshop +
+                ", move=" + move +
+                ", color='" + color + '\'' +
+                '}';
+    }
 }
