@@ -34,6 +34,8 @@
 
 */target/
 
+/target/
+
 */.idea_modules
 
 */.idea/replstate.xml
