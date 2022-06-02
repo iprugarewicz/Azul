@@ -1,11 +1,12 @@
 package client.views;
 
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -40,10 +41,12 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle floor6;
 
-    private  Rectangle[] floor = {floor0,floor1,floor2,floor3,floor4,floor5,floor6};
+    private  Rectangle[] floor;
 
     @FXML
     private Rectangle pLine00;
+
+    private Rectangle[] pLine0;
 
     @FXML
     private Rectangle pLine10;
@@ -51,7 +54,7 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle pLine11;
 
-    private  Rectangle[] pLine1={pLine10,pLine11};
+    private  Rectangle[] pLine1;
     @FXML
     private Rectangle pLine20;
 
@@ -61,7 +64,7 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle pLine22;
 
-    private  Rectangle[] pLine2={pLine20,pLine21,pLine22};
+    private  Rectangle[] pLine2;
     @FXML
     private Rectangle pLine30;
 
@@ -74,7 +77,7 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle pLine33;
 
-    private  Rectangle[] pLine3 = {pLine30,pLine31,pLine32,pLine33};
+    private  Rectangle[] pLine3  ;
     @FXML
     private Rectangle pLine40;
 
@@ -91,9 +94,10 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle pLine44;
 
-    private  Rectangle[] pLine4 = {pLine40,pLine41,pLine42,pLine43,pLine44};
+    private  Rectangle[] pLine4 ;
+    private  Rectangle[][] patternLines;
     @FXML
-    private GridPane patternLines;
+    private GridPane patternLinesGrid;
 
     @FXML
     private Rectangle w0Tile0;
@@ -379,24 +383,35 @@ public class GameController implements Initializable {
         w7 = new Rectangle[]{w7Tile0, w7Tile1, w7Tile2, w7Tile3};
         w8 = new Rectangle[]{w8Tile0, w8Tile1, w8Tile2, w8Tile3};
         workshops = new Rectangle[][]{w0, w1, w2, w3, w4, w5, w6, w7, w8};
+        pLine0 = new Rectangle[] {pLine00};
+        pLine1 = new Rectangle[]{pLine10, pLine11};
+        pLine2 = new Rectangle[]{pLine20,pLine21,pLine22};
+        pLine3 = new Rectangle[]{pLine30,pLine31,pLine32,pLine33};
+        pLine4 = new Rectangle[]{pLine40,pLine41,pLine42,pLine43,pLine44};
+        patternLines = new Rectangle[][]{pLine0,pLine1,pLine2,pLine3,pLine4};
+
+
 
         counters = new Rectangle[]{blueTileCounter, greenTileCounter, pinkTileCount, purpleTileCount, yellowTileCounter};
 
+        DraggableMaker draggableMaker = new DraggableMaker();
 
         try {
-            firstPlayerTile.setFill(new ImagePattern(new Image(new FileInputStream("src/main/resources/images/1stplayertile.png"))));
 
-            Image[] images ={new Image(new FileInputStream("src/main/resources/images/blue.png")),
-                    new Image(new FileInputStream("src/main/resources/images/green.png")),
-                    new Image(new FileInputStream("src/main/resources/images/pink.png")),
-                    new Image(new FileInputStream("src/main/resources/images/purple.png")),
-                    new Image(new FileInputStream("src/main/resources/images/yellow.png"))
+
+            ImagePattern[] images ={new ImagePattern(new Image(new FileInputStream("src/main/resources/images/blue.png"))),
+                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/green.png"))),
+                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/pink.png"))),
+                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/purple.png"))),
+                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/yellow.png"))),
+                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/1stplayertile.png")))
             };
-            DraggableMaker draggableMaker = new DraggableMaker();
+
+            firstPlayerTile.setFill(images[5]);
             int i = 0;
             for (Rectangle counter : counters) {
-                counter.setFill(new ImagePattern(images[i]));
-              //  draggableMaker.makeDraggable(counter);
+                counter.setFill(images[i]);
+                draggableMaker.makeDragSource(counter);
                 i++;
             }
              i = 0;
@@ -405,15 +420,27 @@ public class GameController implements Initializable {
             workshops){
                 for (Rectangle Tile :
                         w) {
-                    Tile.setFill(new ImagePattern(images[i%5]));
-                    draggableMaker.makeDraggable(Tile);
+                    Tile.setFill(images[i%5]);
+                    draggableMaker.makeDragSource(Tile);
                     i++;
+                }
+
+            }
+            for (Rectangle[] p:
+                    patternLines){
+                for (Rectangle Tile :
+                        p) {
+                    Tile.setFill(images[5]);
+                    draggableMaker.makeDragTarget(Tile);
+
                 }
 
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+
+
 
 
     }
@@ -424,22 +451,96 @@ public class GameController implements Initializable {
         double X;
         double Y;
 
-        public void makeDraggable(Node node) {
-            node.setOnMousePressed(mouseEvent -> {
-                startX = mouseEvent.getSceneX() - node.getTranslateX();
-                startY = mouseEvent.getSceneY() - node.getTranslateY();
-                X = node.getTranslateX();
-                Y = node.getTranslateY();
+        public void makeDragTarget(Rectangle target){
+            target.setOnDragOver(new EventHandler <DragEvent>() {
+                public void handle(DragEvent event) {
+                    /* data is dragged over the target */
+                    //System.out.println("onDragOver");
+
+                    /* accept it only if it is  not dragged from the same node
+                     * and if it has a string data */
+                    if (event.getGestureSource() != target &&
+                            event.getDragboard().hasString()) {
+                        /* allow for both copying and moving, whatever user chooses */
+                        event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                    }
+
+                    event.consume();
+                }
             });
 
-            node.setOnMouseDragged(mouseEvent -> {
-                node.setTranslateX(mouseEvent.getSceneX() - startX);
-                node.setTranslateY(mouseEvent.getSceneY() - startY);
+            target.setOnDragEntered(new EventHandler <DragEvent>() {
+                public void handle(DragEvent event) {
+                    /* the drag-and-drop gesture entered the target */
+                    System.out.println("onDragEntered");
+                    /* show to the user that it is an actual gesture target */
+                    if (event.getGestureSource() != target &&
+                            event.getDragboard().hasString()) {
+                    }
+
+                    event.consume();
+                }
             });
-            node.setOnMouseReleased(e ->{
-                node.setTranslateX(X);
-                node.setTranslateY(Y);
+
+            target.setOnDragExited(new EventHandler <DragEvent>() {
+                public void handle(DragEvent event) {
+                    /* mouse moved away, remove the graphical cues */
+
+                    event.consume();
+                }
             });
+
+            target.setOnDragDropped(new EventHandler <DragEvent>() {
+                public void handle(DragEvent event) {
+                    /* data dropped */
+                    System.out.println("onDragDropped");
+                    /* if there is a string data on dragboard, read it and use it */
+                    Dragboard db = event.getDragboard();
+                    boolean success = false;
+                    if (db.hasString()) {
+                        target.setFill(Color.YELLOW);
+                        success = true;
+                    }
+                    /* let the source know whether the string was successfully
+                     * transferred and used */
+                    event.setDropCompleted(success);
+                    target.setFill(Color.YELLOW);
+
+                    event.consume();
+                }
+            });
+
+        }
+
+        public void makeDragSource(Node source) {
+            source.setOnDragDone(new EventHandler <DragEvent>() {
+                public void handle(DragEvent event) {
+                    /* the drag-and-drop gesture ended */
+                    System.out.println("onDragDone");
+                    /* if the data was successfully moved, clear it */
+                    if (event.getTransferMode() == TransferMode.MOVE) {
+                        //source.setText("");
+                        System.out.println("dziala");
+                    }
+
+                    event.consume();
+                }
+            });
+
+
+            source.setOnDragDetected(new EventHandler() {
+                @Override
+                public void handle(Event event) {
+                    Dragboard db = source.startDragAndDrop(TransferMode.ANY);
+                    ClipboardContent content = new ClipboardContent();
+                    content.putString("Hello!");
+                    db.setContent(content);
+                    event.consume();
+                }
+
+            });
+
+
         }
     }
 }

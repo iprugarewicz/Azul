@@ -60,7 +60,7 @@
                   <Rectangle fx:id="wall30" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="3" />
                </children>
             </GridPane>
-            <GridPane fx:id="patternLines" layoutX="37.0" layoutY="282.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="420.0">
+            <GridPane fx:id="patternLinesGrid" layoutX="37.0" layoutY="282.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="420.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="84.0" prefWidth="84.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="84.0" prefWidth="84.0" />
@@ -81,7 +81,7 @@
                   <Rectangle fx:id="pLine00" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onMouseClicked="#testClick" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="4" />
                   <Rectangle fx:id="pLine11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onMouseDragReleased="#testClick" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                   <Rectangle fx:id="pLine10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onMouseDragReleased="#testClick" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                  <Rectangle fx:id="pLine22" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Rectangle fx:id="pLine22" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onMouseReleased="#testClick" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                   <Rectangle fx:id="pLine21" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                   <Rectangle fx:id="pLine20" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                   <Rectangle fx:id="pLine33" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -131,7 +131,7 @@
             <Rectangle fx:id="w7Tile3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" layoutY="98.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
             <Rectangle fx:id="w7Tile1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="306.0" layoutY="48.0" rotate="13.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
             <Rectangle fx:id="w0Tile1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="400.0" layoutY="39.0" rotate="48.8" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="w0Tile0" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="446.0" layoutY="12.0" rotate="-14.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="w0Tile0" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="447.0" layoutY="20.0" rotate="-14.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
             <Rectangle fx:id="w0Tile3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="380.0" layoutY="90.0" rotate="-45.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
             <Rectangle fx:id="w0Tile2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="446.0" layoutY="84.0" rotate="24.4" stroke="BLACK" strokeType="INSIDE" width="40.0" />
             <Rectangle fx:id="w1Tile1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="512.0" layoutY="59.0" rotate="-71.6" stroke="BLACK" strokeType="INSIDE" width="40.0" />
@@ -195,7 +195,7 @@
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Rectangle fx:id="blueTileCounter" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" onDragDone="#dragIn" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+                  <Rectangle fx:id="blueTileCounter" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
                   <Rectangle fx:id="greenTileCounter" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="1" />
                   <Rectangle fx:id="pinkTileCount" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="2" />
                   <Rectangle fx:id="purpleTileCount" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" stroke="BLACK" strokeType="INSIDE" width="65.0" GridPane.rowIndex="3" />
