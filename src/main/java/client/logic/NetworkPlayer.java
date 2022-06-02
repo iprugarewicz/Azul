@@ -72,6 +72,9 @@ public class NetworkPlayer implements Serializable {
     }
 
     private boolean isAlreadyPut(int row) {
+        if(this.roundsTiles.size()==0){
+            return false;
+        }
         for (int i = 0; i < 5; i++) {
             if (NetworkGame.getBoard()[row][i].getColor().equals(this.roundsTiles.get(0).getColor()) && this.playersBoard.getMatchedTiles()[row][i]) {
                 return true;
