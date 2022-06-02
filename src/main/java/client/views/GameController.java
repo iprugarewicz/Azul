@@ -1,10 +1,12 @@
 package client.views;
 
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
@@ -328,6 +330,9 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle firstPlayerTile;
 
+    @FXML
+    private Button homeButton;
+
     private  Rectangle[] counters;
     private ImagePattern[] images;
 
@@ -335,7 +340,21 @@ public class GameController implements Initializable {
     private DraggableMaker draggableMaker = new DraggableMaker();
 
 
+    @FXML
+    void homeBtnClick(ActionEvent event){
+        if(draggableLock){
 
+            System.out.println("dragging locked from now");
+            draggableMaker.lockDragging();
+            draggableLock= false;
+        }else{
+
+            System.out.println("dragging unlocked from now");
+            draggableMaker.unlockDragging();
+            draggableLock = true;
+        }
+
+    }
     @FXML
     void dragIn(DragEvent event) {
         System.out.println("ez");
@@ -538,10 +557,10 @@ public class GameController implements Initializable {
 
 
         }
-        public void lockDragging(){
+        public void unlockDragging(){
             locker = TransferMode.MOVE;
         }
-        public void unlockDragging(){
+        public void lockDragging(){
             locker = null;
         }
     }
