@@ -1,3 +1,7 @@
+
+To jest gameController przed podłączeniem offline
+
+
 package client.views;
 
 import javafx.event.ActionEvent;
@@ -361,7 +365,7 @@ public class GameController implements Initializable {
     private ImagePattern[] images;
 
     boolean draggableLock = false;
-    
+
     private int playerCount = 2;
 
 
