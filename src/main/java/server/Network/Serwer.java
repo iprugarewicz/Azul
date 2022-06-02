@@ -16,6 +16,8 @@ public class Serwer{
     private final int port = 12300;
     private ArrayList<Socket> socketDatabase;
     private ArrayList<NetworkPlayer> playersDatabase;
+    private ArrayList<ObjectOutputStream> objectOutputStreams;
+    private ArrayList<ObjectInputStream> objectInputStreams;
     private int numberOfClients;
 
 
@@ -23,8 +25,11 @@ public class Serwer{
     public Serwer(){
         socketDatabase = new ArrayList<Socket>();
         playersDatabase = new ArrayList<NetworkPlayer>();
+        objectOutputStreams = new ArrayList<ObjectOutputStream>();
+        objectInputStreams = new ArrayList<ObjectInputStream>();
         numberOfClients = 0;
     }
+
     public ArrayList<NetworkPlayer> getPlayersDatabase() {
         return playersDatabase;
     }
@@ -59,14 +64,21 @@ public class Serwer{
                 try {
                     OutputStream os = socket.getOutputStream();
                     InputStream is = socket.getInputStream();
-                    ObjectInputStream ois = new ObjectInputStream(is);
+                    //
                     PrintWriter pw = new PrintWriter(os,true);
                     pw.println(id);
-                    NetworkPlayer p = (NetworkPlayer) ois.readObject();
-                    playersDatabase.add(p);
+
                 } catch (IOException e) {
                     e.printStackTrace();
-                } catch (ClassNotFoundException e) {
+                }
+                try{
+                    ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+                    ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+                    objectInputStreams.add(ois);
+                    objectOutputStreams.add(oos);
+                    NetworkPlayer p = (NetworkPlayer) ois.readObject();
+                    playersDatabase.add(p);
+                } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
                 id++;
@@ -78,9 +90,8 @@ public class Serwer{
     }
 
     public void sendToAll(Object obj){
-        for (Socket s:socketDatabase) {
+        for (ObjectOutputStream objectOutputStream:objectOutputStreams) {
             try {
-                ObjectOutputStream objectOutputStream = new ObjectOutputStream(s.getOutputStream());
                 objectOutputStream.writeObject(obj);
             }catch (IOException e) {
                 System.out.println(e.getMessage());

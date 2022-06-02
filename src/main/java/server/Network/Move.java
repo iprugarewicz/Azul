@@ -1,8 +1,10 @@
 package server.Network;
 
 
+import java.io.Serializable;
+
 //this class describes user's move
-public class Move {
+public class Move implements Serializable {
     private int workshop;
     private int move;
     private String color;

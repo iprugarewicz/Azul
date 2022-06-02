@@ -4,6 +4,7 @@ import client.logic.NetworkPlayer;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class NetworkGameStatus implements Serializable {
     private final int whoseTurnIsIt;
@@ -52,6 +53,20 @@ public class NetworkGameStatus implements Serializable {
 
     public int getRound() {
         return round;
+    }
+
+    @Override
+    public String toString() {
+        return "NetworkGameStatus{" +
+                "whoseTurnIsIt=" + whoseTurnIsIt +
+                ", playersList=" + playersList +
+                ", workshops=" + Arrays.toString(workshops) +
+                ", centerOfWorkshop=" + centerOfWorkshop +
+                ", tilesAmounts=" + Arrays.toString(tilesAmounts) +
+                ", round=" + round +
+                ", is1stplayerstileatthecenter=" + is1stplayerstileatthecenter +
+                ", isGameFinished=" + isGameFinished +
+                '}';
     }
 
     public boolean isIs1stplayerstileatthecenter() {
