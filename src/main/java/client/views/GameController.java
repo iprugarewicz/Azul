@@ -4,6 +4,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.input.*;
@@ -46,15 +47,12 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle pLine00;
 
-    private Rectangle[] pLine0;
-
     @FXML
     private Rectangle pLine10;
 
     @FXML
     private Rectangle pLine11;
 
-    private  Rectangle[] pLine1;
     @FXML
     private Rectangle pLine20;
 
@@ -64,7 +62,6 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle pLine22;
 
-    private  Rectangle[] pLine2;
     @FXML
     private Rectangle pLine30;
 
@@ -77,7 +74,6 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle pLine33;
 
-    private  Rectangle[] pLine3  ;
     @FXML
     private Rectangle pLine40;
 
@@ -94,10 +90,7 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle pLine44;
 
-    private  Rectangle[] pLine4 ;
     private  Rectangle[][] patternLines;
-    @FXML
-    private GridPane patternLinesGrid;
 
     @FXML
     private Rectangle w0Tile0;
@@ -111,7 +104,6 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle w0Tile3;
 
-    private  Rectangle[] w0;
     @FXML
     private Rectangle w1Tile0;
 
@@ -124,7 +116,6 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle w1Tile3;
 
-    private  Rectangle[] w1;
     @FXML
     private Rectangle w2Tile0;
 
@@ -136,8 +127,6 @@ public class GameController implements Initializable {
 
     @FXML
     private Rectangle w2Tile3;
-
-    private  Rectangle[] w2 ;
 
     @FXML
     private Rectangle w3Tile0;
@@ -151,8 +140,6 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle w3Tile3;
 
-    private  Rectangle[] w3;
-
     @FXML
     private Rectangle w4Tile0;
 
@@ -164,8 +151,6 @@ public class GameController implements Initializable {
 
     @FXML
     private Rectangle w4Tile3;
-
-    private  Rectangle[] w4;
 
     @FXML
     private Rectangle w5Tile0;
@@ -179,8 +164,6 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle w5Tile3;
 
-    private  Rectangle[] w5;
-
     @FXML
     private Rectangle w6Tile0;
 
@@ -192,8 +175,6 @@ public class GameController implements Initializable {
 
     @FXML
     private Rectangle w6Tile3;
-
-    private  Rectangle[] w6;
 
     @FXML
     private Rectangle w7Tile0;
@@ -207,8 +188,6 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle w7Tile3;
 
-    private  Rectangle[] w7;
-
     @FXML
     private Rectangle w8Tile0;
 
@@ -220,9 +199,6 @@ public class GameController implements Initializable {
 
     @FXML
     private Rectangle w8Tile3;
-
-    private  Rectangle[] w8;
-
 
 
     private  Rectangle[][] workshops;
@@ -368,44 +344,45 @@ public class GameController implements Initializable {
         workshop1.setFill(new ImagePattern(img));
 
     }
+    private void variablesInit(){
+        Rectangle[] w0 = new Rectangle[]{w0Tile0, w0Tile1, w0Tile2, w0Tile3};
+        Rectangle[] w1 = new Rectangle[]{w1Tile0, w1Tile1, w1Tile2, w1Tile3};
+        Rectangle[] w2 = new Rectangle[]{w2Tile0, w2Tile1, w2Tile2, w2Tile3};
+        Rectangle[] w3 = new Rectangle[]{w3Tile0, w3Tile1, w3Tile2, w3Tile3};
+        Rectangle[] w4 = new Rectangle[]{w4Tile0, w4Tile1, w4Tile2, w4Tile3};
+        Rectangle[] w5 = new Rectangle[]{w5Tile0, w5Tile1, w5Tile2, w5Tile3};
+        Rectangle[] w6 = new Rectangle[]{w6Tile0, w6Tile1, w6Tile2, w6Tile3};
+        Rectangle[] w7 = new Rectangle[]{w7Tile0, w7Tile1, w7Tile2, w7Tile3};
+        Rectangle[] w8 = new Rectangle[]{w8Tile0, w8Tile1, w8Tile2, w8Tile3};
+        workshops = new Rectangle[][]{w0, w1, w2, w3, w4, w5, w6, w7, w8};
+        Rectangle[] pLine0 = new Rectangle[]{pLine00};
+        Rectangle[] pLine1 = new Rectangle[]{pLine10, pLine11};
+        Rectangle[] pLine2 = new Rectangle[]{pLine20, pLine21, pLine22};
+        Rectangle[] pLine3 = new Rectangle[]{pLine30, pLine31, pLine32, pLine33};
+        Rectangle[] pLine4 = new Rectangle[]{pLine40, pLine41, pLine42, pLine43, pLine44};
+        patternLines = new Rectangle[][]{pLine0, pLine1, pLine2, pLine3, pLine4};
+        counters = new Rectangle[]{blueTileCounter, greenTileCounter, pinkTileCount, purpleTileCount, yellowTileCounter};
 
+    }
+    ImagePattern[] images;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        w0 = new Rectangle[]{w0Tile0, w0Tile1, w0Tile2, w0Tile3};
-        w1 = new Rectangle[]{w1Tile0, w1Tile1, w1Tile2, w1Tile3};
-        w2 = new Rectangle[]{w2Tile0, w2Tile1, w2Tile2, w2Tile3};
-        w3 = new Rectangle[]{w3Tile0, w3Tile1, w3Tile2, w3Tile3};
-        w4 = new Rectangle[]{w4Tile0, w4Tile1, w4Tile2, w4Tile3};
-        w5 = new Rectangle[]{w5Tile0, w5Tile1, w5Tile2, w5Tile3};
-        w6 = new Rectangle[]{w6Tile0, w6Tile1, w6Tile2, w6Tile3};
-        w7 = new Rectangle[]{w7Tile0, w7Tile1, w7Tile2, w7Tile3};
-        w8 = new Rectangle[]{w8Tile0, w8Tile1, w8Tile2, w8Tile3};
-        workshops = new Rectangle[][]{w0, w1, w2, w3, w4, w5, w6, w7, w8};
-        pLine0 = new Rectangle[] {pLine00};
-        pLine1 = new Rectangle[]{pLine10, pLine11};
-        pLine2 = new Rectangle[]{pLine20,pLine21,pLine22};
-        pLine3 = new Rectangle[]{pLine30,pLine31,pLine32,pLine33};
-        pLine4 = new Rectangle[]{pLine40,pLine41,pLine42,pLine43,pLine44};
-        patternLines = new Rectangle[][]{pLine0,pLine1,pLine2,pLine3,pLine4};
-
-
-
-        counters = new Rectangle[]{blueTileCounter, greenTileCounter, pinkTileCount, purpleTileCount, yellowTileCounter};
-
+        variablesInit();
         DraggableMaker draggableMaker = new DraggableMaker();
 
         try {
 
 
-            ImagePattern[] images ={new ImagePattern(new Image(new FileInputStream("src/main/resources/images/blue.png"))),
-                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/green.png"))),
-                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/pink.png"))),
-                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/purple.png"))),
-                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/yellow.png"))),
-                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/1stplayertile.png")))
-            };
+             images = new ImagePattern[]{new ImagePattern(new Image(new FileInputStream("src/main/resources/images/blue.png"))),
+                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/green.png"))),
+                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/pink.png"))),
+                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/purple.png"))),
+                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/yellow.png"))),
+                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/1stplayertile.png"))),
+                     new ImagePattern((new Image(new FileInputStream("src/main/resources/images/empty.png"))))
+             };
 
             firstPlayerTile.setFill(images[5]);
             int i = 0;
@@ -430,7 +407,7 @@ public class GameController implements Initializable {
                     patternLines){
                 for (Rectangle Tile :
                         p) {
-                    Tile.setFill(images[5]);
+                    Tile.setFill(images[6]);
                     draggableMaker.makeDragTarget(Tile);
 
                 }
@@ -445,17 +422,17 @@ public class GameController implements Initializable {
 
     }
     public class DraggableMaker {
-
-        private double startX;
-        private double startY;
-        double X;
-        double Y;
-
+        Rectangle dragged;
         public void makeDragTarget(Rectangle target){
             target.setOnDragOver(new EventHandler <DragEvent>() {
                 public void handle(DragEvent event) {
                     /* data is dragged over the target */
                     //System.out.println("onDragOver");
+                    try {
+                        target.getScene().setCursor(new ImageCursor(new Image(new FileInputStream("src/main/resources/images/blue.png"))));
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
 
                     /* accept it only if it is  not dragged from the same node
                      * and if it has a string data */
@@ -504,7 +481,7 @@ public class GameController implements Initializable {
                     /* let the source know whether the string was successfully
                      * transferred and used */
                     event.setDropCompleted(success);
-                    target.setFill(Color.YELLOW);
+                    target.setFill(dragged.getFill());
 
                     event.consume();
                 }
@@ -532,6 +509,7 @@ public class GameController implements Initializable {
                 @Override
                 public void handle(Event event) {
                     Dragboard db = source.startDragAndDrop(TransferMode.ANY);
+                    dragged = (Rectangle) source;
                     ClipboardContent content = new ClipboardContent();
                     content.putString("Hello!");
                     db.setContent(content);
