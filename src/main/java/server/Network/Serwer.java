@@ -96,6 +96,8 @@ public class Serwer{
     public void sendToAll(Object obj){
         for (ObjectOutputStream objectOutputStream:objectOutputStreams) {
             try {
+                objectOutputStream.flush();
+                objectOutputStream.reset();
                 objectOutputStream.writeObject(obj);
             }catch (IOException e) {
                 System.out.println(e.getMessage());
@@ -107,6 +109,8 @@ public class Serwer{
         Socket s = socketDatabase.get(index);
             try {
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(s.getOutputStream());
+                objectOutputStream.flush();
+                objectOutputStream.reset();
                 objectOutputStream.writeObject(obj);
             }catch (IOException e) {
                 System.out.println(e.getMessage());

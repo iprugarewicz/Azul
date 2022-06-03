@@ -20,6 +20,8 @@ public class Klient {
         player = new NetworkPlayer(id);
         OutputStream os = this.socket.getOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(os);
+        oos.flush();
+        oos.reset();
         oos.writeObject(this.player);
     }
 

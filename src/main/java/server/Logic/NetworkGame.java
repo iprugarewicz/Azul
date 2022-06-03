@@ -68,27 +68,7 @@ public class NetworkGame {
     }
 
     public NetworkGameStatus generateGameStatus(int id,boolean isGameFinished){
-        //generowanie nowych obiektow workshop
-        Workshop[] ws = new Workshop[workshops.length];
-        for(int i = 0; i < workshops.length; i++) {
-            ws[i] = new Workshop();
-            for (int j = 0;j<workshops[i].getTiles().length;j++){
-                ws[i].getTiles()[j] = workshops[i].getTiles()[j];
-            }
-        }
-        //generowanie nowych obiektow center of workshop
-        CenterOfWorkshop cow = new CenterOfWorkshop();
-        for (Tile t: centerOfWorkshop.getCenterOfWorkshop()) {
-            cow.getCenterOfWorkshop().add(t);
-        }
-
-        ArrayList<PatternLine> patternLines = new ArrayList<PatternLine>();
-        for (int i = 0; i<playersList.size();i++){
-            patternLines.add(playersList.get(i).getPlayersBoard().getPatternLineObject());
-        }
-
-
-        return  new NetworkGameStatus(playersList,ws,cow,tilesAmounts,round,is1stplayerstileatthecenter,id,isGameFinished,getBoard(),patternLines);
+        return new NetworkGameStatus(playersList,workshops,centerOfWorkshop,tilesAmounts,round,is1stplayerstileatthecenter,id,isGameFinished,getBoard());
     }
 
     public void letsplay() throws IOException, ClassNotFoundException {

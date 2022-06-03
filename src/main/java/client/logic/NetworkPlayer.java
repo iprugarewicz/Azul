@@ -30,14 +30,13 @@ public class NetworkPlayer implements Serializable {
 
         while(on) {
             NetworkGameStatus gS = (NetworkGameStatus) ois.readObject();
-            System.out.println("Odebtano Gamestatus");
+            System.out.println("Odebrano Gamestatus");
             if(gS.isGameFinished()){break;}
             System.out.println(Arrays.toString(gS.getWorkshops()));
             System.out.println(gS.getCenterOfWorkshop());
             System.out.println();
-            System.out.println(gS.getPatternLines().get(id-1));
+            System.out.println(gS.getPlayersList().get(id-1).getPatternLine());
 
-            this.playersBoard.setPatternLine(gS.getPatternLines().get(id-1));
             this.roundsTiles = gS.getPlayersList().get(id-1).getRoundsTiles();
             //tu trzeba przypisac dane do tego networkplayera
 
@@ -52,6 +51,8 @@ public class NetworkPlayer implements Serializable {
                 System.out.println("Podaj gdzie chcesz to wlozyc");
                 int c = Integer.parseInt(scanner.nextLine()); // move
                 Move mv = new Move(a, c ,b);
+                oos.flush();
+                oos.reset();
                 oos.writeObject(mv);
             }
            // ArrayList<NetworkPlayer> playerArrayList = (ArrayList<NetworkPlayer>) ois.readObject();
@@ -240,4 +241,15 @@ public class NetworkPlayer implements Serializable {
         return chosenColor;
     }
 
+    @Override
+    public String toString() {
+        return "NetworkPlayer{" +
+                "progress=" + progress +
+                ", id=" + id +
+                ", roundsTiles=" + roundsTiles +
+                ", playersBoard=" + playersBoard +
+                ", floor=" + floor +
+                ", chosenColor='" + chosenColor + '\'' +
+                '}';
+    }
 }

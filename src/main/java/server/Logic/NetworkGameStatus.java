@@ -17,9 +17,8 @@ public class NetworkGameStatus implements Serializable {
     private final int round;
     private final boolean is1stplayerstileatthecenter;
     private final boolean isGameFinished;
-    private ArrayList<PatternLine> patternLines;
 
-    public NetworkGameStatus(ArrayList<NetworkPlayer> playersList, Workshop[] workshops, CenterOfWorkshop centerOfWorkshop, int[] tilesAmounts, int round, boolean is1stplayerstileatthecenter,int whoseTurnIsIt,boolean isGameFinished,Tile[][] board, ArrayList<PatternLine> patternLines) {
+    public NetworkGameStatus(ArrayList<NetworkPlayer> playersList, Workshop[] workshops, CenterOfWorkshop centerOfWorkshop, int[] tilesAmounts, int round, boolean is1stplayerstileatthecenter,int whoseTurnIsIt,boolean isGameFinished,Tile[][] board) {
         this.playersList = playersList;
         this.workshops = workshops;
         this.centerOfWorkshop = centerOfWorkshop;
@@ -29,7 +28,6 @@ public class NetworkGameStatus implements Serializable {
         this.whoseTurnIsIt=whoseTurnIsIt;
         this.isGameFinished = isGameFinished;
         this.board = board;
-        this.patternLines = patternLines;
     }
 
     public boolean isGameFinished() {
@@ -60,9 +58,6 @@ public class NetworkGameStatus implements Serializable {
         return round;
     }
 
-    public ArrayList<PatternLine> getPatternLines() {
-        return patternLines;
-    }
 
     @Override
     public String toString() {
