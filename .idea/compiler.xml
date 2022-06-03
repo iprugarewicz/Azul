@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="apro2_22l_pro_pt_azulpro" target="17" />
+      <module name="apro2_22l_pro_pt_azulpro" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>
