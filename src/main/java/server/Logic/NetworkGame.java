@@ -52,6 +52,7 @@ public class NetworkGame {
 
     }
 
+    //glowna metoda w niej odbywa sie rozgrywka
     public void letsplay() throws IOException, ClassNotFoundException {
 
         //Jeśli nie wczytujemy gry z pliku, to generujemy nowe workshopy
@@ -88,6 +89,8 @@ public class NetworkGame {
 
                 //Jeśli gracz wybrał center of workshops
                 if (ws == workshops.length+1) {
+
+                    //zabranie ze srodka planszy kafelkow ktore gracz chce zabrac, oraz w przypadku gdy na srodku jest kafelek pierwszego gracza, przekazanie go graczowi
                     ArrayList<Integer> indexesToRemove=new ArrayList<>();
                     if(is1stplayerstileatthecenter){
                         for(int i=0;i< centerOfWorkshop.getCenterOfWorkshop().size();i++){
@@ -155,9 +158,15 @@ public class NetworkGame {
 
                 }
                 System.out.println(p.getRoundsTiles());
+
+                //tu blad
                 p.putTilesToPatternLine(mv.getMove());
+                //przeniesienie kafelkow z linii wzorow no plansze gracza
                 p.moveTiles();
+                //przeliczenie puntkow po ruchu gracza
                 p.calculateRoundPoints();
+
+                //sprawdzenie czy warsztaty sa puste, jesli tak to je uzupelniamy
                 for(int i=0;i<workshops.length;i++){
                     if(centerOfWorkshop.getCenterOfWorkshop().size()!=0){
                         break;
