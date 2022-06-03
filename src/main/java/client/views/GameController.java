@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import server.Logic.CenterOfWorkshop;
@@ -391,6 +392,23 @@ public class GameController implements Initializable {
     @FXML
     private ImageView gameBackground;
 
+    @FXML
+    private Polygon triangle1;
+
+    @FXML
+    private Polygon triangle2;
+
+    @FXML
+    private Polygon triangle3;
+
+    @FXML
+    private Polygon triangle4;
+
+    @FXML
+    private Polygon triangle5;
+
+    private Polygon[] triangles;
+
     private Text[] counterTexts;
 
     private  Rectangle[] countersTiles;
@@ -442,7 +460,7 @@ public class GameController implements Initializable {
         Rectangle[] w7 = new Rectangle[]{w7Tile0, w7Tile1, w7Tile2, w7Tile3};
         Rectangle[] w8 = new Rectangle[]{w8Tile0, w8Tile1, w8Tile2, w8Tile3};
         workshopTiles = new Rectangle[][]{w0, w1, w2, w3, w4, w5, w6, w7, w8};
-        workshopPlates = new Circle[]{workshopPlate0,workshopPlate2,workshopPlate3,workshopPlate4,workshopPlate5,workshopPlate6,workshopPlate7,workshopPlate8};
+        workshopPlates = new Circle[]{workshopPlate0,workshopPlate1, workshopPlate2,workshopPlate3,workshopPlate4,workshopPlate5,workshopPlate6,workshopPlate7,workshopPlate8};
         workshop0 = new Node[]{w0Tile0, w0Tile1, w0Tile2, w0Tile3,workshopPlate0};
         workshop1 = new Node[]{w1Tile0, w1Tile1, w1Tile2, w1Tile3,workshopPlate1};
         workshop2 = new Node[]{w2Tile0, w2Tile1, w2Tile2, w2Tile3,workshopPlate2};
@@ -452,13 +470,14 @@ public class GameController implements Initializable {
         workshop6 = new Node[]{w6Tile0, w6Tile1, w6Tile2, w6Tile3,workshopPlate6};
         workshop7 = new Node[]{w7Tile0, w7Tile1, w7Tile2, w7Tile3,workshopPlate7};
         workshop8 = new Node[]{w8Tile0, w8Tile1, w8Tile2, w8Tile3,workshopPlate8};
-        workshops = new Node[][]{workshop0,workshop2,workshop3,workshop4,workshop5,workshop6,workshop7,workshop8};
+        workshops = new Node[][]{workshop0,workshop1,workshop2,workshop3,workshop4,workshop5,workshop6,workshop7,workshop8};
         wall0 = new Rectangle[]{wall00,wall01,wall02,wall03,wall04};
         wall1 = new Rectangle[]{wall10,wall11,wall12,wall13,wall14};
         wall2 = new Rectangle[]{wall20,wall21,wall22,wall23,wall24};
         wall3 = new Rectangle[]{wall30,wall31,wall32,wall33,wall34};
         wall4 = new Rectangle[]{wall40,wall41,wall42,wall43,wall44};
         wall = new Rectangle[][]{wall0,wall1,wall2,wall3,wall4};
+        triangles = new Polygon[]{triangle1,triangle2,triangle3,triangle4,triangle5};
         Rectangle[] pLine0 = new Rectangle[]{pLine00};
         Rectangle[] pLine1 = new Rectangle[]{pLine10, pLine11};
         Rectangle[] pLine2 = new Rectangle[]{pLine20, pLine21, pLine22};
@@ -501,7 +520,9 @@ public class GameController implements Initializable {
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_blue.png"))),
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_green.png"))),
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_pink.png"))),
-                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_purple.png")))
+                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_purple.png"))),
+                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/workshop.png"))),
+                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/triangle.png")))
 
              };
             gameBackground.setImage(new Image(new FileInputStream("src/main/resources/images/bg_game.png")));
@@ -536,6 +557,14 @@ public class GameController implements Initializable {
 
             }
 
+        }
+
+        for(Circle c : workshopPlates){
+            c.setFill(images[12]);
+        }
+
+        for(Polygon t: triangles){
+            t.setFill(images[13]);
         }
 
 

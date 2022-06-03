@@ -176,11 +176,11 @@
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Polygon fill="DODGERBLUE" points="-20.0, 40.0, 20.0, 40.0, 1.0, 4.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fill="DODGERBLUE" points="-20.0, 40.0, 20.0, 40.0, 1.0, 4.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="1" />
-                  <Polygon fill="DODGERBLUE" points="-20.0, 40.0, 20.0, 40.0, 1.0, 4.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="2" />
-                  <Polygon fill="DODGERBLUE" points="-20.0, 40.0, 20.0, 40.0, 1.0, 4.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="3" />
-                  <Polygon fill="DODGERBLUE" points="-20.0, 40.0, 20.0, 40.0, 1.0, 4.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="4" />
+                  <Polygon fx:id="triangle1" fill="BLACK" points="-20.0, 40.0, 20.0, 40.0, 1.0, 4.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="triangle2" fill="BLACK" points="-20.0, 40.0, 20.0, 40.0, 1.0, 4.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="1" />
+                  <Polygon fx:id="triangle3" fill="BLACK" points="-20.0, 40.0, 20.0, 40.0, 1.0, 4.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="2" />
+                  <Polygon fx:id="triangle4" fill="BLACK" points="-20.0, 40.0, 20.0, 40.0, 1.0, 4.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="3" />
+                  <Polygon fx:id="triangle5" fill="BLACK" points="-20.0, 40.0, 20.0, 40.0, 1.0, 4.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="4" />
                </children>
             </GridPane>
             <GridPane alignment="CENTER" layoutX="28.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="489.0" prefWidth="126.0">
