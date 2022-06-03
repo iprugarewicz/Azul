@@ -509,7 +509,7 @@ public class GameController implements Initializable {
             gameBackground.setImage(new Image(new FileInputStream("src/main/resources/images/bg_game.png")));
             menuBackground.setImage(new Image(new FileInputStream("src/main/resources/images/bg_menu.png")));
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println("bg not working");
         }
         firstPlayerTile.setFill(images[5]);
         int i = 0;
