@@ -31,6 +31,8 @@ public class GameController implements Initializable {
     public static Workshop[] workshopsFromGame;
     public static CenterOfWorkshop centerOfWorkshop = new CenterOfWorkshop();
     public static ArrayList<Player> playerList=new ArrayList<>();
+    public ArrayList<Integer> possibleActions = new ArrayList<>();// tutaj trzeba ściągnąć possibleMoves z gry
+
 
 
     @FXML
@@ -460,6 +462,10 @@ public class GameController implements Initializable {
         counterTexts = new Text[]{textCounter0,textCounter1,textCounter2,textCounter3,textCounter4};
         floor = new Rectangle[]{floor0,floor1,floor2,floor3,floor4,floor5,floor6};
 
+        possibleActions.add(1);
+        possibleActions.add(3);
+        possibleActions.add(5);
+
     }
 
 
@@ -489,6 +495,9 @@ public class GameController implements Initializable {
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_pink.png"))),
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_purple.png")))
              };
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
             firstPlayerTile.setFill(images[5]);
             int i = 0;
             for (Rectangle counter : countersTiles) {
@@ -517,9 +526,7 @@ public class GameController implements Initializable {
                 }
 
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+
 
         updateGraphics();
 
@@ -618,10 +625,7 @@ public class GameController implements Initializable {
 
                 int[] targetIndex = getIndexes(patternLines,target);
                 int[] draggedIndex = getIndexes(workshopTiles,dragged);
-                ArrayList<Integer> possibleActions = new ArrayList<>();// tutaj trzeba ściągnąć possibleMoves z gry
-                possibleActions.add(1);
-                possibleActions.add(3);
-                possibleActions.add(5);
+
                 if (possibleActions.contains(targetIndex[0]+1)) {
                     choseMove(targetIndex[0],draggedIndex[0],draggedIndex[1]);
 
@@ -746,21 +750,50 @@ public class GameController implements Initializable {
         }
 
         //patternLine - zrobic zaleznsosc od playera
-        i=0;
+        /*i=0;
         for (Rectangle[] rect : patternLines) {
             j = 0;
             for (Rectangle tile : rect) {
+                i
                 tile.setFill(images[6]);
                 j++;
             }
             i++;
-        }
+        }*/
 
         //floor - zrobic zaleznsosc od playera
         for (Rectangle rect : floor) {
             rect.setFill(images[6]);
 
         }
+
+    }
+    void resetTiles(){
+            int i =0;
+            int j = 0;
+        for (Rectangle[] p:
+                patternLines){
+            for (Rectangle Tile :
+                    p) {
+                Tile.setFill(images[6]);
+
+
+            }
+
+        }
+        i=0;
+        for (Rectangle[] rect : wall) {
+            j = 0;
+            for (Rectangle tile : rect) {
+                wall[i][j].setFill(images[(j+ 5 - i) % 5 + 7]);
+                j++;
+            }
+            i++;
+        }
+
+    for (Rectangle rect : floor) {
+        rect.setFill(images[6]);
+    }
 
     }
 
