@@ -8,10 +8,12 @@ public class Tile implements Serializable {
     private final String color;
     private final int colorID;
     private final String[] colors = {"yellow", "blue", "green", "pink", "purple","1st player tile"};
+
     public Tile(int color){
         this.color= colors[color];
         this.colorID=color;
     }
+
     public int getColorNumber(){
         for(int i=0;i<5;i++) {
             if (this.color.equals(colors[i])){
@@ -21,14 +23,17 @@ public class Tile implements Serializable {
         return -1;
     }
 
-
-    @Override
-    public String toString(){
-        return this.color;
+    public int getColorID() {
+        return colorID;
     }
 
     public String getColor() {
         return color;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color);
     }
 
     @Override
@@ -40,11 +45,9 @@ public class Tile implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(color);
+    public String toString(){
+        return this.color;
     }
 
-    public int getColorID() {
-        return colorID;
-    }
+
 }

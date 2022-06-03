@@ -9,14 +9,14 @@ import java.util.Arrays;
 
 public class NetworkGameStatus implements Serializable {
     private static Tile[][] board = new Tile[5][5];
-    private final int whoseTurnIsIt;
-    private final ArrayList<NetworkPlayer> playersList;
-    private final Workshop[] workshops;
-    private final CenterOfWorkshop centerOfWorkshop;
-    private final int[] tilesAmounts; //yellow blue green pink purple
-    private final int round;
-    private final boolean is1stplayerstileatthecenter;
-    private final boolean isGameFinished;
+    private final int whoseTurnIsIt; //id gracza którego jest tura
+    private final ArrayList<NetworkPlayer> playersList; //lista graczy
+    private final Workshop[] workshops; //tablica workshopów
+    private final CenterOfWorkshop centerOfWorkshop; //Środek workshopów
+    private final int[] tilesAmounts; //pozostała ilość poszczególnych kolrów kafelków(yellow blue green pink purple)
+    private final int round; //kolejka w rundzie
+    private final boolean is1stplayerstileatthecenter; //czy 1playerstile jest na środku workshopów
+    private final boolean isGameFinished; //czy gra dobiegła do końca
 
     public NetworkGameStatus(ArrayList<NetworkPlayer> playersList, Workshop[] workshops, CenterOfWorkshop centerOfWorkshop, int[] tilesAmounts, int round, boolean is1stplayerstileatthecenter,int whoseTurnIsIt,boolean isGameFinished,Tile[][] board) {
         this.playersList = playersList;

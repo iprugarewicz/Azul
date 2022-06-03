@@ -29,24 +29,30 @@ public class NetworkPlayer implements Serializable {
         boolean on = true;
 
         while(on) {
+
+            //Odebranie gamestatusu
             NetworkGameStatus gS = (NetworkGameStatus) ois.readObject();
             System.out.println("Odebrano Gamestatus");
+
+            //Przypisanie danych do tego networkplayera
+            this.roundsTiles = gS.getPlayersList().get(id-1).getRoundsTiles();
+            this.playersBoard = gS.getPlayersList().get(id-1).getPlayersBoard();
+
+            //Jeśli gra jest skończona wychodzimy z pentli
             if(gS.isGameFinished()){
                 on = false;
                 break;
             }
+
+            //Wypiwanie danych w konsoli
             System.out.println(Arrays.toString(gS.getWorkshops()));
             System.out.println(gS.getCenterOfWorkshop());
             System.out.println();
             System.out.println(gS.getPlayersList().get(id-1).getPatternLine());
+            System.out.println();
+            System.out.println(this.playersBoard);
 
-            this.roundsTiles = gS.getPlayersList().get(id-1).getRoundsTiles();
-            //tu trzeba przypisac dane do tego networkplayera
-            this.roundsTiles = gS.getPlayersList().get(id-1).getRoundsTiles();
-            this.playersBoard = gS.getPlayersList().get(id-1).getPlayersBoard();
-            System.out.println(playersBoard.getMatchedTiles());
-            //tu gui wyswietla stan gry
-
+            //ruch gracza
             if(gS.getWhoseTurnIsIt() == this.id){
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Podaj numer warsztatu");
@@ -55,31 +61,24 @@ public class NetworkPlayer implements Serializable {
                 String b = scanner.nextLine(); // color
                 System.out.println("Podaj gdzie chcesz to wlozyc");
                 int c = Integer.parseInt(scanner.nextLine()); // move
+
+                //Wpisanie otrzyamnych wartości w obiekt Move i wysłanie go do serwera
                 Move mv = new Move(a, c ,b);
                 oos.flush();
                 oos.reset();
                 oos.writeObject(mv);
+
             }
-            ArrayList<NetworkPlayer> playerArrayList = (ArrayList<NetworkPlayer>) ois.readObject();
-            System.out.println("KONIEC!");
-            for (NetworkPlayer p : playerArrayList) {
-                System.out.println("Gracz: " + p.getId() + " zdobył" + p.getProgress() + " pnuktów.");
-            }
+
+        } // koniec pętli w której odbywa się gra
+
+        //Otrzymanie posegregowanej listy graczy i wypisanie wyników
+        ArrayList<NetworkPlayer> playerArrayList = (ArrayList<NetworkPlayer>) ois.readObject();
+        System.out.println("KONIEC!");
+        for (NetworkPlayer p : playerArrayList) {
+            System.out.println("Gracz: " + p.getId() + " zdobył" + p.getProgress() + " pnuktów.");
         }
 
-
-    }
-
-    public ArrayList<Tile> getRoundsTiles() {
-        return roundsTiles;
-    }
-
-    public boolean[][] getMatchedTiles() {
-        return playersBoard.getMatchedTiles();
-    }
-
-    public int getId() {
-        return id;
     }
 
     public void calculateRoundPoints() {
@@ -227,6 +226,34 @@ public class NetworkPlayer implements Serializable {
         }
     }
 
+    @Override
+    public String toString() {
+        return "NetworkPlayer{" +
+                "progress=" + progress +
+                ", id=" + id +
+                ", roundsTiles=" + roundsTiles +
+                ", playersBoard=" + playersBoard +
+                ", floor=" + floor +
+                ", chosenColor='" + chosenColor + '\'' +
+                '}';
+    }
+
+
+
+    //Gettery
+
+    public ArrayList<Tile> getRoundsTiles() {
+        return roundsTiles;
+    }
+
+    public boolean[][] getMatchedTiles() {
+        return playersBoard.getMatchedTiles();
+    }
+
+    public int getId() {
+        return id;
+    }
+
     public int getProgress() {
         return progress;
     }
@@ -247,15 +274,4 @@ public class NetworkPlayer implements Serializable {
         return chosenColor;
     }
 
-    @Override
-    public String toString() {
-        return "NetworkPlayer{" +
-                "progress=" + progress +
-                ", id=" + id +
-                ", roundsTiles=" + roundsTiles +
-                ", playersBoard=" + playersBoard +
-                ", floor=" + floor +
-                ", chosenColor='" + chosenColor + '\'' +
-                '}';
-    }
 }

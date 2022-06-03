@@ -3,15 +3,16 @@ package server.Network;
 
 import java.io.Serializable;
 
-//this class describes user's move
+//Klasa opisuje ruch gracza i jest wysyłana do serwera
 public class Move implements Serializable {
     private int workshop;
     private int move;
     private String color;
+
     public Move(int workshop,int move,String color){
-        this.workshop=workshop;
-        this.move=move;
-        this.color=color;
+        this.workshop=workshop; // z którego warsztatu bierzemy
+        this.move=move; // na które miejsce wkładamy kafelki
+        this.color=color; // kolor pobranych kafelków
     }
 
     public int getWorkshop() {

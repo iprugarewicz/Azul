@@ -21,7 +21,6 @@ public class Serwer{
     private int numberOfClients;
 
 
-
     public Serwer(){
         socketDatabase = new ArrayList<Socket>();
         playersDatabase = new ArrayList<NetworkPlayer>();
@@ -32,15 +31,12 @@ public class Serwer{
         numberOfClients = 0;
     }
 
-    public ArrayList<NetworkPlayer> getPlayersDatabase() {
-        return playersDatabase;
-    }
-    public ArrayList<Socket> getSocketDatabase() {
-        return socketDatabase;
-    }
 
+    //Uruchomienie serwera
     public void runServer() throws IOException, UnknownHostException {
+        //Serwer działa w oddzielnym wątku
         new Thread(()->{
+            //inicjalizacja serwera
             try {
                 ss = new ServerSocket(port);
             } catch (IOException e) {
@@ -52,23 +48,29 @@ public class Serwer{
             } catch (UnknownHostException e) {
                 e.printStackTrace();
             }
+
+            //Wypisanie danych serwera
             System.out.println("localHost.getHostAddress() = " + localHost.getHostAddress());
             System.out.println("localHost.getHostName() = " + localHost.getHostName());
             System.out.println("Serwer na porcie " + port);
             int id = 1;
+
+            //Właściwa pętla w której działa serwer
             while(true) {
                 Socket socket = null;
                 try {
+                    //Połączzenie z klientem
                     socket = ss.accept();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 try {
+                    //Zapisanie streamów w listach
                     OutputStream os = socket.getOutputStream();
                     InputStream is = socket.getInputStream();
                     outputStreams.add(os);
                     inputStreams.add(is);
-                    //
+                    //Wysłanie numeru id do klienta
                     PrintWriter pw = new PrintWriter(os,true);
                     pw.println(id);
 
@@ -76,23 +78,29 @@ public class Serwer{
                     e.printStackTrace();
                 }
                 try{
+                    //Zapsianie objectStreamów do list
                     ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
                     ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
                     objectInputStreams.add(ois);
                     objectOutputStreams.add(oos);
+
+                    //Odebranie Networkplayera który stworzył klient i zapisanie go do listy
                     NetworkPlayer p = (NetworkPlayer) ois.readObject();
                     playersDatabase.add(p);
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
+
                 id++;
                 this.socketDatabase.add(socket);
                 System.out.println("Połączono nowego klienta.");
                 this.numberOfClients++;
+
             }
         }).start();
     }
 
+    //Wysłanie obiektu do wszystkich na klientów
     public void sendToAll(Object obj){
         for (ObjectOutputStream objectOutputStream:objectOutputStreams) {
             try {
@@ -105,6 +113,8 @@ public class Serwer{
 
         }
     }
+
+    //Wysłanie obiektu do konkretnego klienta
     public void sendToOne(Object obj, int index){
         Socket s = socketDatabase.get(index);
             try {
@@ -117,6 +127,10 @@ public class Serwer{
             }
 
     }
+
+
+    //gettery
+
     public ArrayList<NetworkPlayer> getPlayersList() {
         return this.playersDatabase;
     }
@@ -137,10 +151,12 @@ public class Serwer{
         return outputStreams;
     }
 
-    public static void main(String[] args) throws IOException{
-        Serwer s = new Serwer();
-        s.runServer();
+    public ArrayList<NetworkPlayer> getPlayersDatabase() {
+        return playersDatabase;
     }
 
+    public ArrayList<Socket> getSocketDatabase() {
+        return socketDatabase;
+    }
 
 }

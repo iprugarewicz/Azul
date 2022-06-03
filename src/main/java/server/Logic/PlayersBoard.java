@@ -3,6 +3,7 @@ package server.Logic;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PlayersBoard  implements Serializable {
     private boolean[][] matchedTiles=new boolean[5][5];
@@ -20,5 +21,13 @@ public class PlayersBoard  implements Serializable {
 
     public void setPatternLine(PatternLine patternLine) {
         this.patternLine = patternLine;
+    }
+
+    @Override
+    public String toString() {
+        return "PlayersBoard{" +
+                "matchedTiles=" + Arrays.deepToString(matchedTiles) +
+                ", patternLine=" + patternLine +
+                '}';
     }
 }

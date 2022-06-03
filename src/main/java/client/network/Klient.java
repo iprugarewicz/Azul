@@ -15,21 +15,26 @@ public class Klient {
 
     }
 
+
     public void initialize() throws IOException {
+
+        //odebranie ID i stworzenie NetworkPlayera
         int id = recieveID();
         player = new NetworkPlayer(id);
+
         OutputStream os = this.socket.getOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(os);
+
+
+        //Wysłanie stworzonego NetworkPlayera do serwera
         oos.flush();
         oos.reset();
         oos.writeObject(this.player);
-    }
 
-    public Socket getSocket() {
-        return socket;
     }
 
     public int recieveID(){
+        //Klient odbiera swoje id i zwraca jako wynik metody
         try {
             OutputStream os = socket.getOutputStream();
             InputStream is = socket.getInputStream();
@@ -43,11 +48,7 @@ public class Klient {
         return 0;
     }
 
-
-    public NetworkPlayer getPlayer() {
-        return player;
-    }
-
+    //Klient który dołącza do gry
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Klient k = new Klient();
         System.out.println("Nowy obiekt");
@@ -55,6 +56,17 @@ public class Klient {
         System.out.println("Inicjalizacja");
         k.getPlayer().playGame(k);
     }
+
+
+
+    public NetworkPlayer getPlayer() {
+        return player;
+    }
+
+    public Socket getSocket() {
+        return socket;
+    }
+
 
 
 }

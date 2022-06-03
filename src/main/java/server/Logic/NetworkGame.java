@@ -23,8 +23,8 @@ public class NetworkGame {
     private boolean is1stplayerstileatthecenter=false;
     private boolean wasGameStatesReadFromaFile=false;
     private final Serwer serwer;
-    private ArrayList<ObjectOutputStream> objectOutputStreams;
     private ArrayList<ObjectInputStream> objectInputStreams;
+    private ArrayList<ObjectOutputStream> objectOutputStreams;
 
     public NetworkGame(int players,Serwer s) {
         this.serwer = s;
@@ -49,26 +49,7 @@ public class NetworkGame {
 
         objectOutputStreams = new ArrayList<ObjectOutputStream>();
         objectInputStreams = new ArrayList<ObjectInputStream>();
-    }
 
-
-    private void generateWorkshops() {
-        Random r = new Random();
-        for (int i = 0; i < workshops.length; i++) {
-            for (int j = 0; j < 4; j++) {
-                int ran = Math.abs(r.nextInt()) % 5;
-                if (this.tilesAmounts[ran] != 0) {
-                    workshops[i].getTiles()[j] = new Tile(ran);
-                    tilesAmounts[ran]--;
-                } else {
-                    j--;
-                }
-            }
-        }
-    }
-
-    public NetworkGameStatus generateGameStatus(int id,boolean isGameFinished){
-        return new NetworkGameStatus(playersList,workshops,centerOfWorkshop,tilesAmounts,round,is1stplayerstileatthecenter,id,isGameFinished,getBoard());
     }
 
     public void letsplay() throws IOException, ClassNotFoundException {
@@ -76,7 +57,7 @@ public class NetworkGame {
             this.generateWorkshops();
         }
         for (NetworkPlayer p:
-             this.playersList) {
+                this.playersList) {
             ObjectInputStream ois = new ObjectInputStream(serwer.getInputStreams().get(p.getId()-1));
             objectInputStreams.add(ois);
         }
@@ -206,9 +187,7 @@ public class NetworkGame {
         }
         endGame();
     }
-  // public void saveNetworkGameStatusToFile(String fileName, int id) throws IOException {
-  //     ObjectsSerializer.serializeNetworkGameStatus(new NetworkGameStatus(this.playersList,this.workshops,this.centerOfWorkshop,this.tilesAmounts,this.round,this.is1stplayerstileatthecenter,id,false),fileName);
-  // }
+
     public void endGame(){
         for(int i=0;i<playersList.size();i++){
             int biggest=playersList.get(i).getProgress();
@@ -228,6 +207,25 @@ public class NetworkGame {
         }
     }
 
+    private void generateWorkshops() {
+        Random r = new Random();
+        for (int i = 0; i < workshops.length; i++) {
+            for (int j = 0; j < 4; j++) {
+                int ran = Math.abs(r.nextInt()) % 5;
+                if (this.tilesAmounts[ran] != 0) {
+                    workshops[i].getTiles()[j] = new Tile(ran);
+                    tilesAmounts[ran]--;
+                } else {
+                    j--;
+                }
+            }
+        }
+    }
+
+    public NetworkGameStatus generateGameStatus(int id,boolean isGameFinished){
+        return new NetworkGameStatus(playersList,workshops,centerOfWorkshop,tilesAmounts,round,is1stplayerstileatthecenter,id,isGameFinished,getBoard());
+    }
+
     private static boolean isMoveCorrect(Move m,NetworkPlayer p){
         if(m==null) return false;
         for (int i: p.possibleActions()){
@@ -236,8 +234,22 @@ public class NetworkGame {
         return false;
     }
 
+    /*
+    public void saveNetworkGameStatusToFile(String fileName, int id) throws IOException {
+         ObjectsSerializer.serializeNetworkGameStatus(new NetworkGameStatus(this.playersList,this.workshops,this.centerOfWorkshop,this.tilesAmounts,this.round,this.is1stplayerstileatthecenter,id,false),fileName);
+    }
+
+     */
 
 
+
+
+
+
+
+
+
+    //gettery i settery
 
     public ArrayList<NetworkPlayer> getPlayersList() {
         return playersList;
