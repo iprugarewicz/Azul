@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client/views/game-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/views/game-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +193,21 @@
       <option name="project" value="LOCAL" />
       <updated>1654213429150</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="GUI background">
+      <created>1654244146000</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1654244146000</updated>
+    </task>
+    <task id="LOCAL-00007" summary="GUI background">
+      <created>1654244207186</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1654244207186</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,7 +229,8 @@
     <MESSAGE value="GUI xD" />
     <MESSAGE value="added comment" />
     <MESSAGE value="GUI masno fest" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI masno fest" />
+    <MESSAGE value="GUI background" />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI background" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

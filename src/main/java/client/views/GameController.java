@@ -501,9 +501,7 @@ public class GameController implements Initializable {
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_blue.png"))),
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_green.png"))),
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_pink.png"))),
-                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_purple.png"))),
-
-                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/bg_menu.png")))
+                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_purple.png")))
 
              };
             gameBackground.setImage(new Image(new FileInputStream("src/main/resources/images/bg_game.png")));
