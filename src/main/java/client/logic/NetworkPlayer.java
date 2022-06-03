@@ -39,7 +39,7 @@ public class NetworkPlayer implements Serializable {
             this.roundsTiles = gS.getPlayersList().get(id-1).getRoundsTiles();
             this.playersBoard = gS.getPlayersList().get(id-1).getPlayersBoard();
 
-            //Jeśli gra jest skończona wychodzimy z pentli
+            //Jeśli gra jest skończona wychodzimy z petli
             if(gS.isGameFinished()){
                 on = false;
                 break;
@@ -163,6 +163,7 @@ public class NetworkPlayer implements Serializable {
         this.floor = new Floor();
     }
 
+    //sprawdzamy czy gracz juz polozyl kafelek danego koloru w danym rzedzie
     private boolean isAlreadyPut(int row) {
         for (int i = 0; i < 5; i++) {
             if (Config.getBoard()[row][i].getColor().equals(this.roundsTiles.get(0).getColor()) && this.playersBoard.getMatchedTiles()[row][i]) {
@@ -172,6 +173,7 @@ public class NetworkPlayer implements Serializable {
         return false;
     }
 
+    //sprawdzamy czy dana linia wzoru jest zapelniona, jesli jest zapelniona w pewnej czesci sprawdzamy kafelki jakego koloru tam sa
     private boolean isThatPatternLineFilled(int row) {
         if (this.playersBoard.getPatternLine().get(row)[row] != null /* danger code warning*/ /*&& this.roundsTiles.size() != 0*/) {
             if (this.playersBoard.getPatternLine().get(row)[row].getColor().equals(this.roundsTiles.get(0).getColor()) && this.playersBoard.getPatternLine().get(row)[0] == null) {
@@ -184,6 +186,7 @@ public class NetworkPlayer implements Serializable {
         }
     }
 
+    //metoda zwraca liste liczb, ktore reprezentuja rzedy na ktore gracz moze wlozyc kafelki z round tiles
     public ArrayList<Integer> possibleActions() {
         ArrayList<Integer> possibleActions = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
@@ -199,6 +202,7 @@ public class NetworkPlayer implements Serializable {
         return possibleActions;
     }
 
+    //metoda pobiera od gracza infofrmacje gdzie chce on polozyc kafelki wartsoci <0,4>, jesli nie ma mozliowsci zeby polozyl je gdziekolowiek, to metoda zwraca 5
     public int chooseAction() {
         boolean doIHave1stplayertile = false;
         for (Tile roundsTile : this.roundsTiles) {
@@ -253,6 +257,7 @@ public class NetworkPlayer implements Serializable {
         }
     }
 
+    //metoda przechodzi po wszystkich liniach wzoru i jesli ktoras jest pelna to odpowiedni kafelek zostanie wypelniony w tablicy matched tiles
     public void moveTiles() {
         for (int i = 0; i < 5; i++) {
             int temp = 0;
@@ -273,6 +278,7 @@ public class NetworkPlayer implements Serializable {
         }
     }
 
+    //przenoszenie z tablicy round tiles na odpowiednia linie wzorow
     public void putTilesToPatternLine(int action) {
         if (action < 5) {
             for (int i = 0; i < this.roundsTiles.size(); i++) {
