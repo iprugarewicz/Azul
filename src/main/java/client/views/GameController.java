@@ -9,8 +9,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -31,6 +33,8 @@ public class GameController implements Initializable {
     public static Workshop[] workshopsFromGame;
     public static CenterOfWorkshop centerOfWorkshop = new CenterOfWorkshop();
     public static ArrayList<Player> playerList=new ArrayList<>();
+    public ArrayList<Integer> possibleActions = new ArrayList<>();// tutaj trzeba ściągnąć possibleMoves z gry
+
 
 
     @FXML
@@ -381,6 +385,12 @@ public class GameController implements Initializable {
     @FXML
     private Text textCounter4;
 
+    @FXML
+    private ImageView menuBackground;
+
+    @FXML
+    private ImageView gameBackground;
+
     private Text[] counterTexts;
 
     private  Rectangle[] countersTiles;
@@ -460,6 +470,10 @@ public class GameController implements Initializable {
         counterTexts = new Text[]{textCounter0,textCounter1,textCounter2,textCounter3,textCounter4};
         floor = new Rectangle[]{floor0,floor1,floor2,floor3,floor4,floor5,floor6};
 
+        possibleActions.add(1);
+        possibleActions.add(3);
+        possibleActions.add(5);
+
     }
 
 
@@ -488,38 +502,44 @@ public class GameController implements Initializable {
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_green.png"))),
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_pink.png"))),
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_purple.png")))
+
              };
-            firstPlayerTile.setFill(images[5]);
-            int i = 0;
-            for (Rectangle counter : countersTiles) {
-                counter.setFill(images[i]);
-                makeDragSource(counter);
+            gameBackground.setImage(new Image(new FileInputStream("src/main/resources/images/bg_game.png")));
+            menuBackground.setImage(new Image(new FileInputStream("src/main/resources/images/bg_menu.png")));
+        } catch (FileNotFoundException e) {
+            System.out.println("bg not working");
+        }
+        firstPlayerTile.setFill(images[5]);
+        int i = 0;
+        for (Rectangle counter : countersTiles) {
+            counter.setFill(images[i]);
+            makeDragSource(counter);
+            i++;
+        }
+         i = 0;
+
+        for (Rectangle[] w:
+                workshopTiles){
+            for (Rectangle Tile :
+                    w) {
+                makeDragSource(Tile);
                 i++;
             }
-             i = 0;
 
-            for (Rectangle[] w:
-                    workshopTiles){
-                for (Rectangle Tile :
-                        w) {
-                    makeDragSource(Tile);
-                    i++;
-                }
-
-            }
-            for (Rectangle[] p:
-                    patternLines){
-                for (Rectangle Tile :
-                        p) {
-                    Tile.setFill(images[6]);
-                    makeDragTarget(Tile);
-
-                }
-
-            }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         }
+        for (Rectangle[] p:
+                patternLines){
+            for (Rectangle Tile :
+                    p) {
+                Tile.setFill(images[6]);
+                makeDragTarget(Tile);
+
+            }
+
+        }
+
+
+
 
         updateGraphics();
 
@@ -618,16 +638,13 @@ public class GameController implements Initializable {
 
                 int[] targetIndex = getIndexes(patternLines,target);
                 int[] draggedIndex = getIndexes(workshopTiles,dragged);
-                ArrayList<Integer> possibleActions = new ArrayList<>();// tutaj trzeba ściągnąć possibleMoves z gry
-                possibleActions.add(1);
-                possibleActions.add(3);
-                possibleActions.add(5);
+
                 if (possibleActions.contains(targetIndex[0]+1)) {
                     choseMove(targetIndex[0],draggedIndex[0],draggedIndex[1]);
 
                     target.setFill(dragged.getFill());
                 }
-                System.out.println("target  r="+targetIndex[0]+" , c="+targetIndex[1]+"| dragged  r="+draggedIndex[0]+" , c="+draggedIndex[1]);
+                System.out.println("target  r="+targetIndex[0]+" , c="+targetIndex[1]+"| dragged  workshop="+draggedIndex[0]+" , tile="+draggedIndex[1]);
                 updateGraphics();
 
                 event.consume();
@@ -750,6 +767,7 @@ public class GameController implements Initializable {
         for (Rectangle[] rect : patternLines) {
             j = 0;
             for (Rectangle tile : rect) {
+                i
                 tile.setFill(images[6]);
                 j++;
             }
@@ -761,6 +779,34 @@ public class GameController implements Initializable {
             rect.setFill(images[6]);
 
         }
+
+    }
+    void resetTiles(){
+            int i =0;
+            int j = 0;
+        for (Rectangle[] p:
+                patternLines){
+            for (Rectangle Tile :
+                    p) {
+                Tile.setFill(images[6]);
+
+
+            }
+
+        }
+        i=0;
+        for (Rectangle[] rect : wall) {
+            j = 0;
+            for (Rectangle tile : rect) {
+                wall[i][j].setFill(images[(j+ 5 - i) % 5 + 7]);
+                j++;
+            }
+            i++;
+        }
+
+    for (Rectangle rect : floor) {
+        rect.setFill(images[6]);
+    }
 
     }
 
