@@ -75,7 +75,7 @@ public class Menu {
                     //Poczekalnia - inni gracze mogą łączyć się z serwerem
                     while(waitingroom){
                         System.out.println("Aktualnie jest " + serwer.getPlayersList().size() + "graczy");
-                        System.out.println("Czy cheesz już zacząć?");
+                        System.out.println("Czy chcesz już zacząć?");
                         Scanner sc1 = new Scanner(System.in);
                         String ans = sc1.nextLine();
                         if(ans.equals("tak")){break;}

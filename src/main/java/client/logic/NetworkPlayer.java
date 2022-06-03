@@ -153,7 +153,7 @@ public class NetworkPlayer implements Serializable {
         ArrayList<NetworkPlayer> playerArrayList = (ArrayList<NetworkPlayer>) ois.readObject();
         System.out.println("KONIEC!");
         for (NetworkPlayer p : playerArrayList) {
-            System.out.println("Gracz: " + p.getId() + " zdobył" + p.getProgress() + " punktów.");
+            System.out.println("Gracz: " + p.getId() + " zdobyl" + p.getProgress() + " punktów.");
         }
 
     }
