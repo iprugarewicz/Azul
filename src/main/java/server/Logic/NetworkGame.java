@@ -189,6 +189,8 @@ public class NetworkGame {
                 round++;
                 //this.saveNetworkGameStatusToFile("autosave", p.getId());
             }
+            //koniec rundy?
+
             for(NetworkPlayer p : playersList){
                 for(int i=0;i<5;i++){
                     for(int j=0;j<5;j++) {
@@ -233,7 +235,6 @@ public class NetworkGame {
         }
         return false;
     }
-
 
 
 

@@ -31,7 +31,10 @@ public class NetworkPlayer implements Serializable {
         while(on) {
             NetworkGameStatus gS = (NetworkGameStatus) ois.readObject();
             System.out.println("Odebrano Gamestatus");
-            if(gS.isGameFinished()){break;}
+            if(gS.isGameFinished()){
+                on = false;
+                break;
+            }
             System.out.println(Arrays.toString(gS.getWorkshops()));
             System.out.println(gS.getCenterOfWorkshop());
             System.out.println();
@@ -39,7 +42,9 @@ public class NetworkPlayer implements Serializable {
 
             this.roundsTiles = gS.getPlayersList().get(id-1).getRoundsTiles();
             //tu trzeba przypisac dane do tego networkplayera
-
+            this.roundsTiles = gS.getPlayersList().get(id-1).getRoundsTiles();
+            this.playersBoard = gS.getPlayersList().get(id-1).getPlayersBoard();
+            System.out.println(playersBoard.getMatchedTiles());
             //tu gui wyswietla stan gry
 
             if(gS.getWhoseTurnIsIt() == this.id){
@@ -55,10 +60,11 @@ public class NetworkPlayer implements Serializable {
                 oos.reset();
                 oos.writeObject(mv);
             }
-           // ArrayList<NetworkPlayer> playerArrayList = (ArrayList<NetworkPlayer>) ois.readObject();
-           // for (NetworkPlayer p : playerArrayList) {
-           //     System.out.println("Gracz: " + p.getId() + " zdobył" + p.getProgress() + " pnuktów.");
-           // }
+            ArrayList<NetworkPlayer> playerArrayList = (ArrayList<NetworkPlayer>) ois.readObject();
+            System.out.println("KONIEC!");
+            for (NetworkPlayer p : playerArrayList) {
+                System.out.println("Gracz: " + p.getId() + " zdobył" + p.getProgress() + " pnuktów.");
+            }
         }
 
 
