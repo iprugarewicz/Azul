@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="">
+    <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="GUI background">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/dim_blue.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/dim_blue.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/dim_green.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/dim_green.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/dim_pink.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/dim_pink.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/dim_purple.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/dim_purple.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/dim_yellow.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/dim_yellow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/logic/NetworkPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/logic/NetworkPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/logic/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/logic/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +49,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.Klient">
     <configuration name="App" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.views.HelloApplication" />
       <module name="apro2_22l_pro_pt_azulpro" />
@@ -142,10 +140,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Test" />
-        <item itemvalue="Application.Main (2)" />
         <item itemvalue="Application.Klient" />
         <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.Main (2)" />
         <item itemvalue="Application.Serwer" />
       </list>
     </recent_temporary>
@@ -260,11 +258,25 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/client/network/Klient.java</url>
           <line>48</line>
-          <properties class="client.network.Klient" method="main">
+          <properties class="client.network.Klient">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/server/Logic/Main.java</url>
+          <line>5</line>
+          <properties class="server.Logic.Main" method="main">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/server/Logic/Menu.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

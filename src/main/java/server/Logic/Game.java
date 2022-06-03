@@ -11,6 +11,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
+    //tablica ktora reprezentuje zapelniona plansze, jest ona porownywana z tablica ktora gracz zapelnia booleanami
     private static final Tile[][] board = new Tile[5][5];
     private ArrayList<Player> playersList = new ArrayList<>();
     private Workshop[] workshops;
@@ -20,6 +21,7 @@ public class Game {
     private boolean is1stplayerstileatthecenter=false;
     private boolean wasGameStatesReadFromaFile=false;
     private GameStatus gameStatus;
+
     public Game(int players) {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
@@ -42,6 +44,7 @@ public class Game {
         generateWorkshops();
     }
 
+    //metoda generuje losowo zawartosc warsztatow (w kazdym warsztacie zawsze sa 4 kafelki)
     private void generateWorkshops() {
         Random r = new Random();
         for (int i = 0; i < workshops.length; i++) {
@@ -67,17 +70,23 @@ public class Game {
         this.wasGameStatesReadFromaFile = wasGameStatesReadFromaFile;
     }
 
+
+    //glowna metoda w niej odbywa sie rozgrywka
     public void letsplay() throws IOException {
+        //jesli gra zostala wczytana z pliku nie musimy generowac warsztatow
         if(!this.wasGameStatesReadFromaFile) {
             this.generateWorkshops();
         }
         boolean hasSomeBodyFinished = false;
+        //petla ktora wykonuje sie dopoki, ktorys z graczy nie wypelni w calosci calego wiersza
         while (!hasSomeBodyFinished) {
                 for (Player p : this.playersList) {
                     GameController.playerList=this.playersList;
                     boolean areWorkshopsEmpty=false;
                     Scanner sc = new Scanner(System.in);
                     Scanner sc2 = new Scanner(System.in);
+
+                    //pokazanie graczowi zawartosci warsztatow oraz centrum planszy
                     for (int i = 0; i < workshops.length; i++) {
                         System.out.println(i + 1 + ". workshop: ");
                         for (int j = 0; j < 4; j++) {
@@ -100,7 +109,10 @@ public class Game {
                     int ws = sc.nextInt();
                     System.out.println("kolor: ");
                     String c = sc2.nextLine();
+                    //pobranie od gracza informacji o warsztacie ktory sobie wybral oraz informacji o kolorze kafelkow ktore chce z tego warsztatu zabrac
                     if (ws == workshops.length+1) {
+                        // srodek planszy
+                        //zabranie ze srodka planszy kafelkow ktore gracz chce zabrac, oraz w przypadku gdy na srodku jest kafelek pierwszego gracza, przekazanie go graczowi
                         ArrayList<Integer> indexesToRemove=new ArrayList<>();
                         if(is1stplayerstileatthecenter){
                             for(int i=0;i< centerOfWorkshop.getCenterOfWorkshop().size();i++){
@@ -137,6 +149,7 @@ public class Game {
                             centerOfWorkshop.getCenterOfWorkshop().remove(indexesToRemove.get(i)-i);
                         }
                     } else {
+                        //przejscie po warsztacie ktory wybral gracz i zabranie odpowiednich kafelkow
                         for (int i = 0; i < 4; i++) {
                             if (workshops[ws - 1].getTiles()[i].getColor().equals(c)) {
                                 switch (c) {
@@ -165,10 +178,14 @@ public class Game {
 
                     }
                     System.out.println(p.getRoundsTiles());
+                    //przenisienie kafelkow gracza z tablicy na linie wzorow (metoda, w ktorej gracz wybiera linie wzorow jest w klasie player (chooseAction()))
                     p.putTilesToPatternLine(p.chooseAction());
+                    //przeniesienie kafelkow z linii wzorow no plansze gracza
                     p.moveTiles();
+                    //przeliczenie puntkow po ruchu gracza
                     p.calculateRoundPoints();
 
+                    //sprawdzenie czy warsztaty sa puste, jesli tak to je uzupelnoamy
                     for(int i=0;i<workshops.length;i++){
                         if(centerOfWorkshop.getCenterOfWorkshop().size()!=0){
                             break;
@@ -214,6 +231,7 @@ public class Game {
                     this.saveGameStatusToFile(ans2);
                     return;
                 }
+                //sprawdzenie czy ktos skonczyl gre
                 for(Player p : playersList){
                     for(int i=0;i<5;i++){
                         for(int j=0;j<5;j++) {
@@ -230,9 +248,11 @@ public class Game {
         }
         endGame();
     }
+    //metoda zapisuje serializowany obiekt typu game status
     public void saveGameStatusToFile(String fileName) throws IOException {
         ObjectsSerializer.serializeGameStatus(new GameStatus(this.playersList,this.workshops,this.centerOfWorkshop,this.tilesAmounts,this.round,this.is1stplayerstileatthecenter),fileName);
     }
+    //posortowanie graczy w zaleznosci od wynikow, pokazanie wynikow
     public void endGame(){
         for(int i=0;i<playersList.size();i++){
             int biggest=playersList.get(i).getProgress();
