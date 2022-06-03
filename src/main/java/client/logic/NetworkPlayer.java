@@ -1,6 +1,7 @@
 package client.logic;
 
 import client.network.Klient;
+import server.Configuration.Config;
 import server.Logic.*;
 import server.Network.Move;
 
@@ -59,8 +60,84 @@ public class NetworkPlayer implements Serializable {
                 int a = Integer.parseInt(scanner.nextLine()); // workshop
                 System.out.println("Podaj kolor");
                 String b = scanner.nextLine(); // color
+
+                /*-------------------------------*/
+                /* Nazywali mnie szalencem..... */
+                /*-----------------------------*/
+
+                if (a == gS.getWorkshops().length+1) {
+                    ArrayList<Integer> indexesToRemove=new ArrayList<>();
+                    if(gS.isIs1stplayerstileatthecenter()){
+                        for(int i=0;i< gS.getCenterOfWorkshop().getCenterOfWorkshop().size();i++){
+                            if(gS.getCenterOfWorkshop().getCenterOfWorkshop().get(i).getColor().equals("1st player tile")){
+                                roundsTiles.add(gS.getCenterOfWorkshop().getCenterOfWorkshop().get(i));
+                                gS.getCenterOfWorkshop().getCenterOfWorkshop().remove(i);
+                                break;
+                            }
+                        }
+                    }
+                    for (int i = 0; i <gS.getCenterOfWorkshop().getCenterOfWorkshop().size(); i++) {
+                        if (gS.getCenterOfWorkshop().getCenterOfWorkshop().get(i).getColor().equals(b)) {
+                            switch (b) {
+                                case "yellow":
+                                    roundsTiles.add(new Tile(0));
+                                    break;
+                                case "blue":
+                                    roundsTiles.add(new Tile(1));
+                                    break;
+                                case "green":
+                                    roundsTiles.add(new Tile(2));
+                                    break;
+                                case "pink":
+                                    roundsTiles.add(new Tile(3));
+                                    break;
+                                case "purple":
+                                    roundsTiles.add(new Tile(4));
+                                    break;
+                            }
+                            indexesToRemove.add(i);
+                        }
+                    }
+                    for(int i=0;i<indexesToRemove.size();i++){
+                        gS.getCenterOfWorkshop().getCenterOfWorkshop().remove(indexesToRemove.get(i)-i);
+                    }
+                }
+
+                //Jeśli gracz wybrał warsztat inny niz center of workshops
+                else {
+                    for (int i = 0; i < 4; i++) {
+                        if (gS.getWorkshops()[a - 1].getTiles()[i].getColor().equals(b)) {
+                            switch (b) {
+                                case "yellow":
+                                    roundsTiles.add(new Tile(0));
+                                    break;
+                                case "blue":
+                                    roundsTiles.add(new Tile(1));
+                                    break;
+                                case "green":
+                                    roundsTiles.add(new Tile(2));
+                                    break;
+                                case "pink":
+                                    roundsTiles.add(new Tile(3));
+                                    break;
+                                case "purple":
+                                    roundsTiles.add(new Tile(4));
+                                    break;
+                            }
+
+                        } else {
+                            gS.getCenterOfWorkshop().getCenterOfWorkshop().add(new Tile(gS.getWorkshops()[a - 1].getTiles()[i].getColorNumber()));
+                        }
+                        gS.getWorkshops()[a - 1].getTiles()[i] = null;
+                    }
+
+                }
+                System.out.println(getRoundsTiles());
+                /* ale teraz dziala d-_-b */
+
                 System.out.println("Podaj gdzie chcesz to wlozyc");
-                int c = Integer.parseInt(scanner.nextLine()); // move
+                 //int c = Integer.parseInt(scanner.nextLine()); // move
+                int c = chooseAction();
 
                 //Wpisanie otrzyamnych wartości w obiekt Move i wysłanie go do serwera
                 Move mv = new Move(a, c ,b);
@@ -76,7 +153,7 @@ public class NetworkPlayer implements Serializable {
         ArrayList<NetworkPlayer> playerArrayList = (ArrayList<NetworkPlayer>) ois.readObject();
         System.out.println("KONIEC!");
         for (NetworkPlayer p : playerArrayList) {
-            System.out.println("Gracz: " + p.getId() + " zdobył" + p.getProgress() + " pnuktów.");
+            System.out.println("Gracz: " + p.getId() + " zdobył" + p.getProgress() + " punktów.");
         }
 
     }
@@ -87,11 +164,8 @@ public class NetworkPlayer implements Serializable {
     }
 
     private boolean isAlreadyPut(int row) {
-        if(this.roundsTiles.size()==0){
-            return false;
-        }
         for (int i = 0; i < 5; i++) {
-            if (NetworkGame.getBoard()[row][i].getColor().equals(this.roundsTiles.get(0).getColor()) && this.playersBoard.getMatchedTiles()[row][i]) {
+            if (Config.getBoard()[row][i].getColor().equals(this.roundsTiles.get(0).getColor()) && this.playersBoard.getMatchedTiles()[row][i]) {
                 return true;
             }
         }
@@ -99,7 +173,7 @@ public class NetworkPlayer implements Serializable {
     }
 
     private boolean isThatPatternLineFilled(int row) {
-        if (this.playersBoard.getPatternLine().get(row)[row] != null) {
+        if (this.playersBoard.getPatternLine().get(row)[row] != null /* danger code warning*/ /*&& this.roundsTiles.size() != 0*/) {
             if (this.playersBoard.getPatternLine().get(row)[row].getColor().equals(this.roundsTiles.get(0).getColor()) && this.playersBoard.getPatternLine().get(row)[0] == null) {
                 return false;
             } else {
@@ -147,7 +221,7 @@ public class NetworkPlayer implements Serializable {
         }
         System.out.println();
         System.out.println("pelna tablica");
-        for (Tile[] tab : Game.getBoard()) {
+        for (Tile[] tab : Config.getBoard()) {
             for (Tile tile : tab) {
                 System.out.print(tile + " ");
             }

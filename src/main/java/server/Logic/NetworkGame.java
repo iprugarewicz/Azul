@@ -82,7 +82,7 @@ public class NetworkGame {
                 //
                 Move mv = (Move) objectInputStreams.get(p.getId()-1).readObject();
                 System.out.println(mv);
-                while(!isMoveCorrect(mv,p)){mv = (Move) serwer.getObjectInputStreams().get(p.getId()-1).readObject();}
+                /*while(!isMoveCorrect(mv,p)){mv = (Move) serwer.getObjectInputStreams().get(p.getId()-1).readObject();}*/
                 int ws = mv.getWorkshop();
                 String c = mv.getColor();
 
@@ -206,6 +206,7 @@ public class NetworkGame {
             }
 
         } //koniec gry
+        this.serwer.sendToAll(generateGameStatus(1,hasSomeBodyFinished));
         endGame();
     }
 
