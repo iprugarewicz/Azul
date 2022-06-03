@@ -53,26 +53,40 @@ public class NetworkGame {
     }
 
     public void letsplay() throws IOException, ClassNotFoundException {
+
+        //Jeśli nie wczytujemy gry z pliku, to generujemy nowe workshopy
         if(!this.wasGameStatesReadFromaFile) {
             this.generateWorkshops();
         }
-        for (NetworkPlayer p:
-                this.playersList) {
+
+        //Dla każdego z graczy tworzymy ObjectInputStream i dodajemy do listy
+        for (NetworkPlayer p: this.playersList) {
             ObjectInputStream ois = new ObjectInputStream(serwer.getInputStreams().get(p.getId()-1));
             objectInputStreams.add(ois);
         }
+
+        //Właściwa pętla gry
         boolean hasSomeBodyFinished = false;
         while (!hasSomeBodyFinished) {
+
+            //Tury graczy
             for (NetworkPlayer p : this.playersList) {
                 boolean areWorkshopsEmpty=false;
+
+                //Generujemy gameStatus i wysyłamy do wszystkich
                 serwer.sendToAll(generateGameStatus(p.getId(),hasSomeBodyFinished));
-                //Move mv = (Move) serwer.getObjectInputStreams().get(p.getId()).readObject();
+
+                //Otrzymujemy ruch, wypisujemy go i jeśli jest niepoprawny to czekamy na kolejny
+                //
+                //Trzeba dopisać tu check ruchu!!!!!!!!
+                //
                 Move mv = (Move) objectInputStreams.get(p.getId()-1).readObject();
-                System.out.println(mv);
                 System.out.println(mv);
                 while(!isMoveCorrect(mv,p)){mv = (Move) serwer.getObjectInputStreams().get(p.getId()-1).readObject();}
                 int ws = mv.getWorkshop();
                 String c = mv.getColor();
+
+                //Jeśli gracz wybrał center of workshops
                 if (ws == workshops.length+1) {
                     ArrayList<Integer> indexesToRemove=new ArrayList<>();
                     if(is1stplayerstileatthecenter){
@@ -109,7 +123,10 @@ public class NetworkGame {
                     for(int i=0;i<indexesToRemove.size();i++){
                         centerOfWorkshop.getCenterOfWorkshop().remove(indexesToRemove.get(i)-i);
                     }
-                } else {
+                }
+
+                //Jeśli gracz wybrał warsztat inny niz center of workshops
+                else {
                     for (int i = 0; i < 4; i++) {
                         if (workshops[ws - 1].getTiles()[i].getColor().equals(c)) {
                             switch (c) {
@@ -163,15 +180,18 @@ public class NetworkGame {
                 if(areWorkshopsEmpty) {
                     this.generateWorkshops();
                 }
+
+                //Dodanie 1stplayerstile na środek
                 if(round==1){
                     centerOfWorkshop.getCenterOfWorkshop().add(new Tile(5));
                     this.is1stplayerstileatthecenter=true;
                 }
+
                 round++;
                 //this.saveNetworkGameStatusToFile("autosave", p.getId());
-            }
-            //koniec rundy?
+            }// koniec rundy
 
+            //Sprawdzenie czy którykolwiek z graczy kończy rozgrywkę (zapełnił rząd)
             for(NetworkPlayer p : playersList){
                 for(int i=0;i<5;i++){
                     for(int j=0;j<5;j++) {
@@ -184,11 +204,14 @@ public class NetworkGame {
                     }
                 }
             }
-        }
+
+        } //koniec gry
         endGame();
     }
 
     public void endGame(){
+
+        //Posegregowanie graczy po punktach
         for(int i=0;i<playersList.size();i++){
             int biggest=playersList.get(i).getProgress();
             for(int j=i+1;j<playersList.size();j++){
@@ -200,13 +223,17 @@ public class NetworkGame {
                 }
             }
         }
+
+        //wysłanie wyników do wszystkich graczy
         this.serwer.sendToAll(playersList);
-        //printing results
+
+        //wypisanie wyników
         for(int i=0;i<playersList.size();i++){
             System.out.println(i+1+". place: player "+playersList.get(i).getId()+" result "+playersList.get(i).getProgress()+" points");
         }
     }
 
+    //Wypełnienie Warszatatów
     private void generateWorkshops() {
         Random r = new Random();
         for (int i = 0; i < workshops.length; i++) {

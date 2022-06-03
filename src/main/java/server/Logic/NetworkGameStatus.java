@@ -30,53 +30,7 @@ public class NetworkGameStatus implements Serializable {
         this.board = board;
     }
 
-    public boolean isGameFinished() {
-        return isGameFinished;
-    }
-
-    public int getWhoseTurnIsIt() {
-        return whoseTurnIsIt;
-    }
-
-    public ArrayList<NetworkPlayer> getPlayersList() {
-        return playersList;
-    }
-
-    public Workshop[] getWorkshops() {
-        return workshops;
-    }
-
-    public CenterOfWorkshop getCenterOfWorkshop() {
-        return centerOfWorkshop;
-    }
-
-    public int[] getTilesAmounts() {
-        return tilesAmounts;
-    }
-
-    public int getRound() {
-        return round;
-    }
-
-
-    @Override
-    public String toString() {
-        return "NetworkGameStatus{" +
-                "whoseTurnIsIt=" + whoseTurnIsIt +
-                ", playersList=" + playersList +
-                ", workshops=" + Arrays.toString(workshops) +
-                ", centerOfWorkshop=" + centerOfWorkshop +
-                ", tilesAmounts=" + Arrays.toString(tilesAmounts) +
-                ", round=" + round +
-                ", is1stplayerstileatthecenter=" + is1stplayerstileatthecenter +
-                ", isGameFinished=" + isGameFinished +
-                '}';
-    }
-
-    public boolean isIs1stplayerstileatthecenter() {
-        return is1stplayerstileatthecenter;
-    }
-
+    //Liczenie punktów
     public static int updateProgress(int progress, PlayersBoard playersBoard, Floor floor){
         //horizontal check
         for(boolean[] tab : playersBoard.getMatchedTiles()){
@@ -127,7 +81,57 @@ public class NetworkGameStatus implements Serializable {
         return progress;
     }
 
+
+
+    //Gettery + tostring
+
+    public boolean isGameFinished() {
+        return isGameFinished;
+    }
+
+    public int getWhoseTurnIsIt() {
+        return whoseTurnIsIt;
+    }
+
+    public ArrayList<NetworkPlayer> getPlayersList() {
+        return playersList;
+    }
+
+    public Workshop[] getWorkshops() {
+        return workshops;
+    }
+
+    public CenterOfWorkshop getCenterOfWorkshop() {
+        return centerOfWorkshop;
+    }
+
+    public int[] getTilesAmounts() {
+        return tilesAmounts;
+    }
+
+    public int getRound() {
+        return round;
+    }
+
+    public boolean isIs1stplayerstileatthecenter() {
+        return is1stplayerstileatthecenter;
+    }
+
     public static Tile[][] getBoard() {
         return board;
+    }
+
+    @Override
+    public String toString() {
+        return "NetworkGameStatus{" +
+                "whoseTurnIsIt=" + whoseTurnIsIt +
+                ", playersList=" + playersList +
+                ", workshops=" + Arrays.toString(workshops) +
+                ", centerOfWorkshop=" + centerOfWorkshop +
+                ", tilesAmounts=" + Arrays.toString(tilesAmounts) +
+                ", round=" + round +
+                ", is1stplayerstileatthecenter=" + is1stplayerstileatthecenter +
+                ", isGameFinished=" + isGameFinished +
+                '}';
     }
 }
