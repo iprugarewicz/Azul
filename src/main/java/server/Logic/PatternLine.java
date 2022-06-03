@@ -2,6 +2,7 @@ package server.Logic;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PatternLine implements Serializable {
     private ArrayList<Tile[]> patternLine=new ArrayList<>();
@@ -14,4 +15,14 @@ public class PatternLine implements Serializable {
         return this.patternLine;
     }
 
+    @Override
+    public String toString() {
+        String s = "";
+         s+= "PatternLine{" + "patternLine=";
+        for (Tile[] t: patternLine) {
+            s += Arrays.toString(t);
+        }
+        s += "}";
+        return s;
+    }
 }

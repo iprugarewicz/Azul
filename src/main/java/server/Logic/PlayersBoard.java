@@ -18,4 +18,7 @@ public class PlayersBoard  implements Serializable {
 
     public PatternLine getPatternLineObject() {return this.patternLine; }
 
+    public void setPatternLine(PatternLine patternLine) {
+        this.patternLine = patternLine;
+    }
 }

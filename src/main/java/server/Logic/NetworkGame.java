@@ -8,6 +8,7 @@ import server.Configuration.Config;
 import server.ObjectsProcessing.ObjectsSerializer;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -22,6 +23,8 @@ public class NetworkGame {
     private boolean is1stplayerstileatthecenter=false;
     private boolean wasGameStatesReadFromaFile=false;
     private final Serwer serwer;
+    private ArrayList<ObjectOutputStream> objectOutputStreams;
+    private ArrayList<ObjectInputStream> objectInputStreams;
 
     public NetworkGame(int players,Serwer s) {
         this.serwer = s;
@@ -44,12 +47,10 @@ public class NetworkGame {
             this.workshops[i]=new Workshop();
         }
 
-
+        objectOutputStreams = new ArrayList<ObjectOutputStream>();
+        objectInputStreams = new ArrayList<ObjectInputStream>();
     }
 
-    public ArrayList<NetworkPlayer> getPlayersList() {
-        return playersList;
-    }
 
     private void generateWorkshops() {
         Random r = new Random();
@@ -66,14 +67,8 @@ public class NetworkGame {
         }
     }
 
-    public static Tile[][] getBoard() {
-        return board;
-    }
-
-    public void setWasGameStatesReadFromaFile(boolean wasGameStatesReadFromaFile) {
-        this.wasGameStatesReadFromaFile = wasGameStatesReadFromaFile;
-    }
     public NetworkGameStatus generateGameStatus(int id,boolean isGameFinished){
+        //generowanie nowych obiektow workshop
         Workshop[] ws = new Workshop[workshops.length];
         for(int i = 0; i < workshops.length; i++) {
             ws[i] = new Workshop();
@@ -81,25 +76,37 @@ public class NetworkGame {
                 ws[i].getTiles()[j] = workshops[i].getTiles()[j];
             }
         }
+        //generowanie nowych obiektow center of workshop
         CenterOfWorkshop cow = new CenterOfWorkshop();
         for (Tile t: centerOfWorkshop.getCenterOfWorkshop()) {
             cow.getCenterOfWorkshop().add(t);
         }
-        return  new NetworkGameStatus(playersList,ws,cow,tilesAmounts,round,is1stplayerstileatthecenter,id,isGameFinished,getBoard());
+
+        ArrayList<PatternLine> patternLines = new ArrayList<PatternLine>();
+        for (int i = 0; i<playersList.size();i++){
+            patternLines.add(playersList.get(i).getPlayersBoard().getPatternLineObject());
+        }
+
+
+        return  new NetworkGameStatus(playersList,ws,cow,tilesAmounts,round,is1stplayerstileatthecenter,id,isGameFinished,getBoard(),patternLines);
     }
 
     public void letsplay() throws IOException, ClassNotFoundException {
         if(!this.wasGameStatesReadFromaFile) {
             this.generateWorkshops();
         }
+        for (NetworkPlayer p:
+             this.playersList) {
+            ObjectInputStream ois = new ObjectInputStream(serwer.getInputStreams().get(p.getId()-1));
+            objectInputStreams.add(ois);
+        }
         boolean hasSomeBodyFinished = false;
         while (!hasSomeBodyFinished) {
             for (NetworkPlayer p : this.playersList) {
                 boolean areWorkshopsEmpty=false;
                 serwer.sendToAll(generateGameStatus(p.getId(),hasSomeBodyFinished));
-                ObjectInputStream iiii = new ObjectInputStream(serwer.getInputStreams().get(p.getId()-1));
                 //Move mv = (Move) serwer.getObjectInputStreams().get(p.getId()).readObject();
-                Move mv = (Move) iiii.readObject();
+                Move mv = (Move) objectInputStreams.get(p.getId()-1).readObject();
                 System.out.println(mv);
                 System.out.println(mv);
                 while(!isMoveCorrect(mv,p)){mv = (Move) serwer.getObjectInputStreams().get(p.getId()-1).readObject();}
@@ -239,6 +246,30 @@ public class NetworkGame {
         }
     }
 
+    private static boolean isMoveCorrect(Move m,NetworkPlayer p){
+        if(m==null) return false;
+        for (int i: p.possibleActions()){
+            if(i==m.getMove()){return true;}
+        }
+        return false;
+    }
+
+
+
+
+
+    public ArrayList<NetworkPlayer> getPlayersList() {
+        return playersList;
+    }
+
+    public static Tile[][] getBoard() {
+        return board;
+    }
+
+    public void setWasGameStatesReadFromaFile(boolean wasGameStatesReadFromaFile) {
+        this.wasGameStatesReadFromaFile = wasGameStatesReadFromaFile;
+    }
+
     public void setPlayersList(ArrayList<NetworkPlayer> playersList) {
         this.playersList = playersList;
     }
@@ -262,13 +293,8 @@ public class NetworkGame {
     public void setIs1stplayerstileatthecenter(boolean is1stplayerstileatthecenter) {
         this.is1stplayerstileatthecenter = is1stplayerstileatthecenter;
     }
-    private static boolean isMoveCorrect(Move m,NetworkPlayer p){
-        if(m==null) return false;
-        for (int i: p.possibleActions()){
-            if(i==m.getMove()){return true;}
-        }
-        return false;
-    }
+
+
 
 }
 
