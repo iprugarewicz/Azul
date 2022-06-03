@@ -746,7 +746,7 @@ public class GameController implements Initializable {
         }
 
         //patternLine - zrobic zaleznsosc od playera
-        i=0;
+        /*i=0;
         for (Rectangle[] rect : patternLines) {
             j = 0;
             for (Rectangle tile : rect) {
@@ -754,7 +754,7 @@ public class GameController implements Initializable {
                 j++;
             }
             i++;
-        }
+        }*/
 
         //floor - zrobic zaleznsosc od playera
         for (Rectangle rect : floor) {
