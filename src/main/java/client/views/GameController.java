@@ -9,8 +9,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -383,6 +385,12 @@ public class GameController implements Initializable {
     @FXML
     private Text textCounter4;
 
+    @FXML
+    private ImageView menuBackground;
+
+    @FXML
+    private ImageView gameBackground;
+
     private Text[] counterTexts;
 
     private  Rectangle[] countersTiles;
@@ -493,39 +501,46 @@ public class GameController implements Initializable {
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_blue.png"))),
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_green.png"))),
                      new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_pink.png"))),
-                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_purple.png")))
+                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_purple.png"))),
+
+                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/bg_menu.png")))
+
              };
+            gameBackground.setImage(new Image(new FileInputStream("src/main/resources/images/bg_game.png")));
+            menuBackground.setImage(new Image(new FileInputStream("src/main/resources/images/bg_menu.png")));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-            firstPlayerTile.setFill(images[5]);
-            int i = 0;
-            for (Rectangle counter : countersTiles) {
-                counter.setFill(images[i]);
-                makeDragSource(counter);
+        firstPlayerTile.setFill(images[5]);
+        int i = 0;
+        for (Rectangle counter : countersTiles) {
+            counter.setFill(images[i]);
+            makeDragSource(counter);
+            i++;
+        }
+         i = 0;
+
+        for (Rectangle[] w:
+                workshopTiles){
+            for (Rectangle Tile :
+                    w) {
+                makeDragSource(Tile);
                 i++;
             }
-             i = 0;
 
-            for (Rectangle[] w:
-                    workshopTiles){
-                for (Rectangle Tile :
-                        w) {
-                    makeDragSource(Tile);
-                    i++;
-                }
-
-            }
-            for (Rectangle[] p:
-                    patternLines){
-                for (Rectangle Tile :
-                        p) {
-                    Tile.setFill(images[6]);
-                    makeDragTarget(Tile);
-
-                }
+        }
+        for (Rectangle[] p:
+                patternLines){
+            for (Rectangle Tile :
+                    p) {
+                Tile.setFill(images[6]);
+                makeDragTarget(Tile);
 
             }
+
+        }
+
+
 
 
         updateGraphics();
