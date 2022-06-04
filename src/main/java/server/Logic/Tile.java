@@ -23,6 +23,10 @@ public class Tile implements Serializable {
         return -1;
     }
 
+    public String[] getColors() {
+        return colors;
+    }
+
     public int getColorID() {
         return colorID;
     }

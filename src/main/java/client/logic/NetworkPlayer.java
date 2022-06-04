@@ -56,10 +56,26 @@ public class NetworkPlayer implements Serializable {
             //ruch gracza
             if(gS.getWhoseTurnIsIt() == this.id){
                 Scanner scanner = new Scanner(System.in);
+
+                //Wpsanie numeru warszatu
                 System.out.println("Podaj numer warsztatu");
                 int a = Integer.parseInt(scanner.nextLine()); // workshop
-                System.out.println("Podaj kolor");
-                String b = scanner.nextLine(); // color
+
+                //Wpisanie koloru i sprawdzenie poprawności
+                String b = "";
+                boolean incorrect = true;
+                while (incorrect) {
+                    System.out.println("Podaj kolor");
+                    b = scanner.nextLine();// color
+                    String[] colors = {"yellow", "blue", "green", "pink", "purple", "1st player tile"};
+                    for (String s : colors) {
+                        if (b.equals(s)) {
+                            incorrect = false;
+                            break;
+                        }
+                    }
+                    System.out.println("Wprowadzono niepoprawny kolor!");
+                }
 
                 /*-------------------------------*/
                 /* Nazywali mnie szalencem..... */

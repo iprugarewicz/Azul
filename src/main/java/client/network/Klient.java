@@ -10,8 +10,8 @@ public class Klient {
     private Socket socket;
     private NetworkPlayer player;
 
-    public Klient() throws IOException {
-        socket = new Socket("localhost",12300);
+    public Klient(String host) throws IOException {
+        socket = new Socket(host,12300);
 
     }
 
@@ -50,7 +50,7 @@ public class Klient {
 
     //Klient który dołącza do gry
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        Klient k = new Klient();
+        Klient k = new Klient("localhost");
         System.out.println("Nowy obiekt");
         k.initialize();
         System.out.println("Inicjalizacja");
