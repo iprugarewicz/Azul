@@ -113,7 +113,7 @@ public class NetworkGameStatus implements Serializable {
         return round;
     }
 
-    public boolean isIs1stplayerstileatthecenter() {
+    public boolean isIs1stPlayerStileAtTheCenter() {
         return is1stplayerstileatthecenter;
     }
 

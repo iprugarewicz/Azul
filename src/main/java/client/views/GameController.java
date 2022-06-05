@@ -1,5 +1,6 @@
 package client.views;
 
+import client.logic.NetworkPlayer;
 import client.logic.Player;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -12,20 +13,16 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import server.Logic.CenterOfWorkshop;
-import server.Logic.Game;
-import server.Logic.Tile;
-import server.Logic.Workshop;
+import server.Logic.*;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -33,8 +30,22 @@ import java.util.ResourceBundle;
 public class GameController implements Initializable {
     public static Workshop[] workshopsFromGame;
     public static CenterOfWorkshop centerOfWorkshop = new CenterOfWorkshop();
-    public static ArrayList<Player> playerList=new ArrayList<>();
+    public static ArrayList<NetworkPlayer> playerList=new ArrayList<>();
     public ArrayList<Integer> possibleActions = new ArrayList<>();// tutaj trzeba ściągnąć possibleMoves z gry
+
+    private Socket socket;
+    private ObjectOutputStream oos;
+    private ObjectInputStream ois;
+    private InputStream is;
+    private OutputStream os;
+    private NetworkGameStatus gS;
+
+    private boolean gameOn = true;
+    private boolean isMovePicked = false;
+
+
+    int playerID;
+    NetworkPlayer player ;
 
 
 
@@ -498,10 +509,20 @@ public class GameController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Game game = new Game(3);
-        playerList = game.getPlayersList();
-        workshopsFromGame = game.getWorkshops();
-        centerOfWorkshop = game.getCenterOfWorkshop();
+        try {
+            setSocket();
+            networkInitialize();
+            gS = (NetworkGameStatus) ois.readObject();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        playerList = gS.getPlayersList();
+        workshopsFromGame = gS.getWorkshops();
+        centerOfWorkshop = gS.getCenterOfWorkshop();
 
 
         variablesInit();
@@ -567,12 +588,17 @@ public class GameController implements Initializable {
             t.setFill(images[13]);
         }
 
-
-
-
         updateGraphics();
 
     }
+
+    private void setSocket() throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader("src/main/resources/network/networkSettings.txt"));
+        String host = br.readLine();
+        int port = Integer.parseInt(br.readLine());
+        socket = new Socket(host,port);
+    }
+
     void setVisbility(Node[][] nodes,boolean state){
         for (Node[] row : nodes)
             for (Node node :
@@ -758,6 +784,7 @@ public class GameController implements Initializable {
 
     void choseMove(int patternLineIndex,int workshopIndex,int tileIndex){
 
+
     }
     void updateGraphics(){
         //workshops update
@@ -838,6 +865,37 @@ public class GameController implements Initializable {
     }
 
     }
+    private int receiveID(){
+        //Klient odbiera swoje id i zwraca jako wynik metody
+        try {
+            os = socket.getOutputStream();
+            is = socket.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String s = br.readLine();
+            System.out.println("playerID= "+s);
+            return Integer.parseInt(s);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    private void networkInitialize() throws IOException {
+
+        //odebranie ID i stworzenie NetworkPlayera
+        playerID = receiveID();
+        player = new NetworkPlayer(playerID);
+        //
+        oos = new ObjectOutputStream(os);
+        ois = new ObjectInputStream(is);
+
+
+        //Wysłanie stworzonego NetworkPlayera do serwera
+        oos.flush();
+        oos.reset();
+        oos.writeObject(this.player);
+
+    }
+
 
 
 

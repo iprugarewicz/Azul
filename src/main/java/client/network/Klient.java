@@ -1,7 +1,6 @@
 package client.network;
 
 import client.logic.NetworkPlayer;
-import client.logic.Player;
 
 import java.io.*;
 import java.net.Socket;
@@ -19,7 +18,7 @@ public class Klient {
     public void initialize() throws IOException {
 
         //odebranie ID i stworzenie NetworkPlayera
-        int id = recieveID();
+        int id = receiveID();
         player = new NetworkPlayer(id);
 
         OutputStream os = this.socket.getOutputStream();
@@ -33,7 +32,7 @@ public class Klient {
 
     }
 
-    public int recieveID(){
+    public int receiveID(){
         //Klient odbiera swoje id i zwraca jako wynik metody
         try {
             OutputStream os = socket.getOutputStream();

@@ -81,7 +81,7 @@ public class Game {
         //petla ktora wykonuje sie dopoki, ktorys z graczy nie wypelni w calosci calego wiersza
         while (!hasSomeBodyFinished) {
                 for (Player p : this.playersList) {
-                    GameController.playerList=this.playersList;
+                   // GameController.playerList=this.playersList;
                     boolean areWorkshopsEmpty=false;
                     Scanner sc = new Scanner(System.in);
                     Scanner sc2 = new Scanner(System.in);

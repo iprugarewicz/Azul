@@ -1,11 +1,10 @@
 package server.Logic;
 
 import client.logic.NetworkPlayer;
-import client.logic.Player;
 import server.Network.Move;
 import server.Network.Serwer;
 import server.Configuration.Config;
-import server.ObjectsProcessing.ObjectsSerializer;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -62,7 +61,7 @@ public class NetworkGame {
 
         //Dla każdego z graczy tworzymy ObjectInputStream i dodajemy do listy
         for (NetworkPlayer p: this.playersList) {
-            ObjectInputStream ois = new ObjectInputStream(serwer.getInputStreams().get(p.getId()-1));
+            ObjectInputStream ois = new ObjectInputStream(serwer.getInputStreams().get(p.getPlayerID()-1));
             objectInputStreams.add(ois);
         }
 
@@ -75,13 +74,13 @@ public class NetworkGame {
                 boolean areWorkshopsEmpty=false;
 
                 //Generujemy gameStatus i wysyłamy do wszystkich
-                serwer.sendToAll(generateGameStatus(p.getId(),hasSomeBodyFinished));
+                serwer.sendToAll(generateGameStatus(p.getPlayerID(),hasSomeBodyFinished));
 
                 //Otrzymujemy ruch, wypisujemy go i jeśli jest niepoprawny to czekamy na kolejny
                 //
                 //Trzeba dopisać tu check ruchu!!!!!!!!
                 //
-                Move mv = (Move) objectInputStreams.get(p.getId()-1).readObject();
+                Move mv = (Move) objectInputStreams.get(p.getPlayerID()-1).readObject();
                 System.out.println(mv);
                 /*while(!isMoveCorrect(mv,p)){mv = (Move) serwer.getObjectInputStreams().get(p.getId()-1).readObject();}*/
                 int ws = mv.getWorkshop();
@@ -239,7 +238,7 @@ public class NetworkGame {
 
         //wypisanie wyników
         for(int i=0;i<playersList.size();i++){
-            System.out.println(i+1+". place: player "+playersList.get(i).getId()+" result "+playersList.get(i).getProgress()+" points");
+            System.out.println(i+1+". place: player "+playersList.get(i).getPlayerID()+" result "+playersList.get(i).getProgress()+" points");
         }
     }
 
