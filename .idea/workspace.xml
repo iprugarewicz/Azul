@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="GUI background">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/logic/NetworkPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/logic/NetworkPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/logic/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/logic/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +46,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Klient">
+  <component name="RunManager" selected="Application.Test">
     <configuration name="App" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.views.HelloApplication" />
       <module name="apro2_22l_pro_pt_azulpro" />
@@ -140,9 +137,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Klient" />
         <item itemvalue="Application.Main (1)" />
-        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Main (2)" />
         <item itemvalue="Application.Serwer" />
       </list>

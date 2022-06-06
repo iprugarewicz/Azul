@@ -710,6 +710,7 @@ public class GameController implements Initializable {
                 try {
                     Dragboard db = source.startDragAndDrop(locker);
                     dragged = (Rectangle) source;
+
                     ClipboardContent content = new ClipboardContent();
                     content.putString("Hello!");
                     db.setContent(content);
@@ -767,6 +768,7 @@ public class GameController implements Initializable {
             j = 0;
             for (Tile tile : workshop.getTiles()) {
                 workshopTiles[i][j].setFill(images[tile.getColorID()]);
+                System.out.println(tile.getColor()+" "+tile.getColorID());
                 j++;
             }
             i++;
