@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="GUI background">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/network/networkSettings.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/logic/NetworkPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/logic/NetworkPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/network/Klient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/network/Klient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/NetworkGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/NetworkGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/NetworkGameStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/NetworkGameStatus.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,9 +40,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ignac\Documents\Studia_projekty\apro2_22l_pro_pt_azulpro\src\main\resources\network" />
@@ -130,6 +124,7 @@
     <list>
       <item itemvalue="Application.App" />
       <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Main (1)" />
       <item itemvalue="Application.GUI Klient" />
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.Klient" />
@@ -155,6 +150,7 @@
       <workItem from="1654169323399" duration="2201000" />
       <workItem from="1654212529878" duration="1502000" />
       <workItem from="1654241368119" duration="186000" />
+      <workItem from="1654768625608" duration="177000" />
     </task>
     <task id="LOCAL-00001" summary="Drag and Drop prawie dziala ale trzeba podlaczyc">
       <created>1654165248525</created>
@@ -262,6 +258,11 @@
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
           <option name="timeStamp" value="13" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/client/views/GameController.java</url>
+          <line>875</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

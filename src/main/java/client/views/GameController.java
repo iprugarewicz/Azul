@@ -535,6 +535,8 @@ public class GameController implements Initializable {
                     if(player.updateGS()) {
                         threadMessage("gS received");
                         gS = player.getgS();
+                        whoseTurn = gS.getWhoseTurnIsIt();
+                        playerList = gS.getPlayersList();
                         playerCount = playerList.size();
                         workshopsFromGame = player.getgS().getWorkshops();
                         patternLine = player.getPatternLine();
@@ -581,10 +583,15 @@ public class GameController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        playerList = player.getgS().getPlayersList();
+
+        gS = player.getgS();
+        whoseTurn = gS.getWhoseTurnIsIt();
+        playerList = gS.getPlayersList();
         playerCount = playerList.size();
         workshopsFromGame = player.getgS().getWorkshops();
+        patternLine = player.getPatternLine();
         centerOfWorkshop = player.getgS().getCenterOfWorkshop();
+        whoseTurn = gS.getWhoseTurnIsIt() ;
         floor = player.getFloor();
         whoseTurnCheckerInit();
 
@@ -866,7 +873,7 @@ public class GameController implements Initializable {
         for (Rectangle[] rect : wall) {
             j = 0;
             for (Rectangle tile : rect) {
-                if (player.getPlayersBoard().getMatchedTiles()[i][j] == false) {
+                if (playerList.get(whoseTurn-1).getPlayersBoard().getMatchedTiles()[j][i] == false) {
 
                     wall[i][j].setFill(images[(j + 5 - i) % 5 + 7]);
                 }else{
