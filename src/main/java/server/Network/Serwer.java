@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Serwer{
     private ServerSocket ss;
-    private final int port;
+    private final int port = 12300;
     private ArrayList<Socket> socketDatabase;
     private ArrayList<NetworkPlayer> playersDatabase;
     private ArrayList<InputStream> inputStreams;
@@ -29,16 +29,6 @@ public class Serwer{
         objectOutputStreams = new ArrayList<ObjectOutputStream>();
         objectInputStreams = new ArrayList<ObjectInputStream>();
         numberOfClients = 0;
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("src/main/resources/Settings/settings.txt"));
-            br.readLine();
-            port = Integer.parseInt(br.readLine().split("= ")[1]);
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
 
@@ -127,14 +117,14 @@ public class Serwer{
     //Wysłanie obiektu do konkretnego klienta
     public void sendToOne(Object obj, int index){
         Socket s = socketDatabase.get(index);
-            try {
-                ObjectOutputStream objectOutputStream = new ObjectOutputStream(s.getOutputStream());
-                objectOutputStream.flush();
-                objectOutputStream.reset();
-                objectOutputStream.writeObject(obj);
-            }catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(s.getOutputStream());
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+            objectOutputStream.writeObject(obj);
+        }catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 

@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/client/views/GameController2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/client/views/game-view2.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/logic/NetworkPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/logic/NetworkPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/Network/Serwer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Network/Serwer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Settings/settings.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Settings/settings.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +25,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
@@ -37,16 +45,26 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/ignac/Documents/Studia_projekty/apro2_22l_pro_pt_azulpro2/src/main/resources/client/views"
+  }
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="client.views" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ignac\Documents\Studia_projekty\apro2_22l_pro_pt_azulpro2\src\main\resources\client\views" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ignac\Documents\Studia_projekty\apro2_22l_pro_pt_azulpro\src\main\resources\client\views" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="client.views" />
     </key>
   </component>
   <component name="RunManager" selected="Application.client.views.Main">
@@ -141,8 +159,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.client.views.Main" />
-        <item itemvalue="Application.client.views.Test" />
         <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.client.views.Test" />
         <item itemvalue="Application.Klient" />
         <item itemvalue="Application.Serwer" />
       </list>
@@ -161,6 +179,7 @@
       <workItem from="1654169323399" duration="2201000" />
       <workItem from="1654212529878" duration="1502000" />
       <workItem from="1654241368119" duration="186000" />
+      <workItem from="1654806822409" duration="1991000" />
     </task>
     <task id="LOCAL-00001" summary="Drag and Drop prawie dziala ale trzeba podlaczyc">
       <created>1654165248525</created>
@@ -264,7 +283,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/server/Network/Serwer.java</url>
-          <line>138</line>
+          <line>128</line>
           <properties class="server.Network.Serwer">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -289,15 +308,15 @@
           </properties>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/server/Logic/Menu.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
           <option name="timeStamp" value="9" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/server/Logic/Menu.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
