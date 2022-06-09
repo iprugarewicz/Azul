@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="zakomentowane klasy Game i Player">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Settings/settings.txt" afterDir="false" />
+    <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/SettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client/views/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/views/main-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client/views/settings-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/views/settings-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/Network/Serwer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Network/Serwer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Settings/settings.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Settings/settings.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +49,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.client.views.Test">
+  <component name="RunManager" selected="Application.client.views.Main">
     <configuration name="App" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.views.HelloApplication" />
       <module name="apro2_22l_pro_pt_azulpro" />
@@ -144,8 +140,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.client.views.Test" />
         <item itemvalue="Application.client.views.Main" />
+        <item itemvalue="Application.client.views.Test" />
         <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Klient" />
         <item itemvalue="Application.Serwer" />
@@ -229,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654281007999</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="menu working">
+      <created>1654799459602</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1654799459602</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,14 +256,15 @@
     <MESSAGE value="GUI masno fest" />
     <MESSAGE value="GUI background" />
     <MESSAGE value="zakomentowane klasy Game i Player" />
-    <option name="LAST_COMMIT_MESSAGE" value="zakomentowane klasy Game i Player" />
+    <MESSAGE value="menu working" />
+    <option name="LAST_COMMIT_MESSAGE" value="menu working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/server/Network/Serwer.java</url>
-          <line>128</line>
+          <line>138</line>
           <properties class="server.Network.Serwer">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

@@ -1,5 +1,5 @@
-host= 192.168.0.1
-port= 21374
+host= localhost
+port= 21300
 online= true
 isHosting= true
 playerCount= 4

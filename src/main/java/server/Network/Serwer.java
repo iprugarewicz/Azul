@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Serwer{
     private ServerSocket ss;
-    private final int port = 12300;
+    private final int port;
     private ArrayList<Socket> socketDatabase;
     private ArrayList<NetworkPlayer> playersDatabase;
     private ArrayList<InputStream> inputStreams;
@@ -29,6 +29,16 @@ public class Serwer{
         objectOutputStreams = new ArrayList<ObjectOutputStream>();
         objectInputStreams = new ArrayList<ObjectInputStream>();
         numberOfClients = 0;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("src/main/resources/Settings/settings.txt"));
+            br.readLine();
+            port = Integer.parseInt(br.readLine().split("= ")[1]);
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

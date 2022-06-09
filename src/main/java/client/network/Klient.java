@@ -14,6 +14,21 @@ public class Klient {
         socket = new Socket(host,12300);
 
     }
+    public Klient()throws IOException{
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("src/main/resources/Settings/settings.txt"));
+            String host = br.readLine().split("= ")[0];
+            int port = Integer.parseInt(br.readLine().split("= ")[1]);
+            socket = new Socket(host,port);
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
 
 
     public void initialize() throws IOException {
@@ -50,7 +65,7 @@ public class Klient {
 
     //Klient który dołącza do gry
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        Klient k = new Klient("localhost");
+        Klient k = new Klient();
         System.out.println("Nowy obiekt");
         k.initialize();
         System.out.println("Inicjalizacja");
