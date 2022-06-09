@@ -2,10 +2,21 @@ package client.views;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class MainController {
+
+    @FXML
+    private Pane BGPane;
+
+    @FXML
+    private Pane MainPane;
 
     @FXML
     private Button playButton;
@@ -19,7 +30,6 @@ public class MainController {
     @FXML
     private Button settingsButton;
 
-
     @FXML
     void btnPlayOnClick(ActionEvent event) {
 
@@ -30,6 +40,7 @@ public class MainController {
         Stage mainWindow = (Stage) quitButton.getScene().getWindow();
         mainWindow.close();
 
+
     }
 
     @FXML
@@ -39,9 +50,21 @@ public class MainController {
 
     @FXML
     void btnSettingsOnClick(ActionEvent event) {
+        Stage settingsWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("settings-view.fxml"));
+        try {
+            Scene scene = new Scene(loader.load());
+            settingsWindow.setTitle("Settings");
+            settingsWindow.setScene(scene);
+            settingsWindow.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+
 
     }
-
-
 
 }
