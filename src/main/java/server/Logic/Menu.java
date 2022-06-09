@@ -68,7 +68,7 @@ public class Menu {
                     serwer.runServer();
 
                     //Stworzenie klienta dla hosta
-                    Klient k = new Klient();
+                    Klient k = new Klient("localhost");
                     k.initialize();
                     boolean waitingroom = true;
 
@@ -89,7 +89,7 @@ public class Menu {
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         } catch (ClassNotFoundException e) {
-                            //throw new RuntimeException(e);
+                            throw new RuntimeException(e);
                         }
                     }).start();
 
@@ -99,7 +99,21 @@ public class Menu {
                 }
                 else if (b==2){ //Dołączenie do rozgrywki
 
+                    System.out.println("Podaj adres hosta. (localhost dla rozgrywki na tym systemie)");
+                    Scanner sc2 = new Scanner(System.in);
+                    String host = sc2.nextLine();
+                    try { // Próba połącznenia
+                        Klient k = new Klient(host);
+                        k.initialize();
+                        k.getPlayer().playGame(k);
+                    }catch (IOException e){ // W przypadku błędu powrót do menu
+                        System.out.println("Błąd połączenia!");
+                        System.out.println();
+                        e.getSuppressed();
+                    }
+
                 }
+
                 else if(b==0){}
                 else System.out.println("Niepoprawna wartość");
             }
