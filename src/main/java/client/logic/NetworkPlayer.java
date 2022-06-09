@@ -6,9 +6,12 @@ import server.Logic.*;
 import server.Network.Move;
 
 import java.io.*;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import static client.views.GameController.threadMessage;
 
 public class NetworkPlayer implements Serializable {
     private int progress = 0;
@@ -17,23 +20,47 @@ public class NetworkPlayer implements Serializable {
     private PlayersBoard playersBoard = new PlayersBoard();
     private Floor floor = new Floor();
     private String chosenColor;
+    private NetworkGameStatus gS;
+    private ObjectOutputStream oos;
+    private ObjectInputStream ois;
 
-    public NetworkPlayer(int id) {
+    public NetworkPlayer(int id) throws IOException {
         this.id = id;
+
+
+    }
+    public void networkInit(Socket socket) throws IOException {
+        OutputStream os = socket.getOutputStream();
+        InputStream is = socket.getInputStream();
+        ois = new ObjectInputStream(is);
+        oos = new ObjectOutputStream(os);
+
+    }
+    public void makeMove(Move move) throws IOException {
+        oos.flush();
+        oos.reset();
+        oos.writeObject(move);
+
     }
 
-    public void playGame(Klient klient) throws IOException, ClassNotFoundException {
+    public boolean updateGS() throws IOException, ClassNotFoundException {
+        gS = (NetworkGameStatus) ois.readObject();
+        threadMessage("Odebrano Gamestatus");
+        return true;
+    }
+
+    public void playGame(Klient klient) throws IOException, ClassNotFoundException{
         OutputStream os = klient.getSocket().getOutputStream();
         InputStream is = klient.getSocket().getInputStream();
-        ObjectInputStream ois = new ObjectInputStream(is);
-        ObjectOutputStream oos = new ObjectOutputStream(os);
+        ois = new ObjectInputStream(is);
+        oos = new ObjectOutputStream(os);
+
         boolean on = true;
 
         while(on) {
 
             //Odebranie gamestatusu
-            NetworkGameStatus gS = (NetworkGameStatus) ois.readObject();
-            System.out.println("Odebrano Gamestatus");
+            updateGS();
 
             //Przypisanie danych do tego networkplayera
             this.roundsTiles = gS.getPlayersList().get(id-1).getRoundsTiles();
@@ -354,4 +381,31 @@ public class NetworkPlayer implements Serializable {
         return chosenColor;
     }
 
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
+
+    public void setRoundsTiles(ArrayList<Tile> roundsTiles) {
+        this.roundsTiles = roundsTiles;
+    }
+
+    public void setPlayersBoard(PlayersBoard playersBoard) {
+        this.playersBoard = playersBoard;
+    }
+
+    public void setFloor(Floor floor) {
+        this.floor = floor;
+    }
+
+    public void setChosenColor(String chosenColor) {
+        this.chosenColor = chosenColor;
+    }
+
+    public NetworkGameStatus getgS() {
+        return gS;
+    }
+
+    public void setgS(NetworkGameStatus gS) {
+        this.gS = gS;
+    }
 }

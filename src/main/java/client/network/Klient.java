@@ -16,7 +16,7 @@ public class Klient {
     }
 
 
-    public void initialize() throws IOException {
+    public void initialize() throws IOException, ClassNotFoundException {
 
         //odebranie ID i stworzenie NetworkPlayera
         int id = recieveID();
@@ -49,7 +49,7 @@ public class Klient {
     }
 
     //Klient który dołącza do gry
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         Klient k = new Klient();
         System.out.println("Nowy obiekt");
         k.initialize();

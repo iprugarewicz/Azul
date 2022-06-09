@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
-    public static void start() throws IOException, ClassNotFoundException {
+    public static void start() throws IOException, ClassNotFoundException, InterruptedException {
 
         System.out.println("     _     ______   _ _     ");
         System.out.println("    / \\   |__  / | | | |    ");

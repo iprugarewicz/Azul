@@ -3,7 +3,7 @@ package server.Logic;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         Menu.start();
        //Game game=new Game(2);
        //game.letsplay();

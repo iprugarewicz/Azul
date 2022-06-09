@@ -12,6 +12,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static client.views.GameController.threadMessage;
+
 public class NetworkGame {
 
     private static final Tile[][] board = new Tile[5][5];
@@ -73,6 +75,7 @@ public class NetworkGame {
             //Tury graczy
             for (NetworkPlayer p : this.playersList) {
                 boolean areWorkshopsEmpty=false;
+                threadMessage("player "+p.getId()+ " turn");
 
                 //Generujemy gameStatus i wysyłamy do wszystkich
                 serwer.sendToAll(generateGameStatus(p.getId(),hasSomeBodyFinished));

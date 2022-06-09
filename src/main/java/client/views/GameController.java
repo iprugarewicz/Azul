@@ -1,6 +1,7 @@
 package client.views;
 
-import client.logic.Player;
+import client.logic.NetworkPlayer;
+import client.network.Klient;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -12,20 +13,19 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import server.Logic.CenterOfWorkshop;
-import server.Logic.Game;
-import server.Logic.Tile;
-import server.Logic.Workshop;
+import javafx.stage.Stage;
+import server.Logic.*;
+import server.Network.Move;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -33,8 +33,11 @@ import java.util.ResourceBundle;
 public class GameController implements Initializable {
     public static Workshop[] workshopsFromGame;
     public static CenterOfWorkshop centerOfWorkshop = new CenterOfWorkshop();
-    public static ArrayList<Player> playerList=new ArrayList<>();
-    public ArrayList<Integer> possibleActions = new ArrayList<>();// tutaj trzeba ściągnąć possibleMoves z gry
+    public static ArrayList<NetworkPlayer> playerList=new ArrayList<>();
+    private ArrayList<Integer> possibleActions = new ArrayList<>();// tutaj trzeba ściągnąć possibleMoves z gry
+
+    private NetworkGameStatus gS;
+    private Floor floor;
 
 
 
@@ -59,7 +62,7 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle floor6;
 
-    private  Rectangle[] floor;
+    private  Rectangle[] floorTiles;
 
     @FXML
     private Rectangle pLine00;
@@ -107,7 +110,7 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle pLine44;
 
-    private  Rectangle[][] patternLines;
+    private  Rectangle[][] patternLinesTiles;
 
     @FXML
     private Rectangle w0Tile0;
@@ -412,12 +415,20 @@ public class GameController implements Initializable {
     private Text[] counterTexts;
 
     private  Rectangle[] countersTiles;
-    private int[] counters = {0,0,0,0,0};
+    private int[] counters = {0,0,0,0,0,0};
     private ImagePattern[] images;
 
     boolean draggableLock = false;
+    private int whoseTurn;
     
     private int playerCount;
+    private Klient k;
+    private NetworkPlayer player;
+
+    private boolean running;
+
+    private Stage thisStage;
+    private PatternLine patternLine;
 
 
     @FXML
@@ -450,6 +461,8 @@ public class GameController implements Initializable {
 
     }
     private void variablesInit(){
+
+        running = true;
         Rectangle[] w0 = new Rectangle[]{w0Tile0, w0Tile1, w0Tile2, w0Tile3};
         Rectangle[] w1 = new Rectangle[]{w1Tile0, w1Tile1, w1Tile2, w1Tile3};
         Rectangle[] w2 = new Rectangle[]{w2Tile0, w2Tile1, w2Tile2, w2Tile3};
@@ -483,53 +496,105 @@ public class GameController implements Initializable {
         Rectangle[] pLine2 = new Rectangle[]{pLine20, pLine21, pLine22};
         Rectangle[] pLine3 = new Rectangle[]{pLine30, pLine31, pLine32, pLine33};
         Rectangle[] pLine4 = new Rectangle[]{pLine40, pLine41, pLine42, pLine43, pLine44};
-        patternLines = new Rectangle[][]{pLine0, pLine1, pLine2, pLine3, pLine4};
+        patternLinesTiles = new Rectangle[][]{pLine0, pLine1, pLine2, pLine3, pLine4};
         countersTiles = new Rectangle[]{blueTileCounter, greenTileCounter, pinkTileCount, purpleTileCount, yellowTileCounter};
         playerCount = playerList.size();
         counterTexts = new Text[]{textCounter0,textCounter1,textCounter2,textCounter3,textCounter4};
-        floor = new Rectangle[]{floor0,floor1,floor2,floor3,floor4,floor5,floor6};
+        floorTiles = new Rectangle[]{floor0,floor1,floor2,floor3,floor4,floor5,floor6};
 
-        possibleActions.add(1);
-        possibleActions.add(3);
-        possibleActions.add(5);
+        try {
+            images = new ImagePattern[]{new ImagePattern(new Image(new FileInputStream("src/main/resources/images/yellow.png"))),
+                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/blue.png"))),
+                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/green.png"))),
+                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/pink.png"))),
+                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/purple.png"))),
+                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/1stplayertile.png"))),
+                    new ImagePattern((new Image(new FileInputStream("src/main/resources/images/empty.png")))),
+                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_yellow.png"))),
+                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_blue.png"))),
+                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_green.png"))),
+                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_pink.png"))),
+                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_purple.png"))),
+                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/workshop.png"))),
+                    new ImagePattern(new Image(new FileInputStream("src/main/resources/images/triangle.png")))
 
+            };
+            gameBackground.setImage(new Image(new FileInputStream("src/main/resources/images/bg_game.png")));
+            menuBackground.setImage(new Image(new FileInputStream("src/main/resources/images/bg_menu.png")));
+        } catch (FileNotFoundException e) {
+            threadMessage("bg not working");
+        }
+
+    }
+
+    private void whoseTurnCheckerInit(){
+        new Thread(()->{
+            Thread.currentThread().setName("whoseTurnChecker");
+            while(running) {
+                try {
+                    if(player.updateGS()) {
+                        threadMessage("gS received");
+                        gS = player.getgS();
+                        playerCount = playerList.size();
+                        workshopsFromGame = player.getgS().getWorkshops();
+                        patternLine = player.getPatternLine();
+                        centerOfWorkshop = player.getgS().getCenterOfWorkshop();
+                        whoseTurn = gS.getWhoseTurnIsIt() ;
+                        floor = player.getFloor();
+                        if (k.getPlayer().getId() == whoseTurn) {
+                            unlockDragging();
+                        } else {
+                            lockDragging();
+                        }
+                        updateGraphics();
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }finally {
+                    updateGraphics();
+                }
+
+
+            }
+        }).start();
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Game game = new Game(3);
-        playerList = game.getPlayersList();
-        workshopsFromGame = game.getWorkshops();
-        centerOfWorkshop = game.getCenterOfWorkshop();
-
-
         variablesInit();
+
+        try {
+            k = new Klient();
+            threadMessage("Nowy obiekt");
+            k.initialize();
+            player = k.getPlayer();
+            player.networkInit(k.getSocket());
+            player.updateGS();
+            threadMessage("Inicjalizacja");
+
+
+
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        playerList = player.getgS().getPlayersList();
+        playerCount = playerList.size();
+        workshopsFromGame = player.getgS().getWorkshops();
+        centerOfWorkshop = player.getgS().getCenterOfWorkshop();
+        floor = player.getFloor();
+        whoseTurnCheckerInit();
+
+
+
         setWorkshopVisbility();
 
 
-        try {
-             images = new ImagePattern[]{new ImagePattern(new Image(new FileInputStream("src/main/resources/images/yellow.png"))),
-                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/blue.png"))),
-                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/green.png"))),
-                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/pink.png"))),
-                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/purple.png"))),
-                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/1stplayertile.png"))),
-                     new ImagePattern((new Image(new FileInputStream("src/main/resources/images/empty.png")))),
-                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_yellow.png"))),
-                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_blue.png"))),
-                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_green.png"))),
-                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_pink.png"))),
-                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/dim_purple.png"))),
-                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/workshop.png"))),
-                     new ImagePattern(new Image(new FileInputStream("src/main/resources/images/triangle.png")))
 
-             };
-            gameBackground.setImage(new Image(new FileInputStream("src/main/resources/images/bg_game.png")));
-            menuBackground.setImage(new Image(new FileInputStream("src/main/resources/images/bg_menu.png")));
-        } catch (FileNotFoundException e) {
-            System.out.println("bg not working");
-        }
+
         firstPlayerTile.setFill(images[5]);
         int i = 0;
         for (Rectangle counter : countersTiles) {
@@ -549,10 +614,10 @@ public class GameController implements Initializable {
 
         }
         for (Rectangle[] p:
-                patternLines){
+                patternLinesTiles){
             for (Rectangle Tile :
                     p) {
-                Tile.setFill(images[6]);
+
                 makeDragTarget(Tile);
 
             }
@@ -588,7 +653,7 @@ public class GameController implements Initializable {
     }
     public void setWorkshopVisbility(){
         if (playerCount>4){
-            System.out.println("max 4 players, changing playerCount to 4");
+            threadMessage("max 4 players, changing playerCount to 4");
             playerCount = 4;
 
         }
@@ -641,7 +706,7 @@ public class GameController implements Initializable {
             target.setOnDragEntered(event -> {
 
                 /* the drag-and-drop gesture entered the target */
-                System.out.println("onDragEntered");
+                threadMessage("onDragEntered");
                 /* show to the user that it is an actual gesture target */
                 if (event.getGestureSource() != target &&
                         event.getDragboard().hasString()) {
@@ -656,7 +721,7 @@ public class GameController implements Initializable {
             // co się dzieje jak upuści się dowolny source na ten target
             target.setOnDragDropped(event -> {
                 /* data dropped */
-                System.out.println("onDragDropped");
+                threadMessage("onDragDropped");
                 /* if there is a string data on drag board, read it and use it */
                 boolean success = false;
 
@@ -665,7 +730,7 @@ public class GameController implements Initializable {
 
                 event.setDropCompleted(success);
 
-                int[] targetIndex = getIndexes(patternLines,target);
+                int[] targetIndex = getIndexes(patternLinesTiles,target);
                 int[] draggedIndex = getIndexes(workshopTiles,dragged);
 
                 if (possibleActions.contains(targetIndex[0]+1)) {
@@ -673,7 +738,13 @@ public class GameController implements Initializable {
 
                     target.setFill(dragged.getFill());
                 }
-                System.out.println("target  r="+targetIndex[0]+" , c="+targetIndex[1]+"| dragged  workshop="+draggedIndex[0]+" , tile="+draggedIndex[1]);
+                threadMessage("target  r="+targetIndex[0]+" , c="+targetIndex[1]+"| dragged  workshop="+draggedIndex[0]+" , tile="+draggedIndex[1]);
+                try {
+                    player.makeMove(new Move(draggedIndex[0]+1,targetIndex[0]+1,workshopsFromGame[draggedIndex[0]].getTiles()[draggedIndex[1]].getColor()));
+                    threadMessage("move made: workshop="+draggedIndex[0]+" , tile="+draggedIndex[1]);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 updateGraphics();
 
                 event.consume();
@@ -690,7 +761,7 @@ public class GameController implements Initializable {
                     }
 
                     /* the drag-and-drop gesture ended */
-                    System.out.println("onDragDone");
+                    threadMessage("onDragDone");
                     /* if the data was successfully moved, clear it */
                     if (event.getTransferMode() == locker) {
                         //source.setText("");
@@ -699,14 +770,14 @@ public class GameController implements Initializable {
 
                     event.consume();
                 }catch (NullPointerException e){
-                    System.out.println("dragging locked");
+                    threadMessage("dragging locked");
                 }
             });
 
 
             //co się dzieje jak się podniesie source
             source.setOnDragDetected((EventHandler<Event>) event -> {
-                System.out.println("onDragDetected");
+                threadMessage("onDragDetected");
                 try {
                     Dragboard db = source.startDragAndDrop(locker);
                     dragged = (Rectangle) source;
@@ -715,7 +786,7 @@ public class GameController implements Initializable {
                     db.setContent(content);
                     event.consume();
                 }catch(NullPointerException e){
-                    System.out.println("dragging locked");
+                    threadMessage("dragging locked");
                 }
             });
 
@@ -756,6 +827,7 @@ public class GameController implements Initializable {
         throw new RuntimeException("given node not in an array");
     }
 
+
     void choseMove(int patternLineIndex,int workshopIndex,int tileIndex){
 
     }
@@ -766,16 +838,25 @@ public class GameController implements Initializable {
         for (Workshop workshop : workshopsFromGame) {
             j = 0;
             for (Tile tile : workshop.getTiles()) {
-                workshopTiles[i][j].setFill(images[tile.getColorID()]);
+                if (tile == null) {
+                    setVisbility(workshopTiles[i][j],false);
+
+                }else {
+                    workshopTiles[i][j].setFill(images[tile.getColorID()]);
+                    setVisbility(workshopTiles[i][j],true);
+
+                }
                 j++;
             }
             i++;
         }
         i = 0;
         //center of workshops update
+        counters = new int[]{0, 0, 0, 0, 0, 0};
         for (Tile tile : centerOfWorkshop.getCenterOfWorkshop()) {
-            counters[tile.getColorID()]+=1;
+            counters[tile.getColorID()] +=1;
         }
+        ;
         for (Text counter : counterTexts) {
             counter.setText(String.valueOf(counters[i]));
             i++;
@@ -785,36 +866,46 @@ public class GameController implements Initializable {
         for (Rectangle[] rect : wall) {
             j = 0;
             for (Rectangle tile : rect) {
-                wall[i][j].setFill(images[(j+ 5 - i) % 5 + 7]);
+                if (player.getPlayersBoard().getMatchedTiles()[i][j] == false) {
+
+                    wall[i][j].setFill(images[(j + 5 - i) % 5 + 7]);
+                }else{
+                    System.out.println("aje");
+                    wall[i][j].setFill(images[(j + 5 - i) % 5 ]);
+                }
                 j++;
             }
             i++;
         }
 
         //patternLine - zrobic zaleznsosc od playera
-        /*i=0;
-        for (Rectangle[] rect : patternLines) {
+        i=0;
+        for (Rectangle[] rect : patternLinesTiles) {
             j = 0;
+
             for (Rectangle tile : rect) {
-                i
                 tile.setFill(images[6]);
+
                 j++;
             }
             i++;
-        }*/
+        }
 
         //floor - zrobic zaleznsosc od playera
-        for (Rectangle rect : floor) {
+        for (Rectangle rect : floorTiles) {
             rect.setFill(images[6]);
 
         }
 
+
     }
+
+
     void resetTiles(){
             int i =0;
             int j = 0;
         for (Rectangle[] p:
-                patternLines){
+                patternLinesTiles){
             for (Rectangle Tile :
                     p) {
                 Tile.setFill(images[6]);
@@ -833,12 +924,18 @@ public class GameController implements Initializable {
             i++;
         }
 
-    for (Rectangle rect : floor) {
+    for (Rectangle rect : floorTiles) {
         rect.setFill(images[6]);
     }
 
+
     }
 
+
+    public static void threadMessage(String message) {
+        String threadName = Thread.currentThread().getName();
+        System.out.format("%s: %s%n", threadName, message);
+    }
 
 
 }
