@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import static client.views.GameController2.threadMessage;
+import static client.views.GameControllerNetwork.threadMessage;
 
 public class NetworkPlayer implements Serializable {
     private int progress = 0;

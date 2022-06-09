@@ -30,12 +30,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class GameController2 implements Initializable {
+public class GameControllerNetwork implements Initializable {
     public static Workshop[] workshopsFromGame;
     public static CenterOfWorkshop centerOfWorkshop = new CenterOfWorkshop();
     public static ArrayList<NetworkPlayer> playerList=new ArrayList<>();
     private ArrayList<Integer> possibleActions = new ArrayList<>();// tutaj trzeba ściągnąć possibleMoves z gry
 
+    private final String[] colors = {"yellow", "blue", "green", "pink", "purple"};
     private NetworkGameStatus gS;
     private Floor floor;
 
@@ -354,6 +355,8 @@ public class GameController2 implements Initializable {
     private Node[] workshop8;
     private Node[][] workshops;
     @FXML
+    private Text nowPlayingText;
+    @FXML
     private Rectangle yellowTileCounter;
 
     @FXML
@@ -492,10 +495,10 @@ public class GameController2 implements Initializable {
         wall = new Rectangle[][]{wall0,wall1,wall2,wall3,wall4};
         triangles = new Polygon[]{triangle1,triangle2,triangle3,triangle4,triangle5};
         Rectangle[] pLine0 = new Rectangle[]{pLine00};
-        Rectangle[] pLine1 = new Rectangle[]{pLine10, pLine11};
-        Rectangle[] pLine2 = new Rectangle[]{pLine20, pLine21, pLine22};
-        Rectangle[] pLine3 = new Rectangle[]{pLine30, pLine31, pLine32, pLine33};
-        Rectangle[] pLine4 = new Rectangle[]{pLine40, pLine41, pLine42, pLine43, pLine44};
+        Rectangle[] pLine1 = new Rectangle[]{pLine11, pLine10};
+        Rectangle[] pLine2 = new Rectangle[]{pLine22, pLine21, pLine20};
+        Rectangle[] pLine3 = new Rectangle[]{pLine33, pLine32, pLine31, pLine30};
+        Rectangle[] pLine4 = new Rectangle[]{pLine44, pLine43, pLine42, pLine41, pLine40};
         patternLinesTiles = new Rectangle[][]{pLine0, pLine1, pLine2, pLine3, pLine4};
         countersTiles = new Rectangle[]{blueTileCounter, greenTileCounter, pinkTileCount, purpleTileCount, yellowTileCounter};
         playerCount = playerList.size();
@@ -539,14 +542,18 @@ public class GameController2 implements Initializable {
                         playerList = gS.getPlayersList();
                         playerCount = playerList.size();
                         workshopsFromGame = player.getgS().getWorkshops();
-                        patternLine = player.getPatternLine();
+                        patternLine = gS.getPlayersList().get(whoseTurn-1).getPatternLine();
                         centerOfWorkshop = player.getgS().getCenterOfWorkshop();
                         whoseTurn = gS.getWhoseTurnIsIt() ;
+                        nowPlayingText.setText("player "+whoseTurn);
                         floor = player.getFloor();
                         if (k.getPlayer().getId() == whoseTurn) {
                             unlockDragging();
                         } else {
                             lockDragging();
+                        }
+                        if(!gS.isIs1stplayerstileatthecenter()){
+                            firstPlayerTile.setVisible(false);
                         }
                         updateGraphics();
                     }
@@ -613,8 +620,7 @@ public class GameController2 implements Initializable {
 
         for (Rectangle[] w:
                 workshopTiles){
-            for (Rectangle Tile :
-                    w) {
+            for (Rectangle Tile : w) {
                 makeDragSource(Tile);
                 i++;
             }
@@ -738,23 +744,43 @@ public class GameController2 implements Initializable {
                 event.setDropCompleted(success);
 
                 int[] targetIndex = getIndexes(patternLinesTiles,target);
-                int[] draggedIndex = getIndexes(workshopTiles,dragged);
-
-                if (possibleActions.contains(targetIndex[0]+1)) {
-                    choseMove(targetIndex[0],draggedIndex[0],draggedIndex[1]);
-
-                    target.setFill(dragged.getFill());
-                }
-                threadMessage("target  r="+targetIndex[0]+" , c="+targetIndex[1]+"| dragged  workshop="+draggedIndex[0]+" , tile="+draggedIndex[1]);
                 try {
-                    player.makeMove(new Move(draggedIndex[0]+1,targetIndex[0]+1,workshopsFromGame[draggedIndex[0]].getTiles()[draggedIndex[1]].getColor()));
-                    threadMessage("move made: workshop="+draggedIndex[0]+" , tile="+draggedIndex[1]);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                updateGraphics();
+                    int[] draggedIndex = getIndexes(workshopTiles, dragged);
+                    if (possibleActions.contains(targetIndex[0]+1)) {
 
-                event.consume();
+                        target.setFill(dragged.getFill());
+                    }
+                    threadMessage("target  r="+targetIndex[0]+" , c="+targetIndex[1]+"| dragged  workshop="+draggedIndex[0]+" , tile="+draggedIndex[1]);
+                    try {
+                        player.makeMove(new Move(draggedIndex[0]+1,targetIndex[0]+1,workshopsFromGame[draggedIndex[0]].getTiles()[draggedIndex[1]].getColor()));
+                        threadMessage("move made: workshop="+draggedIndex[0]+" , tile="+draggedIndex[1]);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    updateGraphics();
+
+                    event.consume();
+                }catch (RuntimeException e){
+                    int draggedIndex = getIndexes(countersTiles,dragged);
+                    if (possibleActions.contains(targetIndex[0]+1)) {
+
+                        target.setFill(dragged.getFill());
+                    }
+                    threadMessage("1");
+                    threadMessage("target  r="+targetIndex[0]+" , c="+targetIndex[1]+"| dragged  workshop="+(workshopsFromGame.length+1 )+" , tile="+draggedIndex);
+
+                    try {
+                        player.makeMove(new Move(workshopsFromGame.length+1, targetIndex[0],colors[draggedIndex]));
+                        threadMessage("move made: workshop="+(workshopsFromGame.length+1)+" , tile="+draggedIndex+" , color= "+colors[draggedIndex]);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    updateGraphics();
+
+                    event.consume();
+                }
+
+
             });
 
         }
@@ -763,18 +789,10 @@ public class GameController2 implements Initializable {
             //co się dzieje jak się upuści source
             source.setOnDragDone(event -> {
                 try {
-                    if (draggableLock) {
-
-                    }
 
                     /* the drag-and-drop gesture ended */
                     threadMessage("onDragDone");
                     /* if the data was successfully moved, clear it */
-                    if (event.getTransferMode() == locker) {
-                        //source.setText("");
-
-                    }
-
                     event.consume();
                 }catch (NullPointerException e){
                     threadMessage("dragging locked");
@@ -822,11 +840,11 @@ public class GameController2 implements Initializable {
             }
             throw new RuntimeException("given node not in an array");
         }
-    int[] getIndexes(Node[] array, Node node){
+    int getIndexes(Node[] array, Node node){
         int i =0;
         for (Node elem : array) {
                 if(elem == node) {
-                    return new int[]{i};
+                    return i;
                 }
 
             i++;
@@ -835,27 +853,26 @@ public class GameController2 implements Initializable {
     }
 
 
-    void choseMove(int patternLineIndex,int workshopIndex,int tileIndex){
-
-    }
     void updateGraphics(){
         //workshops update
         int i = 0;
         int j ;
         for (Workshop workshop : workshopsFromGame) {
             j = 0;
-            for (Tile tile : workshop.getTiles()) {
-                if (tile == null) {
-                    setVisbility(workshopTiles[i][j],false);
+            if(workshop.getTiles()!=null) {
+                for (Tile tile : workshop.getTiles()) {
+                    if (tile == null) {
+                        setVisbility(workshopTiles[i][j], false);
 
-                }else {
-                    workshopTiles[i][j].setFill(images[tile.getColorID()]);
-                    setVisbility(workshopTiles[i][j],true);
+                    } else {
+                        workshopTiles[i][j].setFill(images[tile.getColorID()]);
+                        setVisbility(workshopTiles[i][j], true);
 
+                    }
+                    j++;
                 }
-                j++;
+                i++;
             }
-            i++;
         }
         i = 0;
         //center of workshops update
@@ -875,10 +892,10 @@ public class GameController2 implements Initializable {
             for (Rectangle tile : rect) {
                 if (playerList.get(whoseTurn-1).getPlayersBoard().getMatchedTiles()[j][i] == false) {
 
-                    wall[i][j].setFill(images[(j + 5 - i) % 5 + 7]);
+                    wall[i][j].setFill(images[(i + 5 - j) % 5 + 7]);
                 }else{
                     System.out.println("aje");
-                    wall[i][j].setFill(images[(j + 5 - i) % 5 ]);
+                    wall[i][j].setFill(images[(i + 5 - j) % 5 ]);
                 }
                 j++;
             }
@@ -891,8 +908,12 @@ public class GameController2 implements Initializable {
             j = 0;
 
             for (Rectangle tile : rect) {
-                tile.setFill(images[6]);
+                if(playerList.get(whoseTurn-1).getPlayersBoard().getPatternLine().get(i)[j]!=null){
+                    tile.setFill(images[playerList.get(whoseTurn-1).getPlayersBoard().getPatternLine().get(i)[j].getColorID()-1]);
 
+                }else {
+                    tile.setFill(images[6]);
+                }
                 j++;
             }
             i++;

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Serwer{
     private ServerSocket ss;
-    private final int port = 12300;
+    private final int port = 12301;
     private ArrayList<Socket> socketDatabase;
     private ArrayList<NetworkPlayer> playersDatabase;
     private ArrayList<InputStream> inputStreams;

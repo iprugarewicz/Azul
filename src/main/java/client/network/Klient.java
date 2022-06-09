@@ -11,7 +11,7 @@ public class Klient {
     private NetworkPlayer player;
 
     public Klient(String host) throws IOException {
-        socket = new Socket(host,12300);
+        socket = new Socket(host,12301);
 
     }
 
