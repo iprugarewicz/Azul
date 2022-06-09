@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="GUI background">
-      <change afterPath="$PROJECT_DIR$/src/main/java/client/views/GameController2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/client/views/game-view2.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/Test.java" afterDir="false" />
+    <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,7 +229,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654244273684</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="GUI background">
+      <created>1654807652092</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1654807652092</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
