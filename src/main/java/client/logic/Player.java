@@ -1,6 +1,7 @@
 package client.logic;
 
 
+import client.views.GameController;
 import server.Logic.*;
 
 import java.io.Serializable;
@@ -15,6 +16,10 @@ public class Player implements Serializable {
     private PlayersBoard playersBoard = new PlayersBoard();
     private Floor floor = new Floor();
     private String chosenColor;
+
+    public PlayersBoard getPlayersBoard() {
+        return playersBoard;
+    }
 
     public Player(int id) {
         this.id = id;
@@ -41,7 +46,7 @@ public class Player implements Serializable {
     //sprawdzamy czy gracz juz polozyl kafelek danego koloru w danym rzedzie
     private boolean isAlreadyPut(int row) {
         for (int i = 0; i < 5; i++) {
-            if (Game.getBoard()[row][i].getColor().equals(this.roundsTiles.get(0).getColor()) && this.playersBoard.getMatchedTiles()[row][i]) {
+            if (GUIGame.getBoard()[row][i].getColor().equals(this.roundsTiles.get(0).getColor()) && this.playersBoard.getMatchedTiles()[row][i]) {
                 return true;
             }
         }
@@ -77,6 +82,10 @@ public class Player implements Serializable {
         return possibleActions;
     }
 
+    public Floor getFloor() {
+        return floor;
+    }
+
     //metoda pobiera od gracza infofrmacje gdzie chce on polozyc kafelki wartsoci <0,4>, jesli nie ma mozliowsci zeby polozyl je gdziekolowiek, to metoda zwraca 5
     public int chooseAction() {
         boolean doIHave1stplayertile = false;
@@ -100,7 +109,7 @@ public class Player implements Serializable {
         }
         System.out.println();
         System.out.println("pelna tablica");
-        for (Tile[] tab : Game.getBoard()) {
+        for (Tile[] tab : GUIGame.getBoard()) {
             for (Tile tile : tab) {
                 System.out.print(tile + " ");
             }
@@ -124,8 +133,8 @@ public class Player implements Serializable {
                 System.out.println(i + 1);
             }
             System.out.println("akcja: ");
-            Scanner sc = new Scanner(System.in);
-            return sc.nextInt() - 1;
+
+            return GameController.choosenAction;
         } else {
             System.out.println("niestety nic nie mozesz zrobic, wszystkie twoje kafelki z tej rundy laduja na podlodze");
             return 5;
@@ -143,7 +152,8 @@ public class Player implements Serializable {
             }
             if (temp == i + 1) {
                 for (int j = 0; j < 5; j++) {
-                    if (Game.getBoard()[i][j].getColor().equals(this.chosenColor)) {
+                    if (GUIGame.getBoard()[i][j].getColor().equals(this.chosenColor)) {
+                        System.out.println("dtkj");
                         this.playersBoard.getMatchedTiles()[i][j] = true;
                         break;
                     }
@@ -180,7 +190,9 @@ public class Player implements Serializable {
             this.roundsTiles.remove(0);
         }
     }
-
+    public void resetRoundTiles(){
+        this.roundsTiles=new ArrayList<>();
+    }
     public int getProgress() {
         return progress;
     }

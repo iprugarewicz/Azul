@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="GUI background">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+    <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="zakomentowane klasy Game i Player">
+      <change afterPath="$PROJECT_DIR$/src/main/java/client/logic/GUIPlayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/server/Logic/GUIGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/logic/NetworkPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/logic/NetworkPlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/client/logic/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/logic/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +49,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Klient">
+  <component name="RunManager" selected="Application.Main (2)">
     <configuration name="App" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.views.HelloApplication" />
       <module name="apro2_22l_pro_pt_azulpro" />
@@ -140,10 +140,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Klient" />
-        <item itemvalue="Application.Main (1)" />
-        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Main (2)" />
+        <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.Klient" />
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Serwer" />
       </list>
     </recent_temporary>
@@ -218,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654244273684</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="zakomentowane klasy Game i Player">
+      <created>1654281007999</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1654281007999</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,14 +248,15 @@
     <MESSAGE value="added comment" />
     <MESSAGE value="GUI masno fest" />
     <MESSAGE value="GUI background" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI background" />
+    <MESSAGE value="zakomentowane klasy Game i Player" />
+    <option name="LAST_COMMIT_MESSAGE" value="zakomentowane klasy Game i Player" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/server/Network/Serwer.java</url>
-          <line>118</line>
+          <line>128</line>
           <properties class="server.Network.Serwer">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -275,9 +283,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/server/Logic/Menu.java</url>
-          <line>74</line>
+          <line>87</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="9" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
