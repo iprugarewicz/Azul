@@ -68,8 +68,8 @@ public class Menu {
                     serwer.runServer();
 
                     //Stworzenie klienta dla hosta
-                    Klient k = new Klient("localhost");
-                    k.initialize();
+                  //  Klient k = new Klient("localhost");
+                  //  k.initialize();
                     boolean waitingroom = true;
 
                     //Poczekalnia - inni gracze mogą łączyć się z serwerem
@@ -94,7 +94,7 @@ public class Menu {
                     }).start();
 
                     //Uruchomienie gry dla klienta hosta
-                    k.getPlayer().playGame(k);
+                 //   k.getPlayer().playGame(k);
 
                 }
                 else if (b==2){ //Dołączenie do rozgrywki

@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/client/views/Main2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/logic/NetworkPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/logic/NetworkPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/network/Klient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/network/Klient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/GameController2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/GameControllerNetwork.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/GameControllerNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/GameControllerNetwork.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/client/views/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Network/Serwer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Network/Serwer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client/views/game-view2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/views/game-view2.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +66,7 @@
       <recent name="client.views" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.client.views.Main">
+  <component name="RunManager" selected="Application.Serwer">
     <configuration name="App" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.views.HelloApplication" />
       <module name="apro2_22l_pro_pt_azulpro" />
@@ -89,19 +87,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="server.Logic.Main" />
-      <module name="apro2_22l_pro_pt_azulpro" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="server.Logic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="server.Main" />
       <module name="apro2_22l_pro_pt_azulpro" />
@@ -109,12 +94,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Serwer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="server.Network.Serwer" />
+    <configuration name="Main2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="client.views.Main2" />
       <module name="apro2_22l_pro_pt_azulpro" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="server.Network.*" />
+          <option name="PATTERN" value="client.views.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Serwer" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="server.Logic.Main" />
+      <module name="apro2_22l_pro_pt_azulpro" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.Logic.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -151,19 +149,19 @@
     <list>
       <item itemvalue="Application.App" />
       <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Main2" />
       <item itemvalue="Application.client.views.Main" />
       <item itemvalue="Application.client.views.Test" />
-      <item itemvalue="Application.Main (1)" />
-      <item itemvalue="Application.Klient" />
       <item itemvalue="Application.Serwer" />
+      <item itemvalue="Application.Klient" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main2" />
         <item itemvalue="Application.client.views.Main" />
-        <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.Serwer" />
         <item itemvalue="Application.client.views.Test" />
         <item itemvalue="Application.Klient" />
-        <item itemvalue="Application.Serwer" />
       </list>
     </recent_temporary>
   </component>
@@ -181,7 +179,7 @@
       <workItem from="1654212529878" duration="1502000" />
       <workItem from="1654241368119" duration="186000" />
       <workItem from="1654806822409" duration="1991000" />
-      <workItem from="1654812614208" duration="5286000" />
+      <workItem from="1654812614208" duration="5937000" />
     </task>
     <task id="LOCAL-00001" summary="Drag and Drop prawie dziala ale trzeba podlaczyc">
       <created>1654165248525</created>
@@ -253,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654799459602</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="menu working">
+      <created>1654818024535</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1654818024535</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -599,6 +599,7 @@ public class GameControllerNetwork implements Initializable {
         patternLine = player.getPatternLine();
         centerOfWorkshop = player.getgS().getCenterOfWorkshop();
         whoseTurn = gS.getWhoseTurnIsIt() ;
+        nowPlayingText.setText("player "+whoseTurn);
         floor = player.getFloor();
         whoseTurnCheckerInit();
 
@@ -909,7 +910,7 @@ public class GameControllerNetwork implements Initializable {
 
             for (Rectangle tile : rect) {
                 if(playerList.get(whoseTurn-1).getPlayersBoard().getPatternLine().get(i)[j]!=null){
-                    tile.setFill(images[playerList.get(whoseTurn-1).getPlayersBoard().getPatternLine().get(i)[j].getColorID()-1]);
+                    tile.setFill(images[playerList.get(whoseTurn-1).getPlayersBoard().getPatternLine().get(i)[j].getColorID()]);
 
                 }else {
                     tile.setFill(images[6]);
