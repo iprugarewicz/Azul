@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Serwer{
     private ServerSocket ss;
-    private final int port = 12301;
+    private final int port ;
     private ArrayList<Socket> socketDatabase;
     private ArrayList<NetworkPlayer> playersDatabase;
     private ArrayList<InputStream> inputStreams;
@@ -21,7 +21,7 @@ public class Serwer{
     private int numberOfClients;
 
 
-    public Serwer(){
+    public Serwer(int port){
         socketDatabase = new ArrayList<Socket>();
         playersDatabase = new ArrayList<NetworkPlayer>();
         outputStreams = new ArrayList<OutputStream>();
@@ -29,6 +29,7 @@ public class Serwer{
         objectOutputStreams = new ArrayList<ObjectOutputStream>();
         objectInputStreams = new ArrayList<ObjectInputStream>();
         numberOfClients = 0;
+        this.port = port;
     }
 
 

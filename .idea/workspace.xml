@@ -6,8 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/Main2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/client/views/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client/views/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/views/main-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/Network/Serwer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Network/Serwer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Settings/settings.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Settings/settings.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/client/views/game-view2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/views/game_network-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,17 +46,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ignac/Documents/Studia_projekty/apro2_22l_pro_pt_azulpro2/src/main/resources/client/views&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/ignac/Documents/Studia_projekty/apro2_22l_pro_pt_azulpro2/src/main/resources/images"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="client.views" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ignac\Documents\Studia_projekty\apro2_22l_pro_pt_azulpro2\src\main\resources\images" />
       <recent name="C:\Users\ignac\Documents\Studia_projekty\apro2_22l_pro_pt_azulpro2\src\main\resources\client\views" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -64,7 +70,7 @@
       <recent name="client.views" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.client.views.Main">
     <configuration name="App" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.views.HelloApplication" />
       <module name="apro2_22l_pro_pt_azulpro" />
@@ -155,10 +161,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Test" />
-        <item itemvalue="Application.Main2" />
         <item itemvalue="Application.client.views.Main" />
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Serwer" />
+        <item itemvalue="Application.Main2" />
         <item itemvalue="Application.Klient" />
       </list>
     </recent_temporary>
@@ -263,7 +269,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654818719645</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="menu integration in progress">
+      <created>1654821289934</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1654821289934</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,14 +302,15 @@
     <MESSAGE value="zakomentowane klasy Game i Player" />
     <MESSAGE value="menu working" />
     <MESSAGE value="działa jako tako" />
-    <option name="LAST_COMMIT_MESSAGE" value="działa jako tako" />
+    <MESSAGE value="menu integration in progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="menu integration in progress" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/server/Network/Serwer.java</url>
-          <line>128</line>
+          <line>129</line>
           <properties class="server.Network.Serwer">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -320,11 +334,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/server/Logic/Menu.java</url>
           <line>70</line>
           <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/server/Network/Serwer.java</url>
-          <line>40</line>
-          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

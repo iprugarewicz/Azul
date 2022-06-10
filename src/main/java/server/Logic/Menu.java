@@ -64,7 +64,7 @@ public class Menu {
                 if(b==1){ //Hostowanie rozgrywki
 
                     //Uruchomienie serwera w tle
-                    Serwer serwer= new Serwer();
+                    Serwer serwer= new Serwer(12301);
                     serwer.runServer();
 
                     //Stworzenie klienta dla hosta

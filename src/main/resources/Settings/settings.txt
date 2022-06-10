@@ -1,5 +1,5 @@
 host= localhost
 port= 21300
 online= true
-isHosting= true
+isHosting= false
 playerCount= 4

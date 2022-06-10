@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class Main2 extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("game-view2.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("game_network-view.fxml"));
         primaryStage.setTitle("player 2");
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
