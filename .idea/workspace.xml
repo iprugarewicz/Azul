@@ -68,7 +68,7 @@
       <recent name="client.views" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.client.views.Main">
+  <component name="RunManager" selected="Application.Test">
     <configuration name="App" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.views.HelloApplication" />
       <module name="apro2_22l_pro_pt_azulpro" />
@@ -159,10 +159,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Main2" />
         <item itemvalue="Application.client.views.Main" />
         <item itemvalue="Application.Serwer" />
-        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Klient" />
       </list>
     </recent_temporary>

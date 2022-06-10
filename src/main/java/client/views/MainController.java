@@ -68,6 +68,17 @@ public class MainController implements Initializable {
             }
 
         }else{
+            try {
+                Stage mainWindow = (Stage) playButton.getScene().getWindow();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("game-view.fxml"));
+
+                Scene scene = new Scene(loader.load());
+                mainWindow.setTitle("Azul");
+                mainWindow.setScene(scene);
+                mainWindow.show();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
         }
 
