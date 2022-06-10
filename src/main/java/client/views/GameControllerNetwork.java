@@ -753,8 +753,8 @@ public class GameControllerNetwork implements Initializable {
                     }
                     threadMessage("target  r="+targetIndex[0]+" , c="+targetIndex[1]+"| dragged  workshop="+draggedIndex[0]+" , tile="+draggedIndex[1]);
                     try {
-                        player.makeMove(new Move(draggedIndex[0]+1,targetIndex[0]+1,workshopsFromGame[draggedIndex[0]].getTiles()[draggedIndex[1]].getColor()));
-                        threadMessage("move made: workshop="+draggedIndex[0]+" , tile="+draggedIndex[1]);
+                        player.makeMove(new Move(draggedIndex[0]+1,targetIndex[0],workshopsFromGame[draggedIndex[0]].getTiles()[draggedIndex[1]].getColor()));
+                        threadMessage("move made: workshop="+draggedIndex[0]+" , tile="+draggedIndex[1]+" , color= "+workshopsFromGame[draggedIndex[0]].getTiles()[draggedIndex[1]].getColor());
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
