@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/logic/NetworkPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/logic/NetworkPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/GameControllerNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/GameControllerNetwork.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Settings/settings.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Settings/settings.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client/views/game_network-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/views/game_network-view.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -283,7 +276,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654822205855</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="menu integration in progress">
+      <created>1654849316877</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1654849316877</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,7 +327,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/server/Logic/Main.java</url>
           <line>5</line>
-          <properties class="server.Logic.Main" method="main">
+          <properties class="server.Logic.Main">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>

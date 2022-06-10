@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.views.GameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.views.GameControllerNetwork">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="950.0">
          <children>
@@ -215,17 +215,17 @@
       <Pane layoutX="950.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="250.0">
          <children>
             <ImageView fx:id="menuBackground" fitHeight="800.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
-            <Text layoutX="43.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Now playing:" textAlignment="CENTER" wrappingWidth="163.13671875">
+            <Text fill="WHITE" layoutX="43.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Now playing:" textAlignment="CENTER" wrappingWidth="163.13671875">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text layoutX="74.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="player_id" textAlignment="CENTER" wrappingWidth="101.470703125">
+            <Text fx:id="nowPlayingText" fill="WHITE" layoutX="74.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="player_id" textAlignment="CENTER" wrappingWidth="101.470703125">
                <font>
                   <Font size="15.0" />
                </font>
             </Text>
-            <Text layoutX="35.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Players">
+            <Text fill="WHITE" layoutX="35.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Players">
                <font>
                   <Font size="18.0" />
                </font>
@@ -252,17 +252,17 @@
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Player 1" />
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Player2" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Player3" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Player4" GridPane.rowIndex="3" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                  <Button fx:id="showPlayer1Button" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Player 1" />
+                  <Button fx:id="showPlayer2Button" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Player2" GridPane.rowIndex="1" />
+                  <Button fx:id="showPlayer3Button" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Player3" GridPane.rowIndex="2" />
+                  <Button fx:id="showPlayer4Button" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Player4" GridPane.rowIndex="3" />
+                  <Text fx:id="scoreboard1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Text fx:id="scoreboard2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Text fx:id="scoreboard3" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Text fx:id="scoreboard4" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                </children>
             </GridPane>
-            <Text layoutX="151.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Points">
+            <Text fill="WHITE" layoutX="151.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Points">
                <font>
                   <Font size="18.0" />
                </font>
