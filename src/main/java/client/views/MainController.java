@@ -3,21 +3,36 @@ package client.views;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MainController {
+public class MainController implements Initializable {
 
     @FXML
     private Pane BGPane;
 
     @FXML
+    private ImageView Logo;
+
+    @FXML
     private Pane MainPane;
 
+    @FXML
+    private ImageView menuImageView;
+
+    @FXML
+    private ImageView backgroundImageView;
     @FXML
     private Button playButton;
 
@@ -29,6 +44,8 @@ public class MainController {
 
     @FXML
     private Button settingsButton;
+    @FXML
+    private ImageView rulesViewImage;
 
     @FXML
     void btnPlayOnClick(ActionEvent event) {
@@ -67,4 +84,15 @@ public class MainController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            backgroundImageView.setImage(new Image(new FileInputStream("src/main/resources/images/menu_bg.png")));
+            menuImageView.setImage(new Image(new FileInputStream("src/main/resources/images/menu_menu.png")));
+            Logo.setImage(new Image(new FileInputStream("src/main/resources/images/logo.png")));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }
