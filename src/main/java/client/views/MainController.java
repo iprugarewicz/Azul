@@ -60,7 +60,7 @@ public class MainController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("game_network-view.fxml"));
 
                 Scene scene = new Scene(loader.load());
-                mainWindow.setTitle("Settings");
+                mainWindow.setTitle("Azul");
                 mainWindow.setScene(scene);
                 mainWindow.show();
             } catch (IOException e) {

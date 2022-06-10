@@ -41,6 +41,23 @@ public class GameControllerNetwork implements Initializable {
     private Floor floor;
 
 
+    @FXML
+    private Button showPlayer1Button;
+    @FXML
+    private Button showPlayer2Button;
+    @FXML
+    private Button showPlayer3Button;
+    @FXML
+    private Button showPlayer4Button;
+    @FXML
+    private Text scoreboard1;
+    @FXML
+    private Text scoreboard2;
+    @FXML
+    private Text scoreboard3;
+    @FXML
+    private Text scoreboard4;
+
 
     @FXML
     private Rectangle floor0;
@@ -504,6 +521,10 @@ public class GameControllerNetwork implements Initializable {
         playerCount = playerList.size();
         counterTexts = new Text[]{textCounter0,textCounter1,textCounter2,textCounter3,textCounter4};
         floorTiles = new Rectangle[]{floor0,floor1,floor2,floor3,floor4,floor5,floor6};
+        scoreboard1 = new Text();
+        scoreboard2 = new Text();
+        scoreboard3 = new Text();
+        scoreboard4 = new Text();
 
         try {
             images = new ImagePattern[]{new ImagePattern(new Image(new FileInputStream("src/main/resources/images/yellow.png"))),
@@ -547,6 +568,8 @@ public class GameControllerNetwork implements Initializable {
                         whoseTurn = gS.getWhoseTurnIsIt() ;
                         nowPlayingText.setText("player "+whoseTurn);
                         floor = player.getFloor();
+                        player.calculateRoundPoints();
+                        scoreboard1.setText(String.valueOf(player.getProgress()));
                         if (k.getPlayer().getId() == whoseTurn) {
                             unlockDragging();
                         } else {
@@ -586,6 +609,7 @@ public class GameControllerNetwork implements Initializable {
 
 
 
+
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -602,7 +626,6 @@ public class GameControllerNetwork implements Initializable {
         nowPlayingText.setText("player "+whoseTurn);
         floor = player.getFloor();
         whoseTurnCheckerInit();
-
 
 
         setWorkshopVisbility();
@@ -854,7 +877,7 @@ public class GameControllerNetwork implements Initializable {
     }
 
 
-    void updateGraphics(){
+    private void updateGraphics(){
         //workshops update
         int i = 0;
         int j ;

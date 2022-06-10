@@ -6,13 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/Main2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/logic/NetworkPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/logic/NetworkPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/GameControllerNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/GameControllerNetwork.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/client/views/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Network/Serwer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Network/Serwer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Settings/settings.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Settings/settings.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client/views/game-view2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/views/game_network-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/client/views/game_network-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/views/game_network-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="newGameControll" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -46,12 +44,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/ignac/Documents/Studia_projekty/apro2_22l_pro_pt_azulpro2/src/main/resources/images"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ignac/Documents/Studia_projekty/apro2_22l_pro_pt_azulpro2/src/main/resources/images&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="client.views" />
@@ -161,10 +159,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.client.views.Main" />
-        <item itemvalue="Application.Test" />
-        <item itemvalue="Application.Serwer" />
         <item itemvalue="Application.Main2" />
+        <item itemvalue="Application.client.views.Main" />
+        <item itemvalue="Application.Serwer" />
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Klient" />
       </list>
     </recent_temporary>
@@ -184,6 +182,8 @@
       <workItem from="1654241368119" duration="186000" />
       <workItem from="1654806822409" duration="1991000" />
       <workItem from="1654812614208" duration="6247000" />
+      <workItem from="1654824273122" duration="186000" />
+      <workItem from="1654824479551" duration="1122000" />
     </task>
     <task id="LOCAL-00001" summary="Drag and Drop prawie dziala ale trzeba podlaczyc">
       <created>1654165248525</created>
@@ -276,7 +276,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654821289934</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="menu integration in progress">
+      <created>1654822205855</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1654822205855</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

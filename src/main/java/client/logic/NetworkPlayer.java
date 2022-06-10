@@ -24,6 +24,7 @@ public class NetworkPlayer implements Serializable {
     private ObjectOutputStream oos;
     private ObjectInputStream ois;
 
+
     public NetworkPlayer(int id) throws IOException {
         this.id = id;
 
