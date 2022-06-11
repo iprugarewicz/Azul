@@ -73,6 +73,7 @@ public class GUIGame {
 
     //glowna metoda w niej odbywa sie rozgrywka
     public void letsplay() throws IOException {
+        GameController.gameMode=2;
         //jesli gra zostala wczytana z pliku nie musimy generowac warsztatow
         if(!this.wasGameStatesReadFromaFile) {
             this.generateWorkshops();

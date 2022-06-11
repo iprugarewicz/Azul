@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Network/Serwer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Network/Serwer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Settings/settings.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Settings/settings.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/logic/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/logic/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/GUIGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/GUIGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +37,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="client.views" />
@@ -141,8 +140,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.client.views.Main" />
-        <item itemvalue="Application.client.views.Test" />
         <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.client.views.Test" />
         <item itemvalue="Application.Klient" />
         <item itemvalue="Application.Serwer" />
       </list>
@@ -279,20 +278,6 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/server/Logic/Main.java</url>
-          <line>5</line>
-          <properties class="server.Logic.Main" method="main">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/server/Logic/Menu.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />

@@ -37,6 +37,7 @@ public class GameController implements Initializable {
     public static Floor currentPlayersFloor;
 
     public static int players=0;
+    public static int gameMode=1;
     private final String[] colors = {"yellow", "blue", "green", "pink", "purple"};
     public static int choosenWorkshop=0;
     public static int choosenAction=-1;
@@ -675,7 +676,7 @@ public class GameController implements Initializable {
                  * transferred and used */
 
                 event.setDropCompleted(success);
-                System.out.println(dragged.getId()+" jebac");
+
                 int[] targetIndex = getIndexes(patternLines,target);
 
 
@@ -685,7 +686,7 @@ public class GameController implements Initializable {
                     target.setFill(dragged.getFill());
                     hasUserMadeCorrectmove=true;
                     choosenAction=targetIndex[0];
-                    System.out.println("kurwa mac "+choosenAction);
+
                 }
 
 
@@ -743,7 +744,6 @@ public class GameController implements Initializable {
         }
         private static int findIndex(CenterOfWorkshop c,String color){
             ArrayList<Tile> ar=c.getCenterOfWorkshop();
-            System.out.println(ar+" pusc to na podworkach");
             for(int i=0;i<ar.size();i++){
                 if(ar.get(i).getColor().equals(color)){
                     return ar.get(i).getColorID();
@@ -752,7 +752,7 @@ public class GameController implements Initializable {
             return -1;
         }
         private static int[] parseRectangleId(Rectangle r){
-            System.out.println(r.getId()+" jebac ip");
+
             if(!r.getId().endsWith("Count") && !r.getId().endsWith("Counter")) {
                 char[] tab = r.getId().toCharArray();
                 int[] tab2 = {Integer.parseInt(String.valueOf(tab[1])), workshopsFromGame[Integer.parseInt(String.valueOf(tab[1]))].getTiles()[Integer.parseInt(String.valueOf(tab[6]))].getColorID()};
@@ -844,7 +844,7 @@ public class GameController implements Initializable {
             j = 0;
             for (Rectangle tile : rect) {
                 if(currentPlayersBoard.getMatchedTiles()[i][j]) {
-                    System.out.println("dupaaaaaa");
+
                     wall[j][i].setFill(images[(j + 5 - i) % 5]);
                 }
                 else{
