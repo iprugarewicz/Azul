@@ -107,7 +107,23 @@ public class Game {
                     System.out.println("Wybierz warsztat oraz podaj, ktore kolory chcesz zabrac:");
                     System.out.println("warsztat: ");
                     int ws = sc.nextInt();
-                    System.out.println("kolor: ");
+
+                    //Wpisanie koloru i sprawdzenie poprawności
+                    String b = "";
+                    boolean incorrect = true;
+                    while (incorrect) {
+                        System.out.println("Podaj kolor");
+                        b = sc.nextLine();// color
+                        String[] colors = {"yellow", "blue", "green", "pink", "purple", "1st player tile"};
+                        for (String s : colors) {
+                            if (b.equals(s)) {
+                                incorrect = false;
+                                break;
+                            }
+                        }
+                        System.out.println("Wprowadzono niepoprawny kolor!");
+                    }
+
                     String c = sc2.nextLine();
                     //pobranie od gracza informacji o warsztacie ktory sobie wybral oraz informacji o kolorze kafelkow ktore chce z tego warsztatu zabrac
                     if (ws == workshops.length+1) {
