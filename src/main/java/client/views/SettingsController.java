@@ -100,7 +100,7 @@ public class SettingsController implements Initializable {
     }
 
     void setPlayerCountChosen(ActionEvent event){
-        System.out.println("xD");
+
         playerCount = parse(playerCountChoice.getValue());
         event.consume();
 

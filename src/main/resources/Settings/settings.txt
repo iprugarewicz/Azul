@@ -1,5 +1,5 @@
 host= localhost
-port= 21300
+port= 12300
 online= true
 isHosting= true
-playerCount= 4
+playerCount= 3

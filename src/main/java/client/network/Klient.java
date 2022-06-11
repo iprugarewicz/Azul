@@ -17,8 +17,8 @@ public class Klient {
     public Klient()throws IOException{
         try {
             BufferedReader br = new BufferedReader(new FileReader("src/main/resources/Settings/settings.txt"));
-            String host = br.readLine().split("= ")[0];
-            int port = Integer.parseInt(br.readLine().split("= ")[1]);
+            String host = "localhost";
+            int port = 12300;
             socket = new Socket(host,port);
 
         } catch (FileNotFoundException e) {

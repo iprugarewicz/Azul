@@ -625,7 +625,7 @@ public class GameController implements Initializable {
         Działanie jest proste, są dwa rodzaje elementów source i target,
         metody przyjmują element i sprawiają ze staje się source i target (można oba chyba, nie testowałem)
         zachowania w konkretnych sytuacjach opisane są w poszczególnych lambdach, da się ogarnąć co i jak
-        nie jest najgorzej xD
+        nie jest najgorzej xd
 
          */
         TransferMode locker = null;

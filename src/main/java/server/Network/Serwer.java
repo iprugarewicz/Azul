@@ -32,7 +32,7 @@ public class Serwer{
         try {
             BufferedReader br = new BufferedReader(new FileReader("src/main/resources/Settings/settings.txt"));
             br.readLine();
-            port = Integer.parseInt(br.readLine().split("= ")[1]);
+            port = 12300;
 
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
