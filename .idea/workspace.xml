@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="code clean up">
+    <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="menu working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/logic/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/logic/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logic/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logic/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,22 +39,14 @@
       <recent name="client.views" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\proal\IdeaProjects\apro2_22l_pro_pt_azulpro2\src" />
       <recent name="C:\Users\ignac\Documents\Studia_projekty\apro2_22l_pro_pt_azulpro\src\main\resources\client\views" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main (1)">
-    <configuration name="App" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="client.views.HelloApplication" />
-      <module name="apro2_22l_pro_pt_azulpro" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Klient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Gracz">
+    <configuration name="Gracz" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.network.Klient" />
       <module name="apro2_22l_pro_pt_azulpro" />
       <extension name="coverage">
@@ -70,40 +59,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="server.Logic.Main" />
-      <module name="apro2_22l_pro_pt_azulpro" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="server.Logic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="server.Main" />
-      <module name="apro2_22l_pro_pt_azulpro" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Serwer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="server.Network.Serwer" />
-      <module name="apro2_22l_pro_pt_azulpro" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="server.Network.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="client.views.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Offline GUI" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.views.Main" />
       <module name="apro2_22l_pro_pt_azulpro" />
       <extension name="coverage">
@@ -116,37 +72,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="client.views.Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="client.views.Test" />
+    <configuration name="Terminal" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="server.Logic.Main" />
       <module name="apro2_22l_pro_pt_azulpro" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="client.views.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.App" />
-      <item itemvalue="Application.Main" />
-      <item itemvalue="Application.client.views.Main" />
-      <item itemvalue="Application.client.views.Test" />
-      <item itemvalue="Application.Main (1)" />
-      <item itemvalue="Application.Klient" />
-      <item itemvalue="Application.Serwer" />
+      <item itemvalue="Application.Terminal" />
+      <item itemvalue="Application.Offline GUI" />
+      <item itemvalue="Application.Gracz" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main (1)" />
-        <item itemvalue="Application.client.views.Main" />
-        <item itemvalue="Application.client.views.Test" />
-        <item itemvalue="Application.Klient" />
-        <item itemvalue="Application.Serwer" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -239,14 +176,7 @@
       <option name="project" value="LOCAL" />
       <updated>1654962549390</updated>
     </task>
-    <task id="LOCAL-00012" summary="code clean up">
-      <created>1654965710605</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1654965710605</updated>
-    </task>
-    <option name="localTasksCounter" value="13" />
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,6 +192,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Drag and Drop prawie dziala ale trzeba podlaczyc" />
@@ -272,21 +203,11 @@
     <MESSAGE value="zakomentowane klasy Game i Player" />
     <MESSAGE value="menu working" />
     <MESSAGE value="code for &lt;18 yo" />
-    <MESSAGE value="code clean up" />
-    <option name="LAST_COMMIT_MESSAGE" value="code clean up" />
+    <option name="LAST_COMMIT_MESSAGE" value="code for &lt;18 yo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/server/Network/Serwer.java</url>
-          <line>138</line>
-          <properties class="server.Network.Serwer">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/client/network/Klient.java</url>
           <line>48</line>
