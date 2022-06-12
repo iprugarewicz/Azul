@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
+    /**
+     * Menu obsługujące rozgrywkę w konsoli
+     */
     public static void start() throws IOException, ClassNotFoundException {
 
         System.out.println("     _     ______   _ _     ");
