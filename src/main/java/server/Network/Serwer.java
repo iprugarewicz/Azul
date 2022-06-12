@@ -20,7 +20,9 @@ public class Serwer{
     private ArrayList<ObjectInputStream> objectInputStreams;
     private int numberOfClients;
 
-
+    /**
+     * Serwer komunikujący się z klientami
+     */
     public Serwer(){
         socketDatabase = new ArrayList<Socket>();
         playersDatabase = new ArrayList<NetworkPlayer>();
@@ -43,6 +45,10 @@ public class Serwer{
 
 
     //Uruchomienie serwera
+
+    /**
+     * Uruchomienie serwera
+     */
     public void runServer() throws IOException, UnknownHostException {
         //Serwer działa w oddzielnym wątku
         new Thread(()->{
@@ -110,7 +116,12 @@ public class Serwer{
         }).start();
     }
 
-    //Wysłanie obiektu do wszystkich na klientów
+
+
+    /**
+     * Wysłanie obiektu do wszystkich na klientów
+     * @param obj obiekt wysyłany
+     */
     public void sendToAll(Object obj){
         for (ObjectOutputStream objectOutputStream:objectOutputStreams) {
             try {
@@ -124,7 +135,12 @@ public class Serwer{
         }
     }
 
-    //Wysłanie obiektu do konkretnego klienta
+
+    /**
+     * Wysłanie obiektu do jednego klienta
+     * @param obj obiekt wysyłany
+     * @param index indeks w liście kleintów
+     */
     public void sendToOne(Object obj, int index){
         Socket s = socketDatabase.get(index);
             try {

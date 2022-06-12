@@ -10,6 +10,11 @@ public class Klient {
     private Socket socket;
     private NetworkPlayer player;
 
+    /**
+     * Klient do komunikacji z serwerem
+     * @param host adres hosta
+     * @throws IOException wyjątek w przypadku błędu połączenia
+     */
     public Klient(String host) throws IOException {
         socket = new Socket(host,12300);
 
@@ -30,7 +35,13 @@ public class Klient {
 
     }
 
-
+    /**
+     * Metoda incjalizuje klienta - łączy się z serwerem,
+     * otrzymuje numer ID, na jego podstawie tworzy obiekt klasy
+     * NetworkPlayer i wysyła go do serwera
+     *
+     * @throws IOException błąd w przpadku błędu komunikacji
+     */
     public void initialize() throws IOException {
 
         //odebranie ID i stworzenie NetworkPlayera
@@ -48,6 +59,10 @@ public class Klient {
 
     }
 
+    /**
+     * Odebranie numeru ID
+     * @return int ID
+     */
     public int recieveID(){
         //Klient odbiera swoje id i zwraca jako wynik metody
         try {
@@ -63,7 +78,9 @@ public class Klient {
         return 0;
     }
 
-    //Klient który dołącza do gry
+    /**
+     * Klient który dołącza do gry (Można go uruchomić w celu uruchomienia gry sieciowej na jednym komputerze)
+     */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Klient k = new Klient();
         System.out.println("Nowy obiekt");
