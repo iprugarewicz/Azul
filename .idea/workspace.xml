@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b96f0f28-7df2-4c75-af5d-9ec8c6f8b473" name="Changes" comment="menu working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/views/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/views/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/README.md.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +47,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Online Terminal">
+  <component name="RunManager" selected="Application.Gracz">
     <configuration name="Gracz" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.network.Klient" />
       <module name="apro2_22l_pro_pt_azulpro" />
@@ -74,7 +74,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Online Terminal" type="Application" factoryName="Application">
+    <configuration name="Terminal" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="server.Logic.Main" />
       <module name="apro2_22l_pro_pt_azulpro" />
       <method v="2">
@@ -82,7 +82,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Online Terminal" />
+      <item itemvalue="Application.Terminal" />
       <item itemvalue="Application.Offline GUI" />
       <item itemvalue="Application.Gracz" />
     </list>
