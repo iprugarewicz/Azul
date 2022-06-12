@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-//PatternLine to lewa część planszy każdego gracza. Kładziemy tam kafelki z warsztatów
+/**
+ * PatternLine to lewa część planszy każdego gracza. Kładziemy tam kafelki z warsztatów
+ */
 public class PatternLine implements Serializable {
     private ArrayList<Tile[]> patternLine=new ArrayList<>();
 

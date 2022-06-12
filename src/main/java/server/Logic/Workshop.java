@@ -3,6 +3,9 @@ package server.Logic;
 import java.io.Serializable;
 import java.util.Arrays;
 
+/**
+ * Klasa warszatu w którym przechowujemy kafelki
+ */
 public class Workshop implements Serializable {
     private Tile[] tiles;
     public Workshop(){

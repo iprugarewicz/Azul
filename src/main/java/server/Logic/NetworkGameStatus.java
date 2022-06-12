@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
 public class NetworkGameStatus implements Serializable {
     private static Tile[][] board = new Tile[5][5];
     private final int whoseTurnIsIt; //id gracza którego jest tura
@@ -18,6 +19,18 @@ public class NetworkGameStatus implements Serializable {
     private final boolean is1stplayerstileatthecenter; //czy 1playerstile jest na środku workshopów
     private final boolean isGameFinished; //czy gra dobiegła do końca
 
+    /**
+     * Klasa reprezentująca status rozgrywki, na jej podstawie gracze sieciowi odczytują dane rozgrywki
+     * @param playersList lista graczy
+     * @param workshops tablica warsztatów
+     * @param centerOfWorkshop środek warszatów
+     * @param tilesAmounts ile kafelkow każdego koloru zostało
+     * @param round kolejka
+     * @param is1stplayerstileatthecenter czy kafelek 1playerstile znajduje sie w srodku warszatatów
+     * @param whoseTurnIsIt numer gracza którego kolej na ruch jest teraz
+     * @param isGameFinished  czy gra już się skończyła
+     * @param board
+     */
     public NetworkGameStatus(ArrayList<NetworkPlayer> playersList, Workshop[] workshops, CenterOfWorkshop centerOfWorkshop, int[] tilesAmounts, int round, boolean is1stplayerstileatthecenter,int whoseTurnIsIt,boolean isGameFinished,Tile[][] board) {
         this.playersList = playersList;
         this.workshops = workshops;
@@ -30,7 +43,15 @@ public class NetworkGameStatus implements Serializable {
         this.board = board;
     }
 
-    //Liczenie punktów
+    //
+
+    /**
+     * Update liczby punktów
+     * @param progress liczba punktów gracza
+     * @param playersBoard plansza gracza
+     * @param floor podłoga na której znajdują się kafelki
+     * @return
+     */
     public static int updateProgress(int progress, PlayersBoard playersBoard, Floor floor){
         //horizontal check
         for(boolean[] tab : playersBoard.getMatchedTiles()){

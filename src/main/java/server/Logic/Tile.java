@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * Klasa kafelka
+ */
 public class Tile implements Serializable {
     private final String color;
     private final int colorID;
