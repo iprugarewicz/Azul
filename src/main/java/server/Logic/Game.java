@@ -44,7 +44,11 @@ public class Game {
         generateWorkshops();
     }
 
-    //metoda generuje losowo zawartosc warsztatow (w kazdym warsztacie zawsze sa 4 kafelki)
+
+    /**
+     *metoda generuje losowo zawartosc warsztatow (w kazdym warsztacie zawsze sa 4 kafelki)
+     */
+
     private void generateWorkshops() {
         Random r = new Random();
         for (int i = 0; i < workshops.length; i++) {
@@ -66,12 +70,18 @@ public class Game {
 
 
 
+
     public void setWasGameStatesReadFromaFile(boolean wasGameStatesReadFromaFile) {
         this.wasGameStatesReadFromaFile = wasGameStatesReadFromaFile;
     }
 
 
-    //glowna metoda w niej odbywa sie rozgrywka
+
+
+    /**
+     * glowna metoda w niej odbywa sie rozgrywka
+     * @throws IOException
+     */
     public void letsplay() throws IOException {
         //jesli gra zostala wczytana z pliku nie musimy generowac warsztatow
         if(!this.wasGameStatesReadFromaFile) {
@@ -264,11 +274,21 @@ public class Game {
         }
         endGame();
     }
-    //metoda zapisuje serializowany obiekt typu game status
+    //
+
+    /**
+     * metoda zapisuje serializowany obiekt typu game status
+     * @param fileName
+     * @throws IOException
+     */
     public void saveGameStatusToFile(String fileName) throws IOException {
         ObjectsSerializer.serializeGameStatus(new GameStatus(this.playersList,this.workshops,this.centerOfWorkshop,this.tilesAmounts,this.round,this.is1stplayerstileatthecenter),fileName);
     }
-    //posortowanie graczy w zaleznosci od wynikow, pokazanie wynikow
+
+
+    /**
+     * posortowanie graczy w zaleznosci od wynikow, pokazanie wynikow
+     */
     public void endGame(){
         for(int i=0;i<playersList.size();i++){
             int biggest=playersList.get(i).getProgress();
