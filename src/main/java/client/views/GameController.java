@@ -843,7 +843,7 @@ public class GameController implements Initializable {
         for (Rectangle[] rect : wall) {
             j = 0;
             for (Rectangle tile : rect) {
-                if(currentPlayersBoard.getMatchedTiles()[i][j]) {
+                if(currentPlayersBoard!= null && currentPlayersBoard.getMatchedTiles()[i][j]) {
 
                     wall[j][i].setFill(images[(j + 5 - i) % 5]);
                 }
@@ -860,10 +860,10 @@ public class GameController implements Initializable {
 
         for (int x=0;x<patternLines.length;x++) {
             for (int y=0;y<patternLines[x].length;y++) {
-                if(currentPlayersBoard.getPatternLine().get(x)[y]==null) {
+                if(currentPlayersBoard != null && currentPlayersBoard.getPatternLine().get(x)[y]==null) {
                     patternLines[x][x-y].setFill(images[6]);
                 }
-                else{
+                else if(currentPlayersBoard != null){
                     patternLines[x][x-y].setFill(images[currentPlayersBoard.getPatternLine().get(x)[y].getColorID()]);
                 }
 
